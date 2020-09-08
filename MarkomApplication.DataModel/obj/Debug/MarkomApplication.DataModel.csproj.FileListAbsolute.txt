@@ -1,0 +1,12 @@
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\bin\Debug\MarkomApplication.DataModel.dll.config
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\bin\Debug\MarkomApplication.DataModel.dll
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\bin\Debug\MarkomApplication.DataModel.pdb
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\bin\Debug\EntityFramework.dll
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\bin\Debug\EntityFramework.SqlServer.dll
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\bin\Debug\EntityFramework.xml
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\bin\Debug\EntityFramework.SqlServer.xml
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.csprojAssemblyReference.cache
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.csproj.CoreCompileInputs.cache
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.csproj.CopyComplete
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.dll
+D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.pdb

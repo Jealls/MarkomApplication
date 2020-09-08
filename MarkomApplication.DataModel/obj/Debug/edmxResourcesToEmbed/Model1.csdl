@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarkomApplicationDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="m_company">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="m_employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employee_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="m_company_id" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="m_menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="controller" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="parent_id" Type="Int32" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="m_menu_access">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="m_role_id" Type="Int32" Nullable="false" />
+    <Property Name="m_menu_id" Type="Int32" Nullable="false" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="m_product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="m_role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="m_souvenir">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="m_unit_id" Type="Int32" Nullable="false" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="m_unit">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="m_user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="m_role_id" Type="Int32" Nullable="false" />
+    <Property Name="m_employee_id" Type="Int32" Nullable="false" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="t_design">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="t_event_id" Type="Int32" Nullable="false" />
+    <Property Name="title_header" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="request_by" Type="Int32" Nullable="false" />
+    <Property Name="request_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="approved_by" Type="Int32" />
+    <Property Name="approve_date" Type="DateTime" Precision="3" />
+    <Property Name="assign_to" Type="Int32" />
+    <Property Name="closed_date" Type="DateTime" Precision="3" />
+    <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="reject_reason" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="t_design_item">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="t_design_id" Type="Int32" Nullable="false" />
+    <Property Name="m_product_id" Type="Int32" Nullable="false" />
+    <Property Name="title_item" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="request_pic" Type="Int32" Nullable="false" />
+    <Property Name="start_date" Type="DateTime" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="request_due_date" Type="DateTime" Precision="3" />
+    <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="t_design_item_file">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="t_design_item_id" Type="Int32" Nullable="false" />
+    <Property Name="filename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="size" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="extention" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="t_event">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="event_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="start_date" Type="DateTime" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="place" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="budget" Type="Int64" />
+    <Property Name="request_by" Type="Int32" Nullable="false" />
+    <Property Name="request_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="approved_by" Type="Int32" />
+    <Property Name="approve_date" Type="DateTime" Precision="3" />
+    <Property Name="assign_to" Type="Int32" />
+    <Property Name="closed_date" Type="DateTime" Precision="3" />
+    <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="reject_reason" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="create_date" Type="DateTime" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="t_promotion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="flag_design" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="t_event_id" Type="Int32" Nullable="false" />
+    <Property Name="t_design_id" Type="Int32" />
+    <Property Name="request_by" Type="Int32" />
+    <Property Name="request_date" Type="DateTime" Precision="3" />
+    <Property Name="approved_by" Type="Int32" />
+    <Property Name="approve_date" Type="DateTime" Precision="3" />
+    <Property Name="assign_to" Type="Int32" />
+    <Property Name="closed_date" Type="DateTime" Precision="3" />
+    <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="reject_reason" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="t_promotion_item">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="t_promotion_id" Type="Int32" Nullable="false" />
+    <Property Name="t_design_item_id" Type="Int32" />
+    <Property Name="m_product_id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="request_pic" Type="Int32" Nullable="false" />
+    <Property Name="start_date" Type="DateTime" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="request_due_date" Type="DateTime" Precision="3" />
+    <Property Name="qty" Type="Int64" />
+    <Property Name="todo" Type="Int32" Nullable="false" />
+    <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="t_promotion_item_file">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="t_promotion_id" Type="Int32" Nullable="false" />
+    <Property Name="filename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="size" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="extention" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="start_date" Type="DateTime" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="request_due_date" Type="DateTime" Precision="3" />
+    <Property Name="qty" Type="Int64" />
+    <Property Name="todo" Type="Int32" Nullable="false" />
+    <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="t_souvenir_item">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="t_souvenir_id" Type="Int32" Nullable="false" />
+    <Property Name="m_souvenir_id" Type="Int32" Nullable="false" />
+    <Property Name="qty" Type="Int64" />
+    <Property Name="qty_settlement" Type="Int64" />
+    <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="create_date" Type="DateTime" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="t_souvernir">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="t_event_id" Type="Int32" />
+    <Property Name="request_by" Type="Int32" Nullable="false" />
+    <Property Name="request_date" Type="DateTime" Precision="3" />
+    <Property Name="request_due_date" Type="DateTime" Precision="3" />
+    <Property Name="approved_by" Type="Int32" />
+    <Property Name="approve_date" Type="DateTime" Precision="3" />
+    <Property Name="receive_by" Type="Int32" />
+    <Property Name="receive_date" Type="DateTime" Precision="3" />
+    <Property Name="settlement_by" Type="Int32" />
+    <Property Name="settlement_date" Type="DateTime" Precision="3" />
+    <Property Name="settlement_approve_by" Type="Int32" />
+    <Property Name="settlement_approve_date" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="reject_reason" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="is_delete" Type="Boolean" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="create_date" Type="DateTime" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="MarkomApplicationDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="m_company" EntityType="Self.m_company" />
+    <EntitySet Name="m_employee" EntityType="Self.m_employee" />
+    <EntitySet Name="m_menu" EntityType="Self.m_menu" />
+    <EntitySet Name="m_menu_access" EntityType="Self.m_menu_access" />
+    <EntitySet Name="m_product" EntityType="Self.m_product" />
+    <EntitySet Name="m_role" EntityType="Self.m_role" />
+    <EntitySet Name="m_souvenir" EntityType="Self.m_souvenir" />
+    <EntitySet Name="m_unit" EntityType="Self.m_unit" />
+    <EntitySet Name="m_user" EntityType="Self.m_user" />
+    <EntitySet Name="t_design" EntityType="Self.t_design" />
+    <EntitySet Name="t_design_item" EntityType="Self.t_design_item" />
+    <EntitySet Name="t_design_item_file" EntityType="Self.t_design_item_file" />
+    <EntitySet Name="t_event" EntityType="Self.t_event" />
+    <EntitySet Name="t_promotion" EntityType="Self.t_promotion" />
+    <EntitySet Name="t_promotion_item" EntityType="Self.t_promotion_item" />
+    <EntitySet Name="t_promotion_item_file" EntityType="Self.t_promotion_item_file" />
+    <EntitySet Name="t_souvenir_item" EntityType="Self.t_souvenir_item" />
+    <EntitySet Name="t_souvernir" EntityType="Self.t_souvernir" />
+  </EntityContainer>
+</Schema>
