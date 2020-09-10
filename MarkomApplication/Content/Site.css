@@ -1,5 +1,4 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -21,4 +20,76 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+/*----------------------*/
+
+/*header untuk judul container*/
+.list-head {
+    color: white;
+    background-color: #337AB7;
+}
+.list-head > p{
+    margin: 0.5rem;
+    width: 100%;
+}
+
+/*seacrh group*/
+.search_group > .input-group > .form-group{
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+/*dropdown style polos search*/
+.dropdown_style {
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+}
+
+
+/*bootstrap 3*/
+.has-feedback {
+    position: relative;
+}
+
+    .has-feedback .form-control {
+        padding-right: 42.5px;
+    }
+
+.form-control-feedback {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    pointer-events: none;
+}
+
+.input-lg + .form-control-feedback,
+.input-group-lg + .form-control-feedback,
+.form-group-lg .form-control + .form-control-feedback {
+    width: 46px;
+    height: 46px;
+    line-height: 46px;
+}
+
+.input-sm + .form-control-feedback,
+.input-group-sm + .form-control-feedback,
+.form-group-sm .form-control + .form-control-feedback {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+/*placeholder input*/
+input:placeholder-shown {
+    font-style: italic;
+}
+.code_placeholder input:placeholder-shown {
+    font-style: normal;
 }

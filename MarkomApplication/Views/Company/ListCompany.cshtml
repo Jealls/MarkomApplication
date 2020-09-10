@@ -1,0 +1,118 @@
+﻿@model IEnumerable<MarkomApplication.ViewModel.CompanyViewModel>
+
+@{
+    ViewBag.Title = "ListCompany";
+}
+
+<div class="container rounded-top border border-primary">
+
+    <div class="row rounded-top list-head ">
+        <p>List Company</p>
+    </div>
+    <div class="row mx-2">
+        <p class="p-2 my-3 bg-light text-dark" style="width:100%;">
+            <a>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active" })</a> /
+            <a>@Html.ActionLink("Master", "Index", "Home", null, new { @class = "active" })</a> /
+            List Company
+        </p>
+        <div class="py-2" style="width:100%;">
+
+            @*<button type="button" value="Show" id="btn_add_company" class="btn btn-danger m-2" data-url="@Url.Action("AddCompany", "Company")">Add</button>*@
+            <a  class="btn btn-primary active" id="btn_add_company" role="button" aria-pressed="true" style="float: right;"  data-url="@Url.Action("AddCompany", "Company")">Add</a>
+        </div>
+
+        <div class="row search_group" style="width:100%">
+            <div class="input-group">
+                <div class="form-group">
+                    <select class="form-control dropdown_style" id="company_id">
+                        <option value="" disabled selected>- Select Company Code -</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control  dropdown_style" id="company_name">
+                        <option value="" disabled selected>- Select Company Name -</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group" style="max-width:220px;">
+                    <div class="has-feedback">
+                        <input id="txt_search_dari" class="form-control datepicker-here" data-date-format="dd/mm/yyyy" placeholder="Created" />
+                        <i class="fa fa-calendar form-control-feedback"></i>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:220px;">
+                    <input type="text" class="form-control rounded" placeholder="Created By" id="src_created_company" name="src_created_company" />
+                </div>
+
+                <div class="form-group" style="margin-right:0; ">
+                    <button class="btn" id="btn_search_company" name="btn_search_company"> &nbsp;Cari</button>
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <tr>
+                <th>No</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.code)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.createBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.createDate)
+                </th>
+                <th>Action</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.createBy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.createDate)
+                        </td>
+                        <td>
+                            @Html.ActionLink("ViewCompany", "Company", new { id = item.id }) |
+                            @Html.ActionLink("EditCompany", "Company", new { id = item.id }) |
+                            @Html.ActionLink("DeleteCompany", "Company", new { id = item.id })
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+</div>
+
+@Html.Partial("_ModalPopUp")
+@section Scripts{
+    <script src="~/Scripts/crud/crudCompany.js"></script>
+    <script src="~/Scripts/datepicker.js"></script>
+    <script src="~/Scripts/datepicker.min.js"></script>
+    <script src="~/Scripts/i18n/datepicker.en.js"></script>
+}
