@@ -165,3 +165,11 @@ D:\Latihan\Github\MarkomApplication\MarkomApplication\obj\Debug\MarkomApplicatio
 D:\Latihan\Github\MarkomApplication\MarkomApplication\obj\Debug\MarkomApplication.dll
 D:\Latihan\Github\MarkomApplication\MarkomApplication\obj\Debug\MarkomApplication.pdb
 D:\Latihan\Github\MarkomApplication\MarkomApplication\bin\WebActivatorEx.dll
+D:\Latihan\Github\MarkomApplication\MarkomApplication\bin\MarkomApplication.DataModel.dll
+D:\Latihan\Github\MarkomApplication\MarkomApplication\bin\EntityFramework.dll
+D:\Latihan\Github\MarkomApplication\MarkomApplication\bin\MarkomApplication.DataModel.pdb
+D:\Latihan\Github\MarkomApplication\MarkomApplication\bin\MarkomApplication.DataModel.dll.config
+D:\Latihan\Github\MarkomApplication\MarkomApplication\bin\EntityFramework.xml
+D:\Latihan\Github\MarkomApplication\MarkomApplication\bin\MarkomApplication.DataAccess.dll.config
+D:\Latihan\Github\MarkomApplication\MarkomApplication\bin\EntityFramework.SqlServer.dll
+D:\Latihan\Github\MarkomApplication\MarkomApplication\bin\EntityFramework.SqlServer.xml

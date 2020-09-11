@@ -28,6 +28,12 @@ namespace MarkomApplication
                       "~/Content/site.css",
                       "~/Content/modal.css"
                       ));
+
+            bundles.Add(new StyleBundle("~/Content/css-validate").Include(
+            "~/Content/validateStyle.css"
+          ));
+            bundles.Add(new ScriptBundle("~/bundles/validation").Include(
+                        "~/Scripts/validation/validate.*"));
         }
     }
 }

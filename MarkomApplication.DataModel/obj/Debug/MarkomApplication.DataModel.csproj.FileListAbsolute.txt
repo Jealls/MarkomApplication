@@ -10,3 +10,15 @@ D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\obj\Debug\Markom
 D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.csproj.CopyComplete
 D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.dll
 D:\Latihan\dotNet\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.pdb
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\bin\Debug\MarkomApplication.DataModel.dll.config
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\bin\Debug\MarkomApplication.DataModel.dll
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\bin\Debug\MarkomApplication.DataModel.pdb
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\bin\Debug\EntityFramework.dll
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\bin\Debug\EntityFramework.SqlServer.dll
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\bin\Debug\EntityFramework.xml
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\bin\Debug\EntityFramework.SqlServer.xml
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.csprojAssemblyReference.cache
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.csproj.CoreCompileInputs.cache
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.csproj.CopyComplete
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.dll
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataModel\obj\Debug\MarkomApplication.DataModel.pdb

@@ -18,7 +18,7 @@
         <div class="py-2" style="width:100%;">
 
             @*<button type="button" value="Show" id="btn_add_company" class="btn btn-danger m-2" data-url="@Url.Action("AddCompany", "Company")">Add</button>*@
-            <a  class="btn btn-primary active" id="btn_add_company" role="button" aria-pressed="true" style="float: right;"  data-url="@Url.Action("AddCompany", "Company")">Add</a>
+            <a class="btn btn-primary active" id="btn_add_company" role="button" aria-pressed="true" style="float: right;" data-url="@Url.Action("Add", "Company")">Add</a>
         </div>
 
         <div class="row search_group" style="width:100%">
@@ -111,6 +111,7 @@
 
 @Html.Partial("_ModalPopUp")
 @section Scripts{
+    @Scripts.Render("~/bundles/validation")
     <script src="~/Scripts/crud/crudCompany.js"></script>
     <script src="~/Scripts/datepicker.js"></script>
     <script src="~/Scripts/datepicker.min.js"></script>

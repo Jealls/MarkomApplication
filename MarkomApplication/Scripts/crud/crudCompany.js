@@ -1,4 +1,6 @@
-﻿$(function () {
+﻿
+//Setting bahasa dan format tanggal datepicker
+$(function () {
     $(".datepicker-here").datepicker({ language: 'en' });
     $('.datepicker-here').datepicker({ dateFormat: 'dd/mm/yyyy' }).val();
 });
@@ -6,7 +8,7 @@
 
 var ProgressHtml = '<div class="progress progress-striped active" style="margina-bottom: 0"><div class="progress-bar" style="width:100%"></div></div>';
 
-
+//klik tombol add company /modal add show
 $(document).on("click", "#btn_add_company", function () {
 
     $("#modal_add_form").modal("show");
@@ -19,6 +21,37 @@ $(document).on("click", "#btn_add_company", function () {
         type: 'get',
         success: function (result) {
             $("#modal_content_add").html(result);
+        }
+    });
+});
+
+
+//klik tombol show /save submit
+$(document).on("click", "#btn_save_company", function () {
+    var vjsName = $("#name").val();
+    var vjsEmail = $("#email").val();
+    var vjsPhone = $("#phone").val();
+    var vjsAddress = $("#address").val();
+
+    validationName(vjsName);
+
+    var item = {
+        name: vjsName,
+        email: vjsEmail,
+        phone: vjsPhone,
+        address: vjsAddress
+    };
+
+    $.ajax({
+        url: $("#btn_save_company").data('url'),
+        type: 'post',
+        data: {
+            paramAddCompany: item
+        },
+        success: function (result) {
+            if (result.success) {
+                $("#modal_add_form").modal("hide");
+            }
         }
     });
 });

@@ -16,9 +16,29 @@ namespace MarkomApplication.Controllers
             return View();
         }
 
-        public ActionResult AddCompany()
+        public ActionResult Add()
         {
             return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult CreateDataCompany(CompanyViewModel paramAddCompany)
+        {   
+            //is delete default value
+            paramAddCompany.isDelete = false;
+            
+            //update data manual createby and createdate
+            paramAddCompany.createBy = "Anastasia";
+            paramAddCompany.createDate = DateTime.Now;
+
+            if (CompanyDataAccess.CreateCompany(paramAddCompany)) {
+                
+                return Json(new { success = true, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

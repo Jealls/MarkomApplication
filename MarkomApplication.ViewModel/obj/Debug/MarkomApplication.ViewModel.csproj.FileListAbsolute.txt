@@ -11,8 +11,6 @@ D:\Latihan\dotNet\MarkomApplication\MarkomApplication.ViewModel\obj\Debug\Markom
 D:\Latihan\dotNet\MarkomApplication\MarkomApplication.ViewModel\obj\Debug\MarkomApplication.ViewModel.pdb
 D:\Latihan\Github\MarkomApplication\MarkomApplication.ViewModel\bin\Debug\MarkomApplication.ViewModel.dll
 D:\Latihan\Github\MarkomApplication\MarkomApplication.ViewModel\bin\Debug\MarkomApplication.ViewModel.pdb
-D:\Latihan\Github\MarkomApplication\MarkomApplication.ViewModel\bin\Debug\EntityFramework.dll
-D:\Latihan\Github\MarkomApplication\MarkomApplication.ViewModel\bin\Debug\EntityFramework.SqlServer.dll
 D:\Latihan\Github\MarkomApplication\MarkomApplication.ViewModel\bin\Debug\EntityFramework.xml
 D:\Latihan\Github\MarkomApplication\MarkomApplication.ViewModel\bin\Debug\EntityFramework.SqlServer.xml
 D:\Latihan\Github\MarkomApplication\MarkomApplication.ViewModel\obj\Debug\MarkomApplication.ViewModel.csprojAssemblyReference.cache

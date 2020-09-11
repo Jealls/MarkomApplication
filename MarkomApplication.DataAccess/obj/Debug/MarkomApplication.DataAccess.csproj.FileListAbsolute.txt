@@ -30,3 +30,4 @@ D:\Latihan\Github\MarkomApplication\MarkomApplication.DataAccess\obj\Debug\Marko
 D:\Latihan\Github\MarkomApplication\MarkomApplication.DataAccess\obj\Debug\MarkomApplication.DataAccess.csproj.CopyComplete
 D:\Latihan\Github\MarkomApplication\MarkomApplication.DataAccess\obj\Debug\MarkomApplication.DataAccess.dll
 D:\Latihan\Github\MarkomApplication\MarkomApplication.DataAccess\obj\Debug\MarkomApplication.DataAccess.pdb
+D:\Latihan\Github\MarkomApplication\MarkomApplication.DataAccess\bin\Debug\MarkomApplication.DataAccess.dll.config
