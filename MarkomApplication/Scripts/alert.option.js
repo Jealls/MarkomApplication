@@ -10,12 +10,13 @@
 //});  
 
 
-function fcAlertSuccessAdd(vjsAlertId) {
+function fcAlertSuccessAdd(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#data_code_alert_add").innerHTML = vjsLatestCode;
 
     setTimeout(function () {
         $(vjsAlertId).addClass('d-none');
 
-    }, 5000);
+    }, 3000);
 }

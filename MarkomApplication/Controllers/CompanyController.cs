@@ -37,8 +37,8 @@ namespace MarkomApplication.Controllers
 
                 if (CompanyDataAccess.CreateCompany(paramAddCompany)) 
                 {
-                
-                    return Json(new { success = true, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    string latestCode = CompanyDataAccess.LatestCode();
+                    return Json(new { success = true, latestCode, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {

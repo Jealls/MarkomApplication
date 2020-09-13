@@ -14,7 +14,7 @@ namespace MarkomApplication.DataAccess
     {
 
         public static string Message = string.Empty;
-
+        private static string latestSaveCode = string.Empty;
 
         public static List<CompanyViewModel> GetListCompany()
         {
@@ -66,8 +66,10 @@ namespace MarkomApplication.DataAccess
                         db.m_company.Add(c);
                         db.SaveChanges();
                         dbContextTransaction.Commit();
-
-                        //string latestCode = c.code;
+                        
+                        //get latest save code
+                        latestSaveCode = c.code;
+                        
                     }
                     catch(Exception ex)
                     {
@@ -83,7 +85,10 @@ namespace MarkomApplication.DataAccess
 
 
 
-
+        public static string LatestCode()
+        {
+            return latestSaveCode;
+        }
 
 
         public static string CompanyCode()

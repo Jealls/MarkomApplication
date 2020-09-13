@@ -8,6 +8,8 @@ $(function () {
 
 var ProgressHtml = '<div class="progress progress-striped active" style="margina-bottom: 0"><div class="progress-bar" style="width:100%"></div></div>';
 
+
+
 //klik tombol add company /modal add show
 $(document).on("click", "#btn_add_company", function () {
 
@@ -49,10 +51,14 @@ $(document).on("click", "#btn_save_company", function () {
         data: { paramAddCompany:item },
         success: function (result) {
             if (result.success) {
+
                 $("#modal_add_form").modal("hide");
 
-                fcAlertSuccessAdd("#success_alert_add");
+                fcAlertSuccessAdd("#success_alert_add", result.latestCode);
 
+                setTimeout(function () {
+                     window.location.reload();
+                }, 2000);
                 //toastr.info("Data Saved! New company has been add with code " + $(this).attr("data-id"));
             } 
         }
