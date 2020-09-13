@@ -68,9 +68,6 @@
                     @Html.DisplayNameFor(model => model.name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.address)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.createBy)
                 </th>
                 <th>
@@ -83,6 +80,7 @@
                 foreach (var item in Model)
                 {
                     <tr>
+                        <td>@Html.DisplayFor(modelItem => item.id)</td>
                         <td>
                             @Html.DisplayFor(modelItem => item.code)
                         </td>
@@ -97,9 +95,15 @@
                             @Html.DisplayFor(modelItem => item.createDate)
                         </td>
                         <td>
-                            @Html.ActionLink("ViewCompany", "Company", new { id = item.id }) |
-                            @Html.ActionLink("EditCompany", "Company", new { id = item.id }) |
-                            @Html.ActionLink("DeleteCompany", "Company", new { id = item.id })
+                            <button title="Tampilkan" id="btn_pel_terjadwal" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ViewDataCompany", "Company")">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                            <button title="Ubah" id="btn_edit_rencana" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("UbahDataCompany", "Company")">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                            <button title="Hapus" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("DeleteDataCompany", "Company")">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
                         </td>
                     </tr>
                 }
@@ -117,3 +121,4 @@
     <script src="~/Scripts/datepicker.min.js"></script>
     <script src="~/Scripts/i18n/datepicker.en.js"></script>
 }
+@Html.Partial("_AlertPopUp")

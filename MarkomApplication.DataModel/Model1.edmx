@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MarkomApplicationDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MarkomApplicationDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="m_company">
           <Key>
             <PropertyRef Name="id" />
@@ -332,6 +332,7 @@
           <Property Name="update_by" Type="varchar" MaxLength="50" />
           <Property Name="update_date" Type="datetime" />
         </EntityType>
+        <Function Name="spCompanyList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MarkomApplicationDBModelStoreContainer">
           <EntitySet Name="m_company" EntityType="Self.m_company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="m_employee" EntityType="Self.m_employee" Schema="dbo" store:Type="Tables" />
@@ -352,8 +353,7 @@
           <EntitySet Name="t_souvenir_item" EntityType="Self.t_souvenir_item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="t_souvernir" EntityType="Self.t_souvernir" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MarkomApplicationDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -703,7 +703,29 @@
           <EntitySet Name="t_promotion_item_file" EntityType="Self.t_promotion_item_file" />
           <EntitySet Name="t_souvenir_item" EntityType="Self.t_souvenir_item" />
           <EntitySet Name="t_souvernir" EntityType="Self.t_souvernir" />
+          <FunctionImport Name="spCompanyList" ReturnType="Collection(MarkomApplicationDBModel.spCompanyList_Result1)" />
         </EntityContainer>
+        <ComplexType Name="spCompanyList_Result">
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+          <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spCompanyList1_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+          <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spCompanyList_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+          <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1055,6 +1077,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spCompanyList" FunctionName="MarkomApplicationDBModel.Store.spCompanyList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spCompanyList_Result1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_by" ColumnName="create_by" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

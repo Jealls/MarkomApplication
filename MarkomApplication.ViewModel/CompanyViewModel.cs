@@ -15,10 +15,15 @@ namespace MarkomApplication.ViewModel
         [DisplayName("Company Code")]
         public string code { get; set; }
 
+
+        [Required(ErrorMessage = "Input data Nama Perusahaan")]
         [DisplayName("Company Name")]
         public string name { get; set; }
+
         public string address { get; set; }
         public string phone { get; set; }
+
+        //[RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$")]
         public string email { get; set; }
         public bool isDelete { get; set; }
 

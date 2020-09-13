@@ -26,14 +26,21 @@ namespace MarkomApplication
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.css",
                       "~/Content/site.css",
-                      "~/Content/modal.css"
+                      "~/Content/modal.css",
+                      "~/Content/alert-style.css",
+                      "~/Content/toastr.css"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css-validate").Include(
             "~/Content/validateStyle.css"
           ));
             bundles.Add(new ScriptBundle("~/bundles/validation").Include(
-                        "~/Scripts/validation/validate.*"));
+                        "~/Scripts/validation/validate.*"
+            ));
+            bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
+           "~/Scripts/toastr.js*",
+           "~/Scripts/toastrImp.js",
+           "~/Scripts/alert.option.js"));
         }
     }
 }

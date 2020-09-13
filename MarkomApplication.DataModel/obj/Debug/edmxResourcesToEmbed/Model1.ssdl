@@ -327,6 +327,7 @@
     <Property Name="update_by" Type="varchar" MaxLength="50" />
     <Property Name="update_date" Type="datetime" />
   </EntityType>
+  <Function Name="spCompanyList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="MarkomApplicationDBModelStoreContainer">
     <EntitySet Name="m_company" EntityType="Self.m_company" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="m_employee" EntityType="Self.m_employee" Schema="dbo" store:Type="Tables" />

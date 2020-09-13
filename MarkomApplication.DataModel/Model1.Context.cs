@@ -12,6 +12,8 @@ namespace MarkomApplication.DataModel
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MarkomApplicationDBEntities : DbContext
     {
@@ -43,5 +45,10 @@ namespace MarkomApplication.DataModel
         public virtual DbSet<t_promotion_item_file> t_promotion_item_file { get; set; }
         public virtual DbSet<t_souvenir_item> t_souvenir_item { get; set; }
         public virtual DbSet<t_souvernir> t_souvernir { get; set; }
+    
+        public virtual ObjectResult<spCompanyList_Result1> spCompanyList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spCompanyList_Result1>("spCompanyList");
+        }
     }
 }

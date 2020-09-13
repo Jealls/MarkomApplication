@@ -43,15 +43,19 @@ $(document).on("click", "#btn_save_company", function () {
     };
 
     $.ajax({
-        url: $("#btn_save_company").data('url'),
+        async: true,
         type: 'post',
-        data: {
-            paramAddCompany: item
-        },
+        url: $("#btn_save_company").data('url'),
+        data: { paramAddCompany:item },
         success: function (result) {
             if (result.success) {
                 $("#modal_add_form").modal("hide");
-            }
+
+                fcAlertSuccessAdd("#success_alert_add");
+
+                //toastr.info("Data Saved! New company has been add with code " + $(this).attr("data-id"));
+            } 
         }
+
     });
 });

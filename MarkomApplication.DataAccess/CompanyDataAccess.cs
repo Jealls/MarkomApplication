@@ -1,10 +1,12 @@
 ﻿using MarkomApplication.ViewModel;
 using MarkomApplication.DataModel;
+using System.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace MarkomApplication.DataAccess
 {
@@ -13,7 +15,36 @@ namespace MarkomApplication.DataAccess
 
         public static string Message = string.Empty;
 
-        public static bool CreateCompany(CompanyViewModel paramDataCompany) {
+
+        public static List<CompanyViewModel> GetListCompany()
+        {
+            List<CompanyViewModel> result = new List<CompanyViewModel>();
+            var context = new MarkomApplicationDBEntities();
+            
+            var res = context.spCompanyList();
+
+
+            List<CompanyViewModel> comV = res.Select(c => new CompanyViewModel { 
+                id = c.id,
+                code = c.code,
+                name = c.name,
+                createDate = c.create_date,
+                createBy = c.create_by
+            }).ToList();
+
+            //using (var context = new MarkomApplicationDBEntities())
+            //{
+            //    var result = context.spCompanyList().ToList();
+            //    //IEnumerable<CompanyViewModel> empDetails = context.spCompanyList();
+
+            //    return result;
+            //}
+            result = comV;
+            return result;
+
+        }
+        public static bool CreateCompany(CompanyViewModel paramDataCompany) 
+        {
             bool result = true;
 
             using (var db = new MarkomApplicationDBEntities())
@@ -35,6 +66,8 @@ namespace MarkomApplication.DataAccess
                         db.m_company.Add(c);
                         db.SaveChanges();
                         dbContextTransaction.Commit();
+
+                        //string latestCode = c.code;
                     }
                     catch(Exception ex)
                     {

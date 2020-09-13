@@ -13,7 +13,9 @@ namespace MarkomApplication.Controllers
         // GET: Company
         public ActionResult ListCompany()
         {
-            return View();
+            List<CompanyViewModel> listDataCompany = CompanyDataAccess.GetListCompany();
+           
+            return View(listDataCompany);
         }
 
         public ActionResult Add()
@@ -23,21 +25,31 @@ namespace MarkomApplication.Controllers
 
         [HttpPost]
         public ActionResult CreateDataCompany(CompanyViewModel paramAddCompany)
-        {   
-            //is delete default value
-            paramAddCompany.isDelete = false;
+        {
+            if (ModelState.IsValid)
+            {
+                //is delete default value
+                paramAddCompany.isDelete = false;
             
-            //update data manual createby and createdate
-            paramAddCompany.createBy = "Anastasia";
-            paramAddCompany.createDate = DateTime.Now;
+                //update data manual createby and createdate
+                paramAddCompany.createBy = "Anastasia";
+                paramAddCompany.createDate = DateTime.Now;
 
-            if (CompanyDataAccess.CreateCompany(paramAddCompany)) {
+                if (CompanyDataAccess.CreateCompany(paramAddCompany)) 
+                {
                 
-                return Json(new { success = true, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                }
             }
             else
             {
-                return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                //return Json(new { success = false, message = "Wajib menginputkan semua kotak bertanda bintang" }, JsonRequestBehavior.AllowGet);
+
+                return PartialView("Add", paramAddCompany);
             }
         }
     }

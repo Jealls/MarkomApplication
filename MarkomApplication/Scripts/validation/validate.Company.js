@@ -7,7 +7,7 @@ function matchEmail(email) {
 function validationEmail()
 {
     var vjsEmail = document.getElementById("email").value;
-
+    debugger;
     if (matchEmail(vjsEmail)) {
         $("#email").removeClass("invalid");
     } else {

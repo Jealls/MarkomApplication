@@ -346,5 +346,27 @@
     <EntitySet Name="t_promotion_item_file" EntityType="Self.t_promotion_item_file" />
     <EntitySet Name="t_souvenir_item" EntityType="Self.t_souvenir_item" />
     <EntitySet Name="t_souvernir" EntityType="Self.t_souvernir" />
+    <FunctionImport Name="spCompanyList" ReturnType="Collection(MarkomApplicationDBModel.spCompanyList_Result1)" />
   </EntityContainer>
+  <ComplexType Name="spCompanyList_Result">
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+    <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spCompanyList1_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+    <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spCompanyList_Result1">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+    <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+  </ComplexType>
 </Schema>
