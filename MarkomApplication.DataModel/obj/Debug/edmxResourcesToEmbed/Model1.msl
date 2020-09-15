@@ -358,5 +358,20 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spCompanyDetailByID" FunctionName="MarkomApplicationDBModel.Store.spCompanyDetailByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spCompanyDetailByID_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spCompanyDelete" FunctionName="MarkomApplicationDBModel.Store.spCompanyDelete" />
+    <FunctionImportMapping FunctionImportName="spCompanyUpdate" FunctionName="MarkomApplicationDBModel.Store.spCompanyUpdate" />
+    <FunctionImportMapping FunctionImportName="spDeleteRow" FunctionName="MarkomApplicationDBModel.Store.spDeleteRow" />
   </EntityContainerMapping>
 </Mapping>

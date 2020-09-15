@@ -1,0 +1,41 @@
+﻿<div id="modal_confirm_up_company" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Data?</h5>
+                <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-light">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row d-flex justify-content-center">
+                    <button type="submit" name="UpdateConfirm" value="Update" id="confirm_update_company" class="btn btn-primary active mr-2" data-url="@Url.Action("EditDataCompany", "Company")">Update</button>
+                    <button type="button" name="UpdateConfirm" value="Cancel" data-dismiss="modal" class="btn btn-warning text-white">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modal_confirm_del_company" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Data?</h5>
+                <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-light">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input data-val="true" id="company_code_del" name="CompanyCode" type="hidden" value="" />
+                <div class="form-row d-flex justify-content-center">
+                    <button type="submit" name="DelConfirm" value="Delete" id="confirm_del_company" class="btn btn-primary active mr-2" data-url="@Url.Action("DeleteDataCompany")">Delete</button>
+                    <button type="button" name="DelConfirm" value="Cancel" data-dismiss="modal" class="btn btn-warning text-white">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

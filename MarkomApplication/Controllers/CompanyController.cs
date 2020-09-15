@@ -35,9 +35,10 @@ namespace MarkomApplication.Controllers
                 paramAddCompany.createBy = "Anastasia";
                 paramAddCompany.createDate = DateTime.Now;
 
-                if (CompanyDataAccess.CreateCompany(paramAddCompany)) 
+                string latestCode = CompanyDataAccess.CreateCompany(paramAddCompany);
+
+                if (latestCode != null) 
                 {
-                    string latestCode = CompanyDataAccess.LatestCode();
                     return Json(new { success = true, latestCode, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
                 }
                 else
@@ -47,10 +48,63 @@ namespace MarkomApplication.Controllers
             }
             else
             {
-                //return Json(new { success = false, message = "Wajib menginputkan semua kotak bertanda bintang" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "Wajib menginputkan semua kotak bertanda bintang" }, JsonRequestBehavior.AllowGet);
 
-                return PartialView("Add", paramAddCompany);
+                //return PartialView("Add", paramAddCompany);
             }
+        }
+
+        //GET detail company
+        public ActionResult EditCompany(int paramId)
+        {
+            return PartialView(CompanyDataAccess.GetDetailCompanyById(paramId));
+        }
+
+        [HttpPost]
+        public ActionResult EditDataCompany(CompanyViewModel paramEditCompany)
+        {
+            if (ModelState.IsValid)
+            {
+                //update data manual createby and createdate
+                paramEditCompany.updateBy = "Tian";
+                paramEditCompany.updateDate = DateTime.Now;
+
+                if (CompanyDataAccess.UpdateCompany(paramEditCompany))
+                {
+                    return Json(new { success = true, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(new { success = false, message = "Wajib menginputkan semua kotak bertanda bintang" }, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+        //GET View Deatil company
+        public ActionResult ViewCompany(int paramId)
+        {
+            return PartialView(CompanyDataAccess.GetDetailCompanyById(paramId));
+        }
+
+        [HttpPost]
+        public JsonResult DeleteDataCompany(int paramId)
+        {
+            
+                string latestCode = CompanyDataAccess.DeleteCompany(paramId);
+
+                if (latestCode != null)
+                {
+                    return Json(new { success = true, latestCode, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                }
         }
     }
 }

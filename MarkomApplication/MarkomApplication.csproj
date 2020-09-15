@@ -217,6 +217,9 @@
     <Content Include="Views\Shared\_ModalPopUp.cshtml" />
     <Content Include="Views\Company\Add.cshtml" />
     <Content Include="Views\Shared\_AlertPopUp.cshtml" />
+    <Content Include="Views\Company\EditCompany.cshtml" />
+    <Content Include="Views\Company\ViewCompany.cshtml" />
+    <Content Include="Views\Company\_CompanyConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

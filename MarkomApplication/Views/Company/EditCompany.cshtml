@@ -1,0 +1,76 @@
+﻿@Styles.Render("~/Content/css-validate")
+
+@model MarkomApplication.ViewModel.CompanyViewModel
+
+
+@Html.AntiForgeryToken()
+
+    <div class="border py-3 rounded">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+        <div class="form-row">
+            <div class="form-group col-md-6 form-inline">
+                <label class="control-label col-md-5" for="name">* Company Code</label>
+                <div class="col-md-7  code_placeholder">
+                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Auto Generate", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6 form-inline">
+                <label class="control-label col-md-5" for="name">* Company Name</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Company Name", maxLength = 50 } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-horizontal col-md-6">
+
+                <div class="form-group form-inline">
+                    <label class="control-label col-md-5" for="email">Email</label>
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control input_val", @style = "width:100%;", type = "email", placeholder = "Type Email", maxlength = 50, onkeyup = "validationEmail()" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group form-inline">
+                    <label class="control-label col-md-5" for="phone">Phone</label>
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Phone", maxlength = 50, onkeyup = "validationPhone()" } })
+                        @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group col-md-6 form-inline">
+                <label class="control-label col-md-5" for="address">Address</label>
+                <div class="col-md-7">
+                    @Html.TextAreaFor(model => model.address, new { @class = "form-control", @style = "width:100%;", placeholder = "Type Address", maxlength = 255 })
+                    @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-row mx-1 py-lg-4 justify-content-end" style="background-color:#F8F8F8;">
+
+            <button type="button" name="submit" value="Create" id="save_edit_company" class="btn btn-primary active mr-2">Save</button>
+            <button type="button" value="Cancel" data-dismiss="modal" class="btn btn-warning mr-5 text-white">Cancel</button>
+
+        </div>
+
+
+    </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

@@ -95,13 +95,13 @@
                             @Html.DisplayFor(modelItem => item.createDate)
                         </td>
                         <td>
-                            <button title="Tampilkan" id="btn_pel_terjadwal" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ViewDataCompany", "Company")">
+                            <button title="Tampilkan" id="btn_view_company" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ViewCompany", "Company")">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
-                            <button title="Ubah" id="btn_edit_rencana" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("UbahDataCompany", "Company")">
+                            <button title="Ubah" id="btn_edit_company" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("EditCompany", "Company")">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </button>
-                            <button title="Hapus" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("DeleteDataCompany", "Company")">
+                            <button title="Hapus" id="btn_del_company" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" >
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </td>
@@ -122,3 +122,4 @@
     <script src="~/Scripts/i18n/datepicker.en.js"></script>
 }
 @Html.Partial("_AlertPopUp")
+@Html.Partial("_CompanyConfirmation")

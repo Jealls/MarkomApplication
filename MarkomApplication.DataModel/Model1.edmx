@@ -332,7 +332,27 @@
           <Property Name="update_by" Type="varchar" MaxLength="50" />
           <Property Name="update_date" Type="datetime" />
         </EntityType>
+        <Function Name="spCompanyDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spCompanyDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="spCompanyList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spCompanyUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Address" Type="varchar" Mode="In" />
+          <Parameter Name="Phone" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spDeleteRow" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="TableName" Type="varchar" Mode="In" />
+          <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
+        </Function>
         <EntityContainer Name="MarkomApplicationDBModelStoreContainer">
           <EntitySet Name="m_company" EntityType="Self.m_company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="m_employee" EntityType="Self.m_employee" Schema="dbo" store:Type="Tables" />
@@ -704,6 +724,26 @@
           <EntitySet Name="t_souvenir_item" EntityType="Self.t_souvenir_item" />
           <EntitySet Name="t_souvernir" EntityType="Self.t_souvernir" />
           <FunctionImport Name="spCompanyList" ReturnType="Collection(MarkomApplicationDBModel.spCompanyList_Result1)" />
+          <FunctionImport Name="spCompanyDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spCompanyDetailByID_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spCompanyDelete">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spCompanyUpdate">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="UpdateBy" Mode="In" Type="String" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spDeleteRow">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="TableName" Mode="In" Type="String" />
+            <Parameter Name="Code" Mode="InOut" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spCompanyList_Result">
           <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
@@ -725,6 +765,22 @@
           <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
           <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
           <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spCompanyDetailByID_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+          </ComplexType>
+        <ComplexType Name="spCompany_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1089,6 +1145,21 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spCompanyDetailByID" FunctionName="MarkomApplicationDBModel.Store.spCompanyDetailByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spCompanyDetailByID_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spCompanyDelete" FunctionName="MarkomApplicationDBModel.Store.spCompanyDelete" />
+          <FunctionImportMapping FunctionImportName="spCompanyUpdate" FunctionName="MarkomApplicationDBModel.Store.spCompanyUpdate" />
+          <FunctionImportMapping FunctionImportName="spDeleteRow" FunctionName="MarkomApplicationDBModel.Store.spDeleteRow" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

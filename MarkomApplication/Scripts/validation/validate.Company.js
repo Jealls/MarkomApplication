@@ -4,10 +4,11 @@ function matchEmail(email) {
     return reg.test(email);
 }
 
+
 function validationEmail()
 {
     var vjsEmail = document.getElementById("email").value;
-    debugger;
+
     if (matchEmail(vjsEmail)) {
         $("#email").removeClass("invalid");
     } else {
@@ -21,14 +22,16 @@ function matchPhone(phone) {
     return reg.test(phone);
 }
 
-function validationPhone() {
-    var vjsPhone = document.getElementById("phone").value;
 
-    if (matchPhone(vjsPhone)) {
-        $("#phone").removeClass("invalid");
-    } else {
-        $("#phone").addClass("invalid");
-    }
+
+function validationPhone() {
+        var vjsPhone = document.getElementById("phone").value;
+
+        if (matchPhone(vjsPhone)) {
+            $("#phone").removeClass("invalid");
+        } else {
+            $("#phone").addClass("invalid");
+        }
 }
 
 function validationName(vjsName) {
@@ -38,4 +41,20 @@ function validationName(vjsName) {
     } else {
         $("#name").removeClass("invalid");
     }
+}
+
+
+function cekValidationCompany() {
+    var name = $("#name").hasClass("invalid");
+    var email = $("#email").hasClass("invalid");
+    var phone = $("#phone").hasClass("invalid");
+    var address = $("#address").hasClass("invalid");
+
+    var result = false;
+
+    if (!name && !email && !phone && !address) {
+        result = true;
+    }
+
+    return result;
 }

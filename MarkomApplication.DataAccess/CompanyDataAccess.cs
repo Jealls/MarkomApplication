@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Data.Entity.Core.Objects;
 
 namespace MarkomApplication.DataAccess
 {
@@ -14,38 +14,34 @@ namespace MarkomApplication.DataAccess
     {
 
         public static string Message = string.Empty;
-        private static string latestSaveCode = string.Empty;
+
 
         public static List<CompanyViewModel> GetListCompany()
         {
             List<CompanyViewModel> result = new List<CompanyViewModel>();
-            var context = new MarkomApplicationDBEntities();
-            
-            var res = context.spCompanyList();
 
+            using (var context = new MarkomApplicationDBEntities())
+            {
+                var res = context.spCompanyList();
 
-            List<CompanyViewModel> comV = res.Select(c => new CompanyViewModel { 
-                id = c.id,
-                code = c.code,
-                name = c.name,
-                createDate = c.create_date,
-                createBy = c.create_by
-            }).ToList();
+                List<CompanyViewModel> comList = res.Select(c => new CompanyViewModel
+                {
+                    id = c.id,
+                    code = c.code,
+                    name = c.name,
+                    createDate = c.create_date,
+                    createBy = c.create_by
+                }).ToList();
 
-            //using (var context = new MarkomApplicationDBEntities())
-            //{
-            //    var result = context.spCompanyList().ToList();
-            //    //IEnumerable<CompanyViewModel> empDetails = context.spCompanyList();
+                result = comList;
+            }
 
-            //    return result;
-            //}
-            result = comV;
             return result;
-
         }
-        public static bool CreateCompany(CompanyViewModel paramDataCompany) 
+        public static string CreateCompany(CompanyViewModel paramDataCompany) 
         {
-            bool result = true;
+
+            string latestSaveCode = string.Empty;
 
             using (var db = new MarkomApplicationDBEntities())
             {
@@ -73,20 +69,94 @@ namespace MarkomApplication.DataAccess
                     }
                     catch(Exception ex)
                     {
-                        result = false;
                         Message = ex.Message;
                         dbContextTransaction.Rollback();
                         //throw;
                     }
                 }
             }
+
+         return latestSaveCode;
+          
+        }
+
+
+        public static CompanyViewModel GetDetailCompanyById(int paramComId)
+        {
+            CompanyViewModel result = new CompanyViewModel();
+
+            using (var db = new MarkomApplicationDBEntities())
+            {
+                var res = db.spCompanyDetailByID(paramComId);
+
+                result = res.Select(c => new CompanyViewModel
+                {
+                    id = c.id,
+                    code = c.code,
+                    name = c.name,
+                    address = c.address,
+                    email = c.email,
+                    phone = c.phone
+                }).FirstOrDefault();
+            }
+
             return result;
         }
 
 
-
-        public static string LatestCode()
+        public static bool UpdateCompany(CompanyViewModel paramEditCompany)
         {
+            bool result = true;
+            try
+            {
+                using (MarkomApplicationDBEntities db = new MarkomApplicationDBEntities())
+                {
+
+                    db.spCompanyUpdate(
+                        paramEditCompany.id
+                        , paramEditCompany.name
+                        , paramEditCompany.email
+                        , paramEditCompany.address
+                        , paramEditCompany.phone
+                        , paramEditCompany.updateBy
+                        , paramEditCompany.updateDate
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+                result = false;
+                //throw;
+            }
+            return result;
+        }
+
+
+        public static string DeleteCompany(int paramComId)
+        {
+            string latestSaveCode = string.Empty;
+            try
+            {
+                using (var db = new MarkomApplicationDBEntities())
+                {
+
+                    //latestSaveCode = db.m_company.Where(x => x.id == paramComId).SingleOrDefault()?.name;
+                    // ?. will prevent the code from throwing a null-reference exception and will return null when a point with Id  does not exist
+
+                    string tableName = "dbo.m_company";
+                    ObjectParameter returnId = new ObjectParameter("Code", typeof(string)); //Create Object parameter to receive a output value.It will behave like output parameter  
+                     db.spDeleteRow(paramComId, tableName, returnId); //calling our entity imported function "Bangalore" is our input parameter, returnId is a output parameter, it will receive the output value   
+                    latestSaveCode = (String)returnId.Value;
+                    
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+
             return latestSaveCode;
         }
 

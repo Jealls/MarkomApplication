@@ -18,5 +18,26 @@ function fcAlertSuccessAdd(vjsAlertId, vjsLatestCode) {
     setTimeout(function () {
         $(vjsAlertId).addClass('d-none');
 
-    }, 3000);
+    }, 1500);
+}
+
+function fcAlertSuccessEdit(vjsAlertId) {
+
+    $(vjsAlertId).removeClass('d-none');
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 1500);
+}
+
+function fcAlertSuccessDelete(vjsAlertId, vjsLatestCode) {
+
+    $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#data_code_alert_del").innerHTML = vjsLatestCode;
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 2000);
 }

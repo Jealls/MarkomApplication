@@ -347,6 +347,26 @@
     <EntitySet Name="t_souvenir_item" EntityType="Self.t_souvenir_item" />
     <EntitySet Name="t_souvernir" EntityType="Self.t_souvernir" />
     <FunctionImport Name="spCompanyList" ReturnType="Collection(MarkomApplicationDBModel.spCompanyList_Result1)" />
+    <FunctionImport Name="spCompanyDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spCompanyDetailByID_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spCompanyDelete">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spCompanyUpdate">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="Phone" Mode="In" Type="String" />
+      <Parameter Name="UpdateBy" Mode="In" Type="String" />
+      <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spDeleteRow">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="TableName" Mode="In" Type="String" />
+      <Parameter Name="Code" Mode="InOut" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="spCompanyList_Result">
     <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
@@ -368,5 +388,21 @@
     <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
     <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
     <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spCompanyDetailByID_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spCompany_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
   </ComplexType>
 </Schema>
