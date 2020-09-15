@@ -88,6 +88,17 @@ namespace MarkomApplication.Controllers
         //GET View Deatil company
         public ActionResult ViewCompany(int paramId)
         {
+
+            //if (CompanyDataAccess.GetDetailCompanyById(paramId))
+            //{
+            //    string code = paramId.code;
+            //    string name = paramId.name;
+            //    return Json(new { success = true, code, name, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+            //}
+            //else
+            //{
+            //    return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+            //}
             return PartialView(CompanyDataAccess.GetDetailCompanyById(paramId));
         }
 

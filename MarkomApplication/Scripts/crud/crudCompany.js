@@ -84,6 +84,10 @@ $(document).on("click", "#btn_edit_company", function () {
         },
         success: function (result) {
             $("#modal_content_body").html(result);
+
+            var vjsName = $("#name").val();
+            var vjsCode = $("#code").val();
+            $(".modal_title_form").html("Edit Company - " + vjsName + " (" + vjsCode + ")");
         }
     });
 });
@@ -153,6 +157,10 @@ $(document).on("click", "#btn_view_company", function () {
         },
         success: function (result) {
             $("#modal_content_body").html(result);
+
+            var vjsName= $("#name").val();
+            var vjsCode = $("#code").val();
+            $(".modal_title_form").html("View Company - " + vjsName + " (" + vjsCode + ")");
         }
     });
 });
