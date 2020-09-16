@@ -117,5 +117,22 @@ namespace MarkomApplication.Controllers
                     return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
                 }
         }
+
+
+        [HttpPost]
+        public JsonResult AutoCompleteCompanyCode(string prefix)
+        {
+                var item = CompanyDataAccess.SearchString(prefix);
+
+                return Json(item, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AutoCompleteCompanyName(string prefix)
+        {
+            var item = CompanyDataAccess.SearchString2(prefix);
+
+            return Json(item, JsonRequestBehavior.AllowGet);
+        }
     }
 }

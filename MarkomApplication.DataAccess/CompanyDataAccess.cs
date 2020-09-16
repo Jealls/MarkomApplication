@@ -159,7 +159,61 @@ namespace MarkomApplication.DataAccess
 
             return latestSaveCode;
         }
+        
+        public static List<CompanyViewModel> SearchString(string prefix)
+        {
+            List<CompanyViewModel> result = new List<CompanyViewModel>();
+            try
+            {
+                using (MarkomApplicationDBEntities db= new MarkomApplicationDBEntities())
+                {
+                    var res = (from m_company in db.m_company
+                               where m_company.code.StartsWith(prefix) &&
+                                       m_company.is_delete == false
+                               select new CompanyViewModel
+                               {
+                                   id = m_company.id,
+                                   code = m_company.code
 
+                               }).ToList();
+                    result = res;
+                }
+            }
+            catch(Exception ex)
+            {
+                Message = ex.Message;
+            }
+
+            return result;
+        }
+
+
+        public static List<CompanyViewModel> SearchString2(string prefix)
+        {
+            List<CompanyViewModel> result = new List<CompanyViewModel>();
+            try
+            {
+                using (MarkomApplicationDBEntities db = new MarkomApplicationDBEntities())
+                {
+                    var res = (from m_company in db.m_company
+                               where m_company.name.StartsWith(prefix) &&
+                                       m_company.is_delete == false
+                               select new CompanyViewModel
+                               {
+                                   id = m_company.id,
+                                   name = m_company.name
+
+                               }).ToList();
+                    result = res;
+                }
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+
+            return result;
+        }
 
         public static string CompanyCode()
         {
@@ -208,5 +262,7 @@ namespace MarkomApplication.DataAccess
 
             return output;
         }
+
+
     }
 }

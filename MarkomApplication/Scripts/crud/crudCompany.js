@@ -8,9 +8,73 @@ $(function () {
 
 var ProgressHtml = '<div class="progress progress-striped active" style="margina-bottom: 0"><div class="progress-bar" style="width:100%"></div></div>';
 
+//DROPDOWN CODE
+$(function () { 
+    $("#dropdown_code").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/Company/AutoCompleteCompanyCode/',
+                selectFirst: true,
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return item.code;
+                    }));
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        },
+        select: function (e, i) {
+            $("#dropdown_company_id").val(i.item.id);
+        },
+        minLength: 1
+    });
+    //}).focus(function () {
+    //    $(this).autocomplete("search");
+    //});
+});
+
+//DROPDOWN NAME
+$(function () {
+    $("#dropdown_name").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/Company/AutoCompleteCompanyName/',
+                selectFirst: true,
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return item.name;
+                    }));
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        },
+        select: function (e, i) {
+            $("#dropdown_company_id").val(i.item.id);
+        },
+        minLength: 1
+    });
+});
 
 
-//klik tombol add company /modal add show
+//MODAL ADD COMPANY SHOW
 $(document).on("click", "#btn_add_company", function () {
 
     $("#modal_form").modal("show");
@@ -28,7 +92,7 @@ $(document).on("click", "#btn_add_company", function () {
 });
 
 
-//klik tombol show /save submit
+//SAVE ADD COMPANY
 $(document).on("click", "#btn_save_company", function () {
     var vjsName = $("#name").val();
     var vjsEmail = $("#email").val();
@@ -92,7 +156,7 @@ $(document).on("click", "#btn_edit_company", function () {
     });
 });
 
-//klik tombol save modal EDIT
+//BTN SAVE MODAL EDIT
 $(document).on("click", "#save_edit_company", function () {
     var vjsName = $("#name").val();
     validationName(vjsName);
@@ -102,8 +166,7 @@ $(document).on("click", "#save_edit_company", function () {
     }
 });
 
-
-//Confirm and submit update data company
+//CONFIRM SAVE MODAL EDIT
 $(document).on("click", "#confirm_update_company", function () {
 
     var vjsName = $("#name").val();
@@ -141,7 +204,9 @@ $(document).on("click", "#confirm_update_company", function () {
      });
 });
 
-//klik tombol VIEW company /modal VIEW SHOW
+
+
+//MODAL VIEW SHOW
 $(document).on("click", "#btn_view_company", function () {
 
     $("#modal_form").modal("show");
@@ -166,7 +231,8 @@ $(document).on("click", "#btn_view_company", function () {
 });
 
 
-//klik tombol DELETE
+
+//CONFIRM DELETE SHOW
 $(document).on("click", "#btn_del_company", function () {
 
     var thisId = $(this).data('id');
@@ -175,6 +241,7 @@ $(document).on("click", "#btn_del_company", function () {
     $("#confirm_del_company").attr('data-id', thisId);
 });
 
+//BTN DELETE COMPANY
 $(document).on("click", "#confirm_del_company", function () {
 
     $.ajax({

@@ -27,20 +27,31 @@ namespace MarkomApplication
                       "~/Content/font-awesome.css",
                       "~/Content/site.css",
                       "~/Content/modal.css",
-                      "~/Content/alert-style.css",
-                      "~/Content/toastr.css"
+                      "~/Content/alert-style.css"
                       ));
 
+            //new style
             bundles.Add(new StyleBundle("~/Content/css-validate").Include(
             "~/Content/validateStyle.css"
-          ));
+            ));
+
+            bundles.Add(new StyleBundle("~/Content/dropdown-autocomplete").Include(
+                       "~/Content/autocomplete-dropdown-style.css"
+            ));
+
+            //new script
             bundles.Add(new ScriptBundle("~/bundles/validation").Include(
                         "~/Scripts/validation/validate.*"
             ));
-            bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
-           "~/Scripts/toastr.js*",
-           "~/Scripts/toastrImp.js",
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
+            "~/Scripts/jquery-ui-{version}.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/alert").Include(
            "~/Scripts/alert.option.js"));
+
+            
+
         }
     }
 }

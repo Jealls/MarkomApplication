@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MarkomApplication.ViewModel.CompanyViewModel>
+﻿@Styles.Render("~/Content/dropdown-autocomplete")
+
+@model IEnumerable<MarkomApplication.ViewModel.CompanyViewModel>
 
 @{
     ViewBag.Title = "ListCompany";
@@ -24,24 +26,12 @@
         <div class="row search_group" style="width:100%">
             <div class="input-group">
                 <div class="form-group">
-                    <select class="form-control dropdown_style" id="company_id">
-                        <option value="" disabled selected>- Select Company Code -</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                    <input type="text" id="dropdown_code" name="DropdownCode" class="form-control rounded" placeholder="- Select Company Code -">
+                    <input type="hidden" id="dropdown_company_id" name="CompanyIdDropdown" />
                 </div>
                 <div class="form-group">
-                    <select class="form-control  dropdown_style" id="company_name">
-                        <option value="" disabled selected>- Select Company Name -</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                    <input type="text" id="dropdown_name" name="DropdownName" class="form-control rounded" placeholder="- Select Company Name -">
+                    <input type="hidden" id="dropdown_company_id_name" name="CompanyIdDropdown" />
                 </div>
                 <div class="form-group" style="max-width:220px;">
                     <div class="has-feedback">
@@ -101,7 +91,7 @@
                             <button title="Ubah" id="btn_edit_company" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("EditCompany", "Company")">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </button>
-                            <button title="Hapus" id="btn_del_company" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" >
+                            <button title="Hapus" id="btn_del_company" class="btn " data-id="@item.id" style="margin:2px; padding:2px;">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </td>

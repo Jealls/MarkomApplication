@@ -34,5 +34,6 @@ namespace MarkomApplication.ViewModel
         public System.DateTime createDate { get; set; }
         public string updateBy { get; set; }
         public Nullable<System.DateTime> updateDate { get; set; }
+
     }
 }
