@@ -352,6 +352,7 @@
     </FunctionImport>
     <FunctionImport Name="spCompanyDelete">
       <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Code" Mode="InOut" Type="String" />
     </FunctionImport>
     <FunctionImport Name="spCompanyUpdate">
       <Parameter Name="Id" Mode="In" Type="Int32" />
@@ -366,6 +367,64 @@
       <Parameter Name="Id" Mode="In" Type="Int32" />
       <Parameter Name="TableName" Mode="In" Type="String" />
       <Parameter Name="Code" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spSearchSingleString">
+      <Parameter Name="Prefix" Mode="In" Type="String" />
+      <Parameter Name="ColumnName" Mode="In" Type="String" />
+      <Parameter Name="TableName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spCompanySingleString" EntitySet="m_company" ReturnType="Collection(MarkomApplicationDBModel.m_company)">
+      <Parameter Name="Prefix" Mode="In" Type="String" />
+      <Parameter Name="ColumnName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spSearchCompany" ReturnType="Collection(MarkomApplicationDBModel.spCompany_Result)">
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+      <Parameter Name="CreateBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spEmployeeCompanyName" ReturnType="Collection(MarkomApplicationDBModel.spEmployeeCompanyName_Result)">
+      <Parameter Name="Prefix" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spEmployeeDelete">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="IdNumber" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spEmployeeDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spEmployeeDetailByID_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spEmployeeInsert">
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="FistName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="CreateBy" Mode="In" Type="String" />
+      <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spEmployeeSearch" ReturnType="Collection(MarkomApplicationDBModel.spEmployeeSearch_Result)">
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+      <Parameter Name="CreateBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spEmployeeUpdate">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="FistName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="UpdateBy" Mode="In" Type="String" />
+      <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spEmployeeName" ReturnType="Collection(MarkomApplicationDBModel.spEmployeeName_Result)">
+      <Parameter Name="Prefix" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spEmployeeNumber" ReturnType="Collection(MarkomApplicationDBModel.spEmployeeNumber_Result)">
+      <Parameter Name="Prefix" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="spCompanyList_Result">
@@ -401,8 +460,46 @@
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+    <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spSearchCompany_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+    <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spEmployeeCompanyName_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spEmployeeDetailByID_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="employee_number" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="m_company_id" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="spEmployeeSearch_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="employee_number" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="m_company_id" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+    <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spEmployeeName_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spEmployeeNumber_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="employee_number" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>

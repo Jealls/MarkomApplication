@@ -373,5 +373,73 @@
     <FunctionImportMapping FunctionImportName="spCompanyDelete" FunctionName="MarkomApplicationDBModel.Store.spCompanyDelete" />
     <FunctionImportMapping FunctionImportName="spCompanyUpdate" FunctionName="MarkomApplicationDBModel.Store.spCompanyUpdate" />
     <FunctionImportMapping FunctionImportName="spDeleteRow" FunctionName="MarkomApplicationDBModel.Store.spDeleteRow" />
+    <FunctionImportMapping FunctionImportName="spSearchSingleString" FunctionName="MarkomApplicationDBModel.Store.spSearchSingleString" />
+    <FunctionImportMapping FunctionImportName="spCompanySingleString" FunctionName="MarkomApplicationDBModel.Store.spCompanySingleString" />
+    <FunctionImportMapping FunctionImportName="spSearchCompany" FunctionName="MarkomApplicationDBModel.Store.spSearchCompany">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spCompany_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEmployeeCompanyName" FunctionName="MarkomApplicationDBModel.Store.spEmployeeCompanyName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spEmployeeCompanyName_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEmployeeDelete" FunctionName="MarkomApplicationDBModel.Store.spEmployeeDelete" />
+    <FunctionImportMapping FunctionImportName="spEmployeeDetailByID" FunctionName="MarkomApplicationDBModel.Store.spEmployeeDetailByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spEmployeeDetailByID_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="employee_number" ColumnName="employee_number" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="m_company_id" ColumnName="m_company_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEmployeeInsert" FunctionName="MarkomApplicationDBModel.Store.spEmployeeInsert" />
+    <FunctionImportMapping FunctionImportName="spEmployeeSearch" FunctionName="MarkomApplicationDBModel.Store.spEmployeeSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spEmployeeSearch_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="employee_number" ColumnName="employee_number" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="m_company_id" ColumnName="m_company_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEmployeeUpdate" FunctionName="MarkomApplicationDBModel.Store.spEmployeeUpdate" />
+    <FunctionImportMapping FunctionImportName="spEmployeeName" FunctionName="MarkomApplicationDBModel.Store.spEmployeeName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spEmployeeName_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEmployeeNumber" FunctionName="MarkomApplicationDBModel.Store.spEmployeeNumber">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spEmployeeNumber_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="employee_number" ColumnName="employee_number" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

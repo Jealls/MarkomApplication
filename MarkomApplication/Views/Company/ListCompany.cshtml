@@ -35,71 +35,71 @@
                 </div>
                 <div class="form-group" style="max-width:220px;">
                     <div class="has-feedback">
-                        <input id="txt_search_dari" class="form-control datepicker-here" data-date-format="dd/mm/yyyy" placeholder="Created" />
+                        <input id="created_date" class="form-control datepicker-here" data-date-format="dd/mm/yyyy" placeholder="Created" />
                         <i class="fa fa-calendar form-control-feedback"></i>
                     </div>
                 </div>
                 <div class="form-group" style="max-width:220px;">
-                    <input type="text" class="form-control rounded" placeholder="Created By" id="src_created_company" name="src_created_company" />
+                    <input id="created_by" type="text" class="form-control rounded" placeholder="Created By" name="created_by" />
                 </div>
 
                 <div class="form-group" style="margin-right:0; ">
-                    <button class="btn" id="btn_search_company" name="btn_search_company"> &nbsp;Cari</button>
+                    <button class="btn" id="btn_search_company" type="submit" name="btn_search_company" data-url="@Url.Action("ListCompany", "Company")"> &nbsp;Cari</button>
                 </div>
             </div>
         </div>
-        <table class="table">
-            <tr>
-                <th>No</th>
-                <th>
-                    @Html.DisplayNameFor(model => model.code)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.createBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.createDate)
-                </th>
-                <th>Action</th>
-            </tr>
-            @if (Model != null)
-            {
-                foreach (var item in Model)
+            <table class="table">
+                <tr>
+                    <th>No</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.code)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.createBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.createDate)
+                    </th>
+                    <th>Action</th>
+                </tr>
+                @if (Model != null)
                 {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.id)</td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.code)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.name)
-                        </td>
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.id)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.createBy)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.createDate)
-                        </td>
-                        <td>
-                            <button title="Tampilkan" id="btn_view_company" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ViewCompany", "Company")">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                            <button title="Ubah" id="btn_edit_company" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("EditCompany", "Company")">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </button>
-                            <button title="Hapus" id="btn_del_company" class="btn " data-id="@item.id" style="margin:2px; padding:2px;">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
-                        </td>
-                    </tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.createBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.createDate)
+                            </td>
+                            <td>
+                                <button title="Tampilkan" id="btn_view_company" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ViewCompany", "Company")">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                                <button title="Ubah" id="btn_edit_company" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("EditCompany", "Company")">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
+                                <button title="Hapus" id="btn_del_company" class="btn " data-id="@item.id" style="margin:2px; padding:2px;">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
 
-        </table>
+            </table>
     </div>
 </div>
 

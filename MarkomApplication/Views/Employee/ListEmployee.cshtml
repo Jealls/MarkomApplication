@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MarkomApplication.ViewModel.EmployeeViewModel>
+@Styles.Render("~/Content/dropdown-autocomplete")
+
+@{
+    ViewBag.Title = "ListEmployee";
+}
+
+
+<div class="container rounded-top border border-primary">
+
+    <div class="row rounded-top list-head ">
+        <p>List Employee</p>
+    </div>
+    <div class="row mx-2">
+        <p class="p-2 my-3 bg-light text-dark" style="width:100%;">
+            <a>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active" })</a> /
+            <a>@Html.ActionLink("Master", "Index", "Home", null, new { @class = "active" })</a> /
+            List Employee
+        </p>
+        <div class="py-2" style="width:100%;">
+            <a class="btn btn-primary active" id="btn_add_employee" role="button" aria-pressed="true" style="float: right;" data-url="@Url.Action("AddEmployee", "Employee")">Add</a>
+        </div>
+
+        <div class="row search_group" style="width:100%">
+            <div class="input-group">
+                <div class="form-group">
+                    <input type="text" id="dropdown_code_employee" name="DropdownCode" class="form-control rounded" placeholder="- Select Employee Code -">
+                    <input type="hidden" id="dropdown_code_employee_id" name="EmployeeCodeDropdown" />
+                </div>
+                <div class="form-group">
+                    <input type="text" id="dropdown_name_employee" name="DropdownName" class="form-control rounded" placeholder="- Select Employee Name -">
+                    <input type="hidden" id="dropdown_name_employe_id" name="EmployeeNameDropdown" />
+                </div>
+                <div class="form-group">
+                    <input type="text" id="dropdown_employee_company" name="DropdownCompanyName" class="form-control rounded" placeholder="- Select Company Name -">
+                    <input type="hidden" id="dropdown_employee_company_id" name="CompanyIdDropdown" />
+                </div>
+                <div class="form-group" style="max-width:220px;">
+                    <div class="has-feedback">
+                        <input id="created_date" class="form-control datepicker-here" data-date-format="dd/mm/yyyy" placeholder="Created" />
+                        <i class="fa fa-calendar form-control-feedback"></i>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:220px;">
+                    <input id="created_by" type="text" class="form-control rounded" placeholder="Created By" name="src_created_employee" />
+                </div>
+
+                <div class="form-group" style="margin-right:0; ">
+                    <button class="btn" id="btn_search_employee" name="btn_search_employee" data-url="@Url.Action("SearchEmployee", "Employee")"> &nbsp;Cari</button>
+                </div>
+            </div>
+        </div>
+        <table id="tbl_list_employee" class="table">
+
+        </table>
+    </div>
+</div>
+
+@Html.Partial("_ModalPopUp")
+@section Scripts{
+    <script src="~/Scripts/datepicker.js"></script>
+    <script src="~/Scripts/datepicker.min.js"></script>
+    <script src="~/Scripts/i18n/datepicker.en.js"></script>
+    <script src="~/Scripts/crud/crudEmployee.js"></script>
+    <script src="~/Scripts/validation/validate-employee.js"></script>
+}
+@Html.Partial("_AlertPopUp")

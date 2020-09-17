@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -212,6 +213,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\crud\crudCompany.js" />
+    <Content Include="Scripts\crud\crudEmployee.js" />
     <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\datepicker.min.js" />
     <Content Include="Scripts\i18n\datepicker.cs.js" />
@@ -243,6 +245,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\validation\validate-employee.js" />
     <Content Include="Scripts\validation\validate.Company.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -265,6 +268,9 @@
     <Content Include="Views\Company\EditCompany.cshtml" />
     <Content Include="Views\Company\ViewCompany.cshtml" />
     <Content Include="Views\Company\_CompanyConfirmation.cshtml" />
+    <Content Include="Views\Employee\ListEmployee.cshtml" />
+    <Content Include="Views\Employee\AddEmployee.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

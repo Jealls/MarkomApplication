@@ -329,11 +329,16 @@
   </EntityType>
   <Function Name="spCompanyDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
   </Function>
   <Function Name="spCompanyDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
   <Function Name="spCompanyList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spCompanySingleString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Prefix" Type="varchar" Mode="In" />
+    <Parameter Name="ColumnName" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="spCompanyUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
     <Parameter Name="Name" Type="varchar" Mode="In" />
@@ -347,6 +352,60 @@
     <Parameter Name="Id" Type="int" Mode="In" />
     <Parameter Name="TableName" Type="varchar" Mode="In" />
     <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="spEmployeeCompanyName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Prefix" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spEmployeeDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="IdNumber" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="spEmployeeDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEmployeeInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+    <Parameter Name="FistName" Type="varchar" Mode="In" />
+    <Parameter Name="LastName" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spEmployeeName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Prefix" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spEmployeeNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Prefix" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spEmployeeSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="CreateDate" Type="date" Mode="In" />
+    <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spEmployeeUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+    <Parameter Name="FistName" Type="varchar" Mode="In" />
+    <Parameter Name="LastName" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
+    <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spSearchCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="date" Mode="In" />
+    <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spSearchSingleString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Prefix" Type="varchar" Mode="In" />
+    <Parameter Name="ColumnName" Type="varchar" Mode="In" />
+    <Parameter Name="TableName" Type="varchar" Mode="In" />
   </Function>
   <EntityContainer Name="MarkomApplicationDBModelStoreContainer">
     <EntitySet Name="m_company" EntityType="Self.m_company" Schema="dbo" store:Type="Tables" />

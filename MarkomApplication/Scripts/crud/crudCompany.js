@@ -36,6 +36,9 @@ $(function () {
             $("#dropdown_company_id").val(i.item.id);
         },
         minLength: 1
+    }).focus(function (event, ui) {
+        $(".ui-helper-hidden-accessible").hide();
+        event.preventDefault();
     });
     //}).focus(function () {
     //    $(this).autocomplete("search");
@@ -70,6 +73,9 @@ $(function () {
             $("#dropdown_company_id").val(i.item.id);
         },
         minLength: 1
+    }).focus(function (event, ui) {
+        $(".ui-helper-hidden-accessible").hide();
+        event.preventDefault();
     });
 });
 
@@ -243,7 +249,7 @@ $(document).on("click", "#btn_del_company", function () {
 
 //BTN DELETE COMPANY
 $(document).on("click", "#confirm_del_company", function () {
-
+    debugger;
     $.ajax({
         type: 'POST',
         url: $("#confirm_del_company").data('url'),
@@ -258,6 +264,36 @@ $(document).on("click", "#confirm_del_company", function () {
             setTimeout(function () {
                 window.location.reload();
             }, 800);
+        }
+    });
+});
+
+
+//BTN SEARCH
+$(document).on("click", "#btn_search_company", function () {
+    var vjsCode = $("#dropdown_code").val();
+    var vjsName = $("#dropdown_name").val();
+    var vjsCreatedDate = $("#created_date").val().split("/").join("-");
+    var vjsCreatedBy = $("#created_by").val();
+    debugger;
+    var item = {
+        code: vjsCode,
+        name: vjsName,
+        createDate2: vjsCreatedDate,
+        createBy: vjsCreatedBy
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: $("#btn_search_company").data('url'),
+        data: {
+           paramSearch: item
+        },
+        success: function (result) {
+            alert("success");
+        },
+        error: function (result) {
+            alert("error!");  // 
         }
     });
 });

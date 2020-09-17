@@ -2,11 +2,6 @@
 @Styles.Render("~/Content/css-validate")
 @model MarkomApplication.ViewModel.CompanyViewModel
 
-@*@{
-    HtmlHelper.ClientValidationEnabled = true;
-    HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
-
-}*@
 
 @* Data Anotation message tidak bisa dipakai karena tidak berada dalam @using (Html.BeginForm())  *@
 
@@ -41,7 +36,7 @@
                 <label class="control-label col-md-5" for="email">Email</label>
                 @*@Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-5" })*@
                 <div class="col-md-7">
-                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control input_val", @style = "width:100%;", type = "email", placeholder = "Type Email", maxlength = 50, onkeydown = "validationEmail()" } })
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control input_val", @style = "width:100%;", type = "email", placeholder = "Type Email", maxlength = 50, onkeyup = "validationEmail()" } })
                     @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -49,7 +44,7 @@
             <div class="form-group form-inline">
                 <label class="control-label col-md-5" for="phone">Phone</label>
                 <div class="col-md-7">
-                    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Phone", maxlength = 50, onkeydown = "validationPhone()" } })
+                    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Phone", maxlength = 50, onkeyup = "validationPhone()" } })
                     @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
                 </div>
             </div>

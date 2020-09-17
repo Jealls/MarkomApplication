@@ -10,13 +10,15 @@ namespace MarkomApplication.Controllers
 {
     public class CompanyController : Controller
     {
+
         // GET: Company
-        public ActionResult ListCompany()
+        public ActionResult ListCompany(CompanyViewModel paramSearch)
         {
-            List<CompanyViewModel> listDataCompany = CompanyDataAccess.GetListCompany();
-           
-            return View(listDataCompany);
+            List<CompanyViewModel> listSearchCompany = CompanyDataAccess.ListSearchCompany(paramSearch);
+
+            return View(listSearchCompany);
         }
+
 
         public ActionResult Add()
         {
@@ -88,17 +90,6 @@ namespace MarkomApplication.Controllers
         //GET View Deatil company
         public ActionResult ViewCompany(int paramId)
         {
-
-            //if (CompanyDataAccess.GetDetailCompanyById(paramId))
-            //{
-            //    string code = paramId.code;
-            //    string name = paramId.name;
-            //    return Json(new { success = true, code, name, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
-            //}
-            //else
-            //{
-            //    return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
-            //}
             return PartialView(CompanyDataAccess.GetDetailCompanyById(paramId));
         }
 
@@ -122,17 +113,31 @@ namespace MarkomApplication.Controllers
         [HttpPost]
         public JsonResult AutoCompleteCompanyCode(string prefix)
         {
-                var item = CompanyDataAccess.SearchString(prefix);
+            
+            var item = CompanyDataAccess.SearchStringCode(prefix);
 
-                return Json(item, JsonRequestBehavior.AllowGet);
+            return Json(item, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult AutoCompleteCompanyName(string prefix)
         {
-            var item = CompanyDataAccess.SearchString2(prefix);
+            var item = CompanyDataAccess.SearchStringName(prefix);
 
             return Json(item, JsonRequestBehavior.AllowGet);
         }
+
+
+//        [HttpPost]
+//        public ActionResult SearchCompany(CompanyListViewModel paramSearch)
+//        {
+//            List<CompanyListViewModel> listSearchCompany = CompanyDataAccess.ListSearchCompany(paramSearch);
+
+//            return RedirectToAction("ListCompany", new
+//{
+//                listSearchCompany
+//            });
+//            //return Json(Url.Action("ListCompany", "Company"), listSearchCompany, JsonRequestBehavior.AllowGet);
+//        }
     }
 }

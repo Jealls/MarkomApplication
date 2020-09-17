@@ -60,13 +60,13 @@ namespace MarkomApplication.DataModel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spCompanyDetailByID_Result>("spCompanyDetailByID", idParameter);
         }
     
-        public virtual int spCompanyDelete(Nullable<int> id)
+        public virtual int spCompanyDelete(Nullable<int> id, ObjectParameter code)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("Id", id) :
                 new ObjectParameter("Id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCompanyDelete", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCompanyDelete", idParameter, code);
         }
     
         public virtual int spCompanyUpdate(Nullable<int> id, string name, string email, string address, string phone, string updateBy, Nullable<System.DateTime> updateDate)
@@ -113,6 +113,214 @@ namespace MarkomApplication.DataModel
                 new ObjectParameter("TableName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spDeleteRow", idParameter, tableNameParameter, code);
+        }
+    
+        public virtual int spSearchSingleString(string prefix, string columnName, string tableName)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            var columnNameParameter = columnName != null ?
+                new ObjectParameter("ColumnName", columnName) :
+                new ObjectParameter("ColumnName", typeof(string));
+    
+            var tableNameParameter = tableName != null ?
+                new ObjectParameter("TableName", tableName) :
+                new ObjectParameter("TableName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spSearchSingleString", prefixParameter, columnNameParameter, tableNameParameter);
+        }
+    
+        public virtual ObjectResult<m_company> spCompanySingleString(string prefix, string columnName)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            var columnNameParameter = columnName != null ?
+                new ObjectParameter("ColumnName", columnName) :
+                new ObjectParameter("ColumnName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<m_company>("spCompanySingleString", prefixParameter, columnNameParameter);
+        }
+    
+        public virtual ObjectResult<m_company> spCompanySingleString(string prefix, string columnName, MergeOption mergeOption)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            var columnNameParameter = columnName != null ?
+                new ObjectParameter("ColumnName", columnName) :
+                new ObjectParameter("ColumnName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<m_company>("spCompanySingleString", mergeOption, prefixParameter, columnNameParameter);
+        }
+    
+        public virtual ObjectResult<spCompany_Result> spSearchCompany(string code, string name, Nullable<System.DateTime> createDate, string createBy)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var createDateParameter = createDate.HasValue ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(System.DateTime));
+    
+            var createByParameter = createBy != null ?
+                new ObjectParameter("CreateBy", createBy) :
+                new ObjectParameter("CreateBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spCompany_Result>("spSearchCompany", codeParameter, nameParameter, createDateParameter, createByParameter);
+        }
+    
+        public virtual ObjectResult<spEmployeeCompanyName_Result> spEmployeeCompanyName(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEmployeeCompanyName_Result>("spEmployeeCompanyName", prefixParameter);
+        }
+    
+        public virtual int spEmployeeDelete(Nullable<int> id, ObjectParameter idNumber)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEmployeeDelete", idParameter, idNumber);
+        }
+    
+        public virtual ObjectResult<spEmployeeDetailByID_Result> spEmployeeDetailByID(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEmployeeDetailByID_Result>("spEmployeeDetailByID", idParameter);
+        }
+    
+        public virtual int spEmployeeInsert(string code, string fistName, string lastName, Nullable<int> companyId, string email, Nullable<bool> isDelete, string createBy, Nullable<System.DateTime> createDate)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var fistNameParameter = fistName != null ?
+                new ObjectParameter("FistName", fistName) :
+                new ObjectParameter("FistName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var companyIdParameter = companyId.HasValue ?
+                new ObjectParameter("CompanyId", companyId) :
+                new ObjectParameter("CompanyId", typeof(int));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var isDeleteParameter = isDelete.HasValue ?
+                new ObjectParameter("IsDelete", isDelete) :
+                new ObjectParameter("IsDelete", typeof(bool));
+    
+            var createByParameter = createBy != null ?
+                new ObjectParameter("CreateBy", createBy) :
+                new ObjectParameter("CreateBy", typeof(string));
+    
+            var createDateParameter = createDate.HasValue ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEmployeeInsert", codeParameter, fistNameParameter, lastNameParameter, companyIdParameter, emailParameter, isDeleteParameter, createByParameter, createDateParameter);
+        }
+    
+        public virtual ObjectResult<spEmployeeSearch_Result> spEmployeeSearch(string code, string name, Nullable<int> companyId, Nullable<System.DateTime> createDate, string createBy)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var companyIdParameter = companyId.HasValue ?
+                new ObjectParameter("CompanyId", companyId) :
+                new ObjectParameter("CompanyId", typeof(int));
+    
+            var createDateParameter = createDate.HasValue ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(System.DateTime));
+    
+            var createByParameter = createBy != null ?
+                new ObjectParameter("CreateBy", createBy) :
+                new ObjectParameter("CreateBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEmployeeSearch_Result>("spEmployeeSearch", codeParameter, nameParameter, companyIdParameter, createDateParameter, createByParameter);
+        }
+    
+        public virtual int spEmployeeUpdate(Nullable<int> id, string code, string fistName, string lastName, Nullable<int> companyId, string email, string updateBy, Nullable<System.DateTime> updateDate)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var fistNameParameter = fistName != null ?
+                new ObjectParameter("FistName", fistName) :
+                new ObjectParameter("FistName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var companyIdParameter = companyId.HasValue ?
+                new ObjectParameter("CompanyId", companyId) :
+                new ObjectParameter("CompanyId", typeof(int));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var updateByParameter = updateBy != null ?
+                new ObjectParameter("UpdateBy", updateBy) :
+                new ObjectParameter("UpdateBy", typeof(string));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEmployeeUpdate", idParameter, codeParameter, fistNameParameter, lastNameParameter, companyIdParameter, emailParameter, updateByParameter, updateDateParameter);
+        }
+    
+        public virtual ObjectResult<spEmployeeName_Result> spEmployeeName(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEmployeeName_Result>("spEmployeeName", prefixParameter);
+        }
+    
+        public virtual ObjectResult<spEmployeeNumber_Result> spEmployeeNumber(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEmployeeNumber_Result>("spEmployeeNumber", prefixParameter);
         }
     }
 }

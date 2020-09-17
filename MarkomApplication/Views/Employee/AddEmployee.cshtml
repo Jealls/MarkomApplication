@@ -1,0 +1,123 @@
+﻿@Styles.Render("~/Content/css-validate")
+@Styles.Render("~/Content/dropdown-autocomplete")
+
+@model MarkomApplication.ViewModel.EmployeeViewModel
+
+
+@Html.AntiForgeryToken()
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="border py-3 rounded">
+
+    <div class="form-row">
+        <div class="form-horizontal col-md-6">
+
+            <div class="form-group form-inline">
+                @Html.LabelFor(model => model.code, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Emp ID Number", maxLength = 50, onkeyup = "validationCode()" } })
+                    @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type First Name", maxLength = 50 } })
+                    @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Last Name", maxLength = 50 } })
+                    @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group col-md-6">
+            <div class="form-group form-inline">
+                @Html.LabelFor(model => model.companyName, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+
+                    @Html.DropDownListFor(model => model.companyName, (IEnumerable<SelectListItem>)ViewBag.CompanyName, "", new { htmlAttributes = new { @class = "form-control dropdown-style" } })
+                    @*@Html.EditorFor(model => model.companyName, new { htmlAttributes = new { @class = "form-control dropdown_emp_com_add", @style = "width:100%;", placeholder = "- Company Name -", maxLength = 50 } })*@
+                    <input type="hidden" id="dropdown_emp_com_id_add" name="CompanyNameDropdown" />
+                    @Html.ValidationMessageFor(model => model.companyName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", type = "email", onkeyup = "validationEmail()", placeholder = "Type Email", maxLength = 50 } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-row mx-1 py-lg-4 justify-content-end" style="background-color:#F8F8F8;">
+
+        <button type="submit" name="submit" value="Create" id="btn_save_employee" class="btn btn-primary active mr-2" data-url="@Url.Action("CreateDataEmployee", "Employee")">Save</button>
+        <button type="button" value="Cancel" data-dismiss="modal" class="btn btn-warning mr-5 text-white">Cancel</button>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(function () {
+            var FirstName = $("#firstName").val();
+            if (FirstName == "") {
+                $("#firstName").addClass("invalid");
+            } else {
+                $("#firstName").removeClass("invalid");
+            }
+        });
+
+        //DROPDOWN CODE
+
+            //$(".dropdown_emp_com_add").autocomplete({
+            //    source: function (request, response) {
+            //        $.ajax({
+            //            url: '/Employee/AutoCompleteCompanyName/',
+            //            selectFirst: true,
+            //            data: "{ 'prefix': '" + request.term + "'}",
+            //            dataType: "json",
+            //            type: "POST",
+            //            contentType: "application/json; charset=utf-8",
+            //            success: function (data) {
+            //                response($.map(data, function (item) {
+            //                    return item.companyName;
+            //                }));
+            //            },
+            //            error: function (response) {
+            //                alert(response.responseText);
+            //            },
+            //            failure: function (response) {
+            //                alert(response.responseText);
+            //            }
+            //        });
+            //    },
+            //    select: function (e, i) {
+            //        $(".dropdown_emp_com_id_add").val(i.item.mCompanyId);
+            //    },
+            //    //appendTo: _parentElement,
+            //    minLength: 1
+            //}).focus(function (event, ui) {
+            //    $(".ui-helper-hidden-accessible").hide();
+            //    event.preventDefault();
+            //});
+
+
+    </script>
+}

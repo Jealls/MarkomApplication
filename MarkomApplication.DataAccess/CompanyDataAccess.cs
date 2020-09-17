@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 
 namespace MarkomApplication.DataAccess
 {
@@ -144,9 +145,8 @@ namespace MarkomApplication.DataAccess
                     //latestSaveCode = db.m_company.Where(x => x.id == paramComId).SingleOrDefault()?.name;
                     // ?. will prevent the code from throwing a null-reference exception and will return null when a point with Id  does not exist
 
-                    string tableName = "dbo.m_company";
                     ObjectParameter returnId = new ObjectParameter("Code", typeof(string)); //Create Object parameter to receive a output value.It will behave like output parameter  
-                     db.spDeleteRow(paramComId, tableName, returnId); //calling our entity imported function "Bangalore" is our input parameter, returnId is a output parameter, it will receive the output value   
+                    db.spCompanyDelete(paramComId, returnId); //calling our entity imported function "Bangalore" is our input parameter, returnId is a output parameter, it will receive the output value   
                     latestSaveCode = (String)returnId.Value;
                     
                     
@@ -159,8 +159,43 @@ namespace MarkomApplication.DataAccess
 
             return latestSaveCode;
         }
-        
-        public static List<CompanyViewModel> SearchString(string prefix)
+
+
+        //public static List<CompanyViewModel> SearchSingleString(string prefix, string clName)
+        //{
+        //    List<CompanyViewModel> result = new List<CompanyViewModel>();
+        //    try
+        //    {
+        //        using (MarkomApplicationDBEntities db = new MarkomApplicationDBEntities())
+        //        {
+        //            //var res = db.Database.ExecuteSqlCommand("spCompanySingleString @Prefix, @ColumnName", parameters: new[] { prefix, clName });
+        //            //var res = db.spCompanySingleString(clName, prefix).ToList();
+
+        //            //ObjectResult<CompanyViewModel> empDetails = db.spCompanySingleString(prefix, clName);
+
+        //            var res = db.spCompanySingleString(prefix, clName);
+
+        //            var blogs = ((IObjectContextAdapter)db)
+        //        .ObjectContext
+        //        .Translate<Blog>(res, "Blogs", MergeOption.AppendOnly);
+
+
+        //            result = comList;
+
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Message = ex.Message;
+        //    }
+
+        //    return result;
+        //}
+
+
+
+        public static List<CompanyViewModel> SearchStringCode(string prefix)
         {
             List<CompanyViewModel> result = new List<CompanyViewModel>();
             try
@@ -188,7 +223,7 @@ namespace MarkomApplication.DataAccess
         }
 
 
-        public static List<CompanyViewModel> SearchString2(string prefix)
+        public static List<CompanyViewModel> SearchStringName(string prefix)
         {
             List<CompanyViewModel> result = new List<CompanyViewModel>();
             try
@@ -210,6 +245,30 @@ namespace MarkomApplication.DataAccess
             catch (Exception ex)
             {
                 Message = ex.Message;
+            }
+
+            return result;
+        }
+
+
+        public static List<CompanyViewModel> ListSearchCompany(CompanyViewModel paramSearch)
+        {
+            List<CompanyViewModel> result = new List<CompanyViewModel>();
+
+            using (var context = new MarkomApplicationDBEntities())
+            {
+                var res = context.spSearchCompany(paramSearch.code, paramSearch.name, paramSearch.createDate2, paramSearch.createBy);
+
+                List<CompanyViewModel> comList = res.Select(c => new CompanyViewModel
+                {
+                    id = c.id,
+                    code = c.code,
+                    name = c.name,
+                    createDate = c.create_date,
+                    createBy = c.create_by
+                }).ToList();
+
+                result = comList;
             }
 
             return result;
