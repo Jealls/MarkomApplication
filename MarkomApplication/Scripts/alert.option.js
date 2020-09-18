@@ -14,6 +14,7 @@ function fcAlertSuccessAdd(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
     document.querySelector("#data_code_alert_add").innerHTML = vjsLatestCode;
+    document.querySelector("#add_from").innerHTML = "company";
 
     setTimeout(function () {
         $(vjsAlertId).addClass('d-none');
@@ -24,6 +25,7 @@ function fcAlertSuccessAdd(vjsAlertId, vjsLatestCode) {
 function fcAlertSuccessEdit(vjsAlertId) {
 
     $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#update_from").innerHTML = "company";
 
     setTimeout(function () {
         $(vjsAlertId).addClass('d-none');
@@ -31,10 +33,51 @@ function fcAlertSuccessEdit(vjsAlertId) {
     }, 1500);
 }
 
+
+
 function fcAlertSuccessDelete(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
     document.querySelector("#data_code_alert_del").innerHTML = vjsLatestCode;
+    document.querySelector("#delete_from").innerHTML = "company";
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 2000);
+}
+
+
+
+
+
+function fcAlertSuccessAddEmp(vjsAlertId, vjsLatestCode) {
+
+    $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#data_code_alert_add").innerHTML = vjsLatestCode;
+    document.querySelector("#add_from").innerHTML = "employee";
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 1500);
+} 
+function fcAlertSuccessEditEmp(vjsAlertId) {
+
+    $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#update_from").innerHTML = "employee";
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 1500);
+}
+
+function fcAlertSuccessDelEmp(vjsAlertId, vjsLatestCode) {
+
+    $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#data_code_alert_del").innerHTML = vjsLatestCode;
+    document.querySelector("#delete_from").innerHTML = "employee";
 
     setTimeout(function () {
         $(vjsAlertId).addClass('d-none');

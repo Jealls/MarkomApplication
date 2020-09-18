@@ -32,7 +32,7 @@ function validationCode() {
 
 function validationEmpNumber(vjsEmpNumber) {
 
-    if (vjsEmpNumber == "" && !matchCode(vjsEmpNumber)) {
+    if (vjsEmpNumber == "" || !matchCode(vjsEmpNumber)) {
         $("#code").addClass("invalid");
     } else {
         $("#code").removeClass("invalid");
@@ -40,9 +40,9 @@ function validationEmpNumber(vjsEmpNumber) {
     }
 }
 
-function validationCompanyName(vjsCompanyName) {
+function validationCompanyName(vjsCompanyId) {
 
-    if (vjsCompanyName == "") {
+    if (isNaN(vjsCompanyId)) {
         $("#companyName").addClass("invalid");
     } else {
         $("#companyName").removeClass("invalid");
@@ -52,6 +52,14 @@ function validationCompanyName(vjsCompanyName) {
 
 function validationFirstName(FirstName) {
     debugger;
+    if (FirstName == "") {
+        $("#firstName").addClass("invalid");
+    } else {
+        $("#firstName").removeClass("invalid");
+    }
+}
+function validationName() {
+    var FirstName = document.getElementById("firstName").value;
     if (FirstName == "") {
         $("#firstName").addClass("invalid");
     } else {

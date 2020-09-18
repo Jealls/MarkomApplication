@@ -273,7 +273,7 @@ $(document).on("click", "#confirm_del_company", function () {
 $(document).on("click", "#btn_search_company", function () {
     var vjsCode = $("#dropdown_code").val();
     var vjsName = $("#dropdown_name").val();
-    var vjsCreatedDate = $("#created_date").val().split("/").join("-");
+    var vjsCreatedDate = $("#created_date").val().split("/").reverse().join("-");
     var vjsCreatedBy = $("#created_by").val();
     debugger;
     var item = {

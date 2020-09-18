@@ -18,6 +18,23 @@ namespace MarkomApplication.Controllers
             return View();
         }
 
+        //table LIST EMPLOYEE
+        public ActionResult Index(string code, string fullName, int? mCompanyId, DateTime? createDate2, string createBy)
+        {
+            List<EmployeeViewModel> listSearchCompany = EmployeeDataAccess.GetListEmployee(code, fullName, mCompanyId, createDate2, createBy);
+
+            return PartialView(listSearchCompany);
+        }
+
+        //public ActionResult Index(EmployeeViewModel paramSearch)
+        //{
+        //    List<EmployeeViewModel> listSearchCompany = EmployeeDataAccess.GetListEmployee(paramSearch);
+
+        //    return PartialView(listSearchCompany);
+        //}
+
+
+        //  ADD EMPLOYEE
         public ActionResult AddEmployee()
         {
             String dummyPrefix = string.Empty;
@@ -41,11 +58,11 @@ namespace MarkomApplication.Controllers
 
                 if (latestCode != null)
                 {
-                    return Json(new { success = true, latestCode, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true, latestCode, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
                 }
             }
             else
@@ -56,22 +73,70 @@ namespace MarkomApplication.Controllers
         }
 
 
-        public ActionResult ListCompany(CompanyViewModel paramSearch)
-        {
-            List<CompanyViewModel> listSearchCompany = CompanyDataAccess.ListSearchCompany(paramSearch);
 
-            return View(listSearchCompany);
+
+        //EDIT EMPLOYEE
+        public ActionResult EditEmployee(int paramId)
+        {
+            String dummyPrefix = string.Empty;
+            ViewBag.CompanyName = new SelectList(EmployeeDataAccess.SearchStringCompanyName(dummyPrefix), "mCompanyId", "companyName");
+
+            return PartialView(EmployeeDataAccess.GetDetailEmployeeById(paramId));
         }
 
 
-        public ActionResult SearchCompany(EmployeeViewModel paramSearch)
+        [HttpPost]
+        public ActionResult EditDataEmployee(EmployeeViewModel paramEditEmp)
         {
-            List<EmployeeViewModel> listSearchCompany = EmployeeDataAccess.GetListEmployee(paramSearch);
+            if (ModelState.IsValid)
+            {
+                //update data manual createby and createdate
+                paramEditEmp.updateBy = "Tian";
+                paramEditEmp.updateDate = DateTime.Now;
 
-            return View(listSearchCompany);
+                if (EmployeeDataAccess.UpdateEmployee(paramEditEmp))
+                {
+                    return Json(new { success = true, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(new { success = false, message = "Wajib menginputkan semua kotak bertanda bintang" }, JsonRequestBehavior.AllowGet);
+
+            }
         }
 
 
+        //VIEW EMPLOYEE
+        public ActionResult ViewEmployee(int paramId)
+        {
+            return PartialView(EmployeeDataAccess.GetDetailEmployeeById(paramId));
+        }
+
+        //DELETE EMPLOYEE
+        [HttpPost]
+        public JsonResult DeleteDataEmployee(int paramId)
+        {
+
+            string latestCode = EmployeeDataAccess.DeleteEmployee(paramId);
+
+            if (latestCode != null)
+            {
+                return Json(new { success = true, latestCode, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = false, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+        //AUTO COMPLETE SECTION
         [HttpPost]
         public JsonResult AutoCompleteCompanyName(string prefix)
         {

@@ -7,36 +7,38 @@ $(function () {
 var ProgressHtml = '<div class="progress progress-striped active" style="margina-bottom: 0"><div class="progress-bar" style="width:100%"></div></div>';
 
 
+//DOCUMENT READY
+
+$(document).ready(function () {
+    var vjsCode = $("#dropdown_code_employee").val();
+    var vjsName = $("#dropdown_name_employee").val();
+    var vjsComId = $("#dropdown_employee_company_id").val();
+    var vjsCreatedDate = $("#created_date").val().split("/").reverse().join("-");
+    var vjsCreatedBy = $("#created_by").val();
+
+    $.ajax({
+        type: 'post',
+        url: $("#btn_search_employee").data('url'),
+        data: {
+            code: vjsCode,
+            fullName: vjsName,
+            mCompanyId: vjsComId,
+            createDate2: vjsCreatedDate,
+            createBy: vjsCreatedBy
+        },
+        success: function (result) {
+            $("#tbl_list_employee").html(result);
+        },
+        error: function (result) {
+            alert("error!");  // 
+        }
+    });
+
+});
+
 //DROPDOWN COMPANY NAME
 $(function () {
     $("#dropdown_employee_company").autocomplete({
-
-
-    //    source: function (request, response) {
-    //        $.ajax({
-    //            type: "POST",
-    //            url: '/Employee/AutoCompleteCompanyName/',
-    //            dataType: "json",
-    //            data: "{ 'data': '" + request.term + "' }",
-    //            contentType: "application/json; charset=utf-8",
-    //            success: function (data) {
-    //                response($.map(data, function (item) {
-    //                    return {
-    //                        value: item.companyName,
-    //                        companyName: item.companyName,
-    //                        mCompanyId: item.mCompanyId
-    //                    }
-    //                }));
-    //            }
-    //        });
-    //    },
-    //    select: function (event, ui) {
-    //        $('#dropdown_employee_company').val(ui.item.companyName);
-    //        $('#dropdown_employee_company_id').val(ui.item.mCompanyId);
-    //        return false;
-    //    }
-    //});
-
         source: function (request, response) {
             $.ajax({
                 url: '/Employee/AutoCompleteCompanyName/',
@@ -167,24 +169,24 @@ $(document).on("click", "#btn_save_employee", function () {
     var vjsEmpNumber = $("#code").val();
     var vjsFirstName = $("#firstName").val();
     var vjsLastName = $("#lastName").val();
-    var vjsCompanyName = $("#companyName").val();
+    debugger;
+    var vjsCompanyId = parseInt($("#companyName").val());
     var vjsEmail = $("#email").val();
 
-    debugger;
     
     validationFirstName(vjsFirstName);
     validationEmpNumber(vjsEmpNumber);
-    validationCompanyName(vjsCompanyName);
+    validationCompanyName(vjsCompanyId);
 
     if (cekValidationEmployee()) {
         var item = {
             code: vjsEmpNumber,
             firstName: vjsFirstName,
             lastName: vjsLastName,
-            companyName: vjsCompanyName,
+            mCompanyId: vjsCompanyId,
             email: vjsEmail
         };
-        var j = 1;
+
         $.ajax({
             async: true,
             type: 'post',
@@ -195,7 +197,7 @@ $(document).on("click", "#btn_save_employee", function () {
 
                     $("#modal_form").modal("hide");
 
-                    fcAlertSuccessAdd("#success_alert_add", result.latestCode);
+                    fcAlertSuccessAddEmp("#success_alert_add", result.latestCode);
 
                     setTimeout(function () {
                         window.location.reload();
@@ -212,23 +214,28 @@ $(document).on("click", "#btn_save_employee", function () {
 $(document).on("click", "#btn_search_employee", function () {
     var vjsCode = $("#dropdown_code_employee").val();
     var vjsName = $("#dropdown_name_employee").val();
-    var vjsComName = $("#dropdown_employee_company_id").val();
-    var vjsCreatedDate = $("#created_date").val().split("/").join("-");
+    var vjsComId = $("#dropdown_employee_company_id").val();
+    var vjsCreatedDate = $("#created_date").val().split("/").reverse().join("-");
     var vjsCreatedBy = $("#created_by").val();
     debugger;
     var item = {
         code: vjsCode,
-        name: vjsName,
-        mCompanyId: vjsComName,
+        fullName: vjsName,
+        mCompanyId: vjsComId,
         createDate2: vjsCreatedDate,
         createBy: vjsCreatedBy
     };
 
     $.ajax({
-        type: 'get',
+        type: 'post',
         url: $("#btn_search_employee").data('url'),
         data: {
-            paramSearch: item
+            //paramSearch: item
+                    code: vjsCode,
+                    fullName: vjsName,
+                    mCompanyId: vjsComId,
+                    createDate2: vjsCreatedDate,
+                    createBy: vjsCreatedBy
         },
         success: function (result) {
             $("#tbl_list_employee").html(result);
@@ -238,6 +245,135 @@ $(document).on("click", "#btn_search_employee", function () {
         }
     });
 });
+
+
+//BTN SHOW EDIT EMPLOYEE
+$(document).on("click", "#btn_edit_employee", function () {
+
+    $("#modal_form").modal("show");
+    $(".modal_title_form").html("Edit Employee - ");
+    $("#modal_content_body").html(ProgressHtml);
+
+    $.ajax({
+        url: $("#btn_edit_employee").data('url'),
+        type: 'get',
+        data: {
+            paramId: $(this).data('id')
+        },
+        success: function (result) {
+            $("#modal_content_body").html(result);
+
+            var vjsName = $("#firstName").val() + " " + $("#lastName").val();
+            var vjsCode = $("#code").val();
+            $(".modal_title_form").html("Edit Employee - " + vjsName + " (" + vjsCode + ")");
+        }
+    });
+});
+
+
+//SAVE EDIT EMPLOYEE
+$(document).on("click", "#save_update_employee", function () {
+    var vjsEmpNumber = $("#code").val();
+    var vjsFirstName = $("#firstName").val();
+    var vjsLastName = $("#lastName").val();
+    var vjsCompanyId = parseInt($("#mCompanyId").val());
+    var vjsEmail = $("#email").val();
+    var vjsId = $("#id").val();
+
+    debugger;
+
+    validationFirstName(vjsFirstName);
+    validationEmpNumber(vjsEmpNumber);
+    validationCompanyName(vjsCompanyId);
+
+    if (cekValidationEmployee()) {
+        var item = {
+            id: vjsId,
+            code: vjsEmpNumber,
+            firstName: vjsFirstName,
+            lastName: vjsLastName,
+            mCompanyId: vjsCompanyId,
+            email: vjsEmail
+        };
+
+        $.ajax({
+            async: true,
+            type: 'post',
+            url: $("#save_update_employee").data('url'),
+            data: { paramEditEmp: item },
+            success: function (result) {
+                if (result.success) {
+
+                    $("#modal_form").modal("hide");
+
+                    fcAlertSuccessEditEmp("#success_alert_update");
+
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 800);
+                }
+            }
+
+        });
+    }
+});
+
+
+//VIEW EMPLOYE DETAIL
+$(document).on("click", "#btn_view_employee", function () {
+
+    $("#modal_form").modal("show");
+    $(".modal_title_form").html("View Employee - ");
+    $("#modal_content_body").html(ProgressHtml);
+
+
+    $.ajax({
+        url: $("#btn_view_employee").data('url'),
+        type: 'get',
+        data: {
+            paramId: $(this).data('id')
+        },
+        success: function (result) {
+            $("#modal_content_body").html(result);
+
+            var vjsName = $("#firstName").val() + " " + $("#lastName").val();
+            var vjsCode = $("#code").val();
+            $(".modal_title_form").html("View Employee - " + vjsName + " (" + vjsCode + ")");
+        }
+    });
+});
+
+
+//DELETE EMPLOYEE SHOW
+$(document).on("click", "#btn_del_employee", function () {
+
+    var thisId = $(this).data('id');
+
+    $("#modal_confirm_del").modal("show");
+    $("#confirm_del_data").attr('data-id', thisId);
+});
+
+//BTN DELETE COMPANY
+$(document).on("click", "#confirm_del_data", function () {
+    debugger;
+    $.ajax({
+        type: 'POST',
+        url: "/Employee/DeleteDataEmployee",
+        dataType: 'json',
+        data: {
+            paramId: $(this).data('id')
+        },
+        success: function (result) {
+            $("#modal_confirm_del").modal("hide");
+            fcAlertSuccessDelEmp("#success_alert_del", result.latestCode);
+
+            setTimeout(function () {
+                window.location.reload();
+            }, 800);
+        }
+    });
+});
+
 
 
 

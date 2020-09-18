@@ -21,19 +21,39 @@
 </div>
 
 
-<!--Modal Confirmation-->
-@*<div id="modal_confirmation" class="modal" tabindex="-1" role="dialog">
+<div id="modal_confirm_del" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title modal_title_confirm">Modal title</h5>
+                <h5 class="modal-title">Delete Data?</h5>
                 <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-light">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="modal_body_confirm">
-
+            <div class="modal-body">
+                <div class="form-row d-flex justify-content-center">
+                    <button type="submit" name="DelConfirm" value="Delete" id="confirm_del_data" class="btn btn-primary active mr-2">Delete</button>
+                    <button type="button" name="DelConfirm" value="Cancel" data-dismiss="modal" class="btn btn-warning text-white">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
-</div>*@
+</div>
+
+
+<!--Modal Confirmation-->
+@*<div id="modal_confirmation" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title modal_title_confirm">Modal title</h5>
+                    <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-light">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal_body_confirm">
+
+                </div>
+            </div>
+        </div>
+    </div>*@

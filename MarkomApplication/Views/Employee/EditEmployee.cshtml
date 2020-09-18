@@ -1,0 +1,75 @@
+﻿@Styles.Render("~/Content/css-validate")
+
+@model MarkomApplication.ViewModel.EmployeeViewModel
+
+
+@Html.AntiForgeryToken()
+
+    <div class="border py-3 rounded">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.id)
+        <div class="form-row">
+            <div class="form-horizontal col-md-6">
+
+                <div class="form-group form-inline">
+                    @Html.LabelFor(model => model.code, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Emp ID Number", maxLength = 50, onkeyup = "validationCode()" } })
+                        @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group form-inline">
+                    @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type First Name", maxLength = 50, onkeyup = "validationName()" } })
+                        @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group form-inline">
+                    @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Last Name", maxLength = 50 } })
+                        @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group col-md-6">
+                <div class="form-group form-inline">
+                    @Html.LabelFor(model => model.mCompanyId, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+
+                        @Html.DropDownListFor(model => model.mCompanyId, (IEnumerable<SelectListItem>)ViewBag.CompanyName, "", new { @class = "form-control dropdown-style" })
+                        <input type="hidden" id="dropdown_emp_com_id_add" name="CompanyNameDropdown" />
+                        @Html.ValidationMessageFor(model => model.mCompanyId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group form-inline">
+                    @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", type = "email", onkeyup = "validationEmail()", placeholder = "Type Email", maxLength = 50 } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-row mx-1 py-lg-4 justify-content-end" style="background-color:#F8F8F8;">
+
+            <button type="submit" name="submit" value="Update" id="save_update_employee" class="btn btn-primary active mr-2" data-url="@Url.Action("EditDataEmployee", "Employee")">Update</button>
+            <button type="button" value="Cancel" data-dismiss="modal" class="btn btn-warning mr-5 text-white">Cancel</button>
+
+        </div>
+
+    </div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -23,13 +23,18 @@ namespace MarkomApplication.ViewModel
         [DisplayName("Last Name")]
         public string lastName { get; set; }
 
+        [DisplayName("Employee Name")]
         public string fullName { get; set; }
-        public Nullable<int> mCompanyId { get; set; }
 
         [Required(ErrorMessage = "Input data Nama Perusahaan")]
         [DisplayName("Company Name")]
+        public Nullable<int> mCompanyId { get; set; }
+
+        
+        [DisplayName("Company Name")]
         public string companyName { get; set; }
 
+        [DisplayName("Email")]
         public string email { get; set; }
         public bool isDelete { get; set; }
 
@@ -38,6 +43,7 @@ namespace MarkomApplication.ViewModel
 
         [DisplayName("Create Date")]
         public System.DateTime createDate { get; set; }
+        public Nullable<DateTime> createDate2 { get; set; }
         public string updateBy { get; set; }
         public Nullable<System.DateTime> updateDate { get; set; }
     }
