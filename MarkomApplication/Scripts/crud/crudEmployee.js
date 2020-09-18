@@ -8,24 +8,11 @@ var ProgressHtml = '<div class="progress progress-striped active" style="margina
 
 
 //DOCUMENT READY
-
 $(document).ready(function () {
-    var vjsCode = $("#dropdown_code_employee").val();
-    var vjsName = $("#dropdown_name_employee").val();
-    var vjsComId = $("#dropdown_employee_company_id").val();
-    var vjsCreatedDate = $("#created_date").val().split("/").reverse().join("-");
-    var vjsCreatedBy = $("#created_by").val();
 
     $.ajax({
         type: 'post',
         url: $("#btn_search_employee").data('url'),
-        data: {
-            code: vjsCode,
-            fullName: vjsName,
-            mCompanyId: vjsComId,
-            createDate2: vjsCreatedDate,
-            createBy: vjsCreatedBy
-        },
         success: function (result) {
             $("#tbl_list_employee").html(result);
         },
@@ -58,10 +45,12 @@ $(function () {
                     }));
                 },
                 error: function (response) {
-                    alert(response.responseText);
+                    alert("tidak ada data!");
+                    //alert(response.responseText);
                 },
                 failure: function (response) {
-                    alert(response.responseText);
+                    alert("tidak ada data!");
+                    //alert(response.responseText);
                 }
             });
         },
@@ -92,10 +81,12 @@ $(function () {
                     }));
                 },
                 error: function (response) {
-                    alert(response.responseText);
+                    alert("tidak ada data!");
+                    //alert(response.responseText);
                 },
                 failure: function (response) {
-                    alert(response.responseText);
+                    alert("tidak ada data!");
+                    //alert(response.responseText);
                 }
             });
         },
@@ -126,10 +117,12 @@ $(function () {
                     }));
                 },
                 error: function (response) {
-                    alert(response.responseText);
+                    alert("tidak ada data!");
+                    //alert(response.responseText);
                 },
                 failure: function (response) {
-                    alert(response.responseText);
+                    alert("tidak ada data!");
+                    //alert(response.responseText);
                 }
             });
         },
@@ -353,7 +346,7 @@ $(document).on("click", "#btn_del_employee", function () {
     $("#confirm_del_data").attr('data-id', thisId);
 });
 
-//BTN DELETE COMPANY
+//BTN DELETE ROLE
 $(document).on("click", "#confirm_del_data", function () {
     debugger;
     $.ajax({

@@ -441,5 +441,45 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spRoleCode" FunctionName="MarkomApplicationDBModel.Store.spRoleCode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spRoleCode_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spRoleDelete" FunctionName="MarkomApplicationDBModel.Store.spRoleDelete" />
+    <FunctionImportMapping FunctionImportName="spRoleDetailByID" FunctionName="MarkomApplicationDBModel.Store.spRoleDetailByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spRoleDetailByID_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spRoleInsert" FunctionName="MarkomApplicationDBModel.Store.spRoleInsert" />
+    <FunctionImportMapping FunctionImportName="spRoleName" FunctionName="MarkomApplicationDBModel.Store.spRoleName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spRoleName_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spRoleSearch" FunctionName="MarkomApplicationDBModel.Store.spRoleSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spRoleSearch_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spRoleUpdate" FunctionName="MarkomApplicationDBModel.Store.spRoleUpdate" />
   </EntityContainerMapping>
 </Mapping>

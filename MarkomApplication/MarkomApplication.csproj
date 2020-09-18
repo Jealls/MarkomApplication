@@ -133,6 +133,7 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,6 +215,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\crud\crudCompany.js" />
     <Content Include="Scripts\crud\crudEmployee.js" />
+    <Content Include="Scripts\crud\crudRole.js" />
     <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\datepicker.min.js" />
     <Content Include="Scripts\i18n\datepicker.cs.js" />
@@ -246,6 +248,7 @@
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\validation\validate-employee.js" />
+    <Content Include="Scripts\validation\validate-role.js" />
     <Content Include="Scripts\validation\validate.Company.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -273,6 +276,11 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\EditEmployee.cshtml" />
     <Content Include="Views\Employee\ViewEmployee.cshtml" />
+    <Content Include="Views\Role\ListRole.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\AddRole.cshtml" />
+    <Content Include="Views\Role\EditRole.cshtml" />
+    <Content Include="Views\Role\ViewRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

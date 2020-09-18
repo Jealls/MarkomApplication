@@ -21,9 +21,9 @@ namespace MarkomApplication.Controllers
         //table LIST EMPLOYEE
         public ActionResult Index(string code, string fullName, int? mCompanyId, DateTime? createDate2, string createBy)
         {
-            List<EmployeeViewModel> listSearchCompany = EmployeeDataAccess.GetListEmployee(code, fullName, mCompanyId, createDate2, createBy);
+            List<EmployeeViewModel> listSearchEmp = EmployeeDataAccess.GetListEmployee(code, fullName, mCompanyId, createDate2, createBy);
 
-            return PartialView(listSearchCompany);
+            return PartialView(listSearchEmp);
         }
 
         //public ActionResult Index(EmployeeViewModel paramSearch)
@@ -121,7 +121,6 @@ namespace MarkomApplication.Controllers
         [HttpPost]
         public JsonResult DeleteDataEmployee(int paramId)
         {
-
             string latestCode = EmployeeDataAccess.DeleteEmployee(paramId);
 
             if (latestCode != null)

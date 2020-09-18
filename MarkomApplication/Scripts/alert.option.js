@@ -84,3 +84,40 @@ function fcAlertSuccessDelEmp(vjsAlertId, vjsLatestCode) {
 
     }, 2000);
 }
+
+
+
+
+function fcAlertSuccessAddRole(vjsAlertId, vjsLatestCode) {
+
+    $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#data_code_alert_add").innerHTML = vjsLatestCode;
+    document.querySelector("#add_from").innerHTML = "role";
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 1500);
+}
+function fcAlertSuccessEditRole(vjsAlertId) {
+
+    $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#update_from").innerHTML = "role";
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 1500);
+}
+
+function fcAlertSuccessDelRole(vjsAlertId, vjsLatestCode) {
+
+    $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#data_code_alert_del").innerHTML = vjsLatestCode;
+    document.querySelector("#delete_from").innerHTML = "role";
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 2000);
+}

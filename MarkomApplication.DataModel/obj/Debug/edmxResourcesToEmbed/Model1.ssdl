@@ -81,7 +81,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="255" />
     <Property Name="is_delete" Type="bit" Nullable="false" />
     <Property Name="create_by" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="create_date" Type="datetime" Nullable="false" />
@@ -393,6 +393,39 @@
     <Parameter Name="LastName" Type="varchar" Mode="In" />
     <Parameter Name="CompanyId" Type="int" Mode="In" />
     <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
+    <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spRoleCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Prefix" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spRoleDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="IdNumber" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="spRoleDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spRoleInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+    <Parameter Name="RoleName" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+    <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spRoleName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Prefix" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spRoleSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="date" Mode="In" />
+    <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spRoleUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="RoleName" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
     <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
     <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
   </Function>

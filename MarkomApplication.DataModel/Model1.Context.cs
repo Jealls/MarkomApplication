@@ -322,5 +322,112 @@ namespace MarkomApplication.DataModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEmployeeNumber_Result>("spEmployeeNumber", prefixParameter);
         }
+    
+        public virtual ObjectResult<spRoleCode_Result> spRoleCode(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spRoleCode_Result>("spRoleCode", prefixParameter);
+        }
+    
+        public virtual int spRoleDelete(Nullable<int> id, ObjectParameter idNumber)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRoleDelete", idParameter, idNumber);
+        }
+    
+        public virtual ObjectResult<spRoleDetailByID_Result> spRoleDetailByID(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spRoleDetailByID_Result>("spRoleDetailByID", idParameter);
+        }
+    
+        public virtual int spRoleInsert(string code, string roleName, string description, string createBy, Nullable<System.DateTime> createDate)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var roleNameParameter = roleName != null ?
+                new ObjectParameter("RoleName", roleName) :
+                new ObjectParameter("RoleName", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var createByParameter = createBy != null ?
+                new ObjectParameter("CreateBy", createBy) :
+                new ObjectParameter("CreateBy", typeof(string));
+    
+            var createDateParameter = createDate.HasValue ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRoleInsert", codeParameter, roleNameParameter, descriptionParameter, createByParameter, createDateParameter);
+        }
+    
+        public virtual ObjectResult<spRoleName_Result> spRoleName(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spRoleName_Result>("spRoleName", prefixParameter);
+        }
+    
+        public virtual ObjectResult<spRoleSearch_Result> spRoleSearch(string code, string name, Nullable<System.DateTime> createDate, string createBy)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var createDateParameter = createDate.HasValue ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(System.DateTime));
+    
+            var createByParameter = createBy != null ?
+                new ObjectParameter("CreateBy", createBy) :
+                new ObjectParameter("CreateBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spRoleSearch_Result>("spRoleSearch", codeParameter, nameParameter, createDateParameter, createByParameter);
+        }
+    
+        public virtual int spRoleUpdate(Nullable<int> id, string roleName, string description, string updateBy, Nullable<System.DateTime> updateDate)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var roleNameParameter = roleName != null ?
+                new ObjectParameter("RoleName", roleName) :
+                new ObjectParameter("RoleName", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var updateByParameter = updateBy != null ?
+                new ObjectParameter("UpdateBy", updateBy) :
+                new ObjectParameter("UpdateBy", typeof(string));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRoleUpdate", idParameter, roleNameParameter, descriptionParameter, updateByParameter, updateDateParameter);
+        }
     }
 }

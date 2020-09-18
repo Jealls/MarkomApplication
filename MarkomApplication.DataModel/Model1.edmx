@@ -86,7 +86,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
           <Property Name="is_delete" Type="bit" Nullable="false" />
           <Property Name="create_by" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="create_date" Type="datetime" Nullable="false" />
@@ -401,6 +401,39 @@
           <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
           <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="spRoleCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Prefix" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spRoleDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="IdNumber" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="spRoleDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spRoleInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="varchar" Mode="In" />
+          <Parameter Name="RoleName" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spRoleName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Prefix" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spRoleSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="date" Mode="In" />
+          <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spRoleUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="RoleName" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="spSearchCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Code" Type="varchar" Mode="In" />
           <Parameter Name="Name" Type="varchar" Mode="In" />
@@ -517,7 +550,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="is_delete" Type="Boolean" Nullable="false" />
           <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
@@ -862,6 +895,39 @@
           <FunctionImport Name="spEmployeeNumber" ReturnType="Collection(MarkomApplicationDBModel.spEmployeeNumber_Result)">
           <Parameter Name="Prefix" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spRoleCode" ReturnType="Collection(MarkomApplicationDBModel.spRoleCode_Result)">
+          <Parameter Name="Prefix" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spRoleDelete">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="IdNumber" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spRoleDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spRoleDetailByID_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spRoleInsert">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="CreateBy" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spRoleName" ReturnType="Collection(MarkomApplicationDBModel.spRoleName_Result)">
+          <Parameter Name="Prefix" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spRoleSearch" ReturnType="Collection(MarkomApplicationDBModel.spRoleSearch_Result)">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spRoleUpdate">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="UpdateBy" Mode="In" Type="String" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spCompanyList_Result">
           <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
@@ -937,6 +1003,27 @@
         <ComplexType Name="spEmployeeNumber_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="employee_number" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spRoleCode_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spRoleDetailByID_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="spRoleName_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spRoleSearch_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1384,6 +1471,46 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spRoleCode" FunctionName="MarkomApplicationDBModel.Store.spRoleCode">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spRoleCode_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spRoleDelete" FunctionName="MarkomApplicationDBModel.Store.spRoleDelete" />
+          <FunctionImportMapping FunctionImportName="spRoleDetailByID" FunctionName="MarkomApplicationDBModel.Store.spRoleDetailByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spRoleDetailByID_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spRoleInsert" FunctionName="MarkomApplicationDBModel.Store.spRoleInsert" />
+          <FunctionImportMapping FunctionImportName="spRoleName" FunctionName="MarkomApplicationDBModel.Store.spRoleName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spRoleName_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spRoleSearch" FunctionName="MarkomApplicationDBModel.Store.spRoleSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spRoleSearch_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="create_by" ColumnName="create_by" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spRoleUpdate" FunctionName="MarkomApplicationDBModel.Store.spRoleUpdate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

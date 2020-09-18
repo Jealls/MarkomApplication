@@ -58,6 +58,7 @@ function validationFirstName(FirstName) {
         $("#firstName").removeClass("invalid");
     }
 }
+
 function validationName() {
     var FirstName = document.getElementById("firstName").value;
     if (FirstName == "") {
