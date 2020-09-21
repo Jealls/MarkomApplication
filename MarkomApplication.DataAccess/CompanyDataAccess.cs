@@ -274,6 +274,17 @@ namespace MarkomApplication.DataAccess
             return result;
         }
 
+
+        public static bool NameValidation(string name)
+        {
+            using (var db = new MarkomApplicationDBEntities())
+            {
+                var result = db.m_company.Any(u => u.name.ToLower() == name.ToLower());
+                return result;
+            }
+        }
+
+
         public static string CompanyCode()
         {
             string kode ="";

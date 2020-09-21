@@ -1,0 +1,129 @@
+﻿@model IEnumerable<MarkomApplication.ViewModel.EventViewModel>
+
+@{
+    ViewBag.Title = "ListEvent";
+}
+<div class="container rounded-top border border-primary">
+
+    <div class="row rounded-top list-head ">
+        <p>List Event</p>
+    </div>
+    <div class="row mx-2">
+        <p class="p-2 my-3 bg-light text-dark" style="width:100%;">
+            <a>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active" })</a> /
+            <a>@Html.ActionLink("Master", "Index", "Home", null, new { @class = "active" })</a> /
+            List Event
+        </p>
+        <div class="py-2" style="width:100%;">
+            <a class="btn btn-primary active" id="btn_add_event" role="button" aria-pressed="true" style="float: right;" data-url="@Url.Action("AddEvent", "Event")">Add</a>
+        </div>
+
+        <div class="row search_group" style="width:100%">
+            <div class="input-group">
+                <div class="form-group col-2">
+                    <input type="text" id="trans_event_code" name="TransactionCode" class="form-control rounded" placeholder="Transaction Code">
+                </div>
+                <div class="form-group col-2">
+                    <input type="text" id="req_by" name="RequestBy" class="form-control rounded" placeholder="Request By">
+                </div>
+                <div class="form-group  input_font_event" style="width:140px;">
+                    <div class="has-feedback">
+                        <input id="req_date" class="form-control datepicker-here " data-date-format="dd/mm/yyyy" placeholder="Request Date" />
+                        <i class="fa fa-calendar form-control-feedback"></i>
+                    </div>
+                </div>
+                <div class="form-group" style="width:140px;">
+                    <input type="text" id="req_status" name="Status" class="form-control rounded" placeholder="Satus">
+                </div>
+                <div class="form-group input_font_event" style="width:140px;">
+                    <div class="has-feedback">
+                        <input id="created_date" class="form-control datepicker-here" data-date-format="dd/mm/yyyy" placeholder="Created" />
+                        <i class="fa fa-calendar form-control-feedback"></i>
+                    </div>
+                </div>
+                <div class="form-group col-2" style="max-width:220px;">
+                    <input id="created_by" type="text" class="form-control rounded" placeholder="Created By" name="src_created_employee" />
+                </div>
+
+                <div class="form-group  col-1" style="margin-right:0; ">
+                    <button class="btn btn-warning" id="btn_search_event" name="btn_search_event" data-url="@Url.Action("Index", "Event")"> &nbsp;Cari</button>
+                </div>
+            </div>
+        </div>
+        <table id="tbl_list_event" class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.code)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.requestBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.requestDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.createDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.createBy)
+                </th>
+                <th></th>
+            </tr>
+            @if (Model != null)
+            {
+
+                if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="7" style="text-align:center;" class="bg-light">Data tidak ditemukan</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.requestBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.requestDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.createDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.createBy)
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </table>
+
+    </div>
+</div>
+
+
+
+
+@Html.Partial("_ModalPopUp")
+@section Scripts{
+    <script src="~/Scripts/datepicker.js"></script>
+    <script src="~/Scripts/datepicker.min.js"></script>
+    <script src="~/Scripts/i18n/datepicker.en.js"></script>
+    <script src="~/Scripts/crud/crudEvent.js"></script>
+    <script src="~/Scripts/validation/validate-role.js"></script>
+}
+@Html.Partial("_AlertPopUp")

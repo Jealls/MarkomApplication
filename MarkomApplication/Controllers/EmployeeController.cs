@@ -53,16 +53,25 @@ namespace MarkomApplication.Controllers
                 //update data manual createby and createdate
                 paramAddEmployee.createBy = "Anastasia";
                 paramAddEmployee.createDate = DateTime.Now;
-
-                string latestCode = EmployeeDataAccess.CreateEmployee(paramAddEmployee);
-
-                if (latestCode != null)
+                
+                bool numberV = EmployeeDataAccess.NumberValidation(paramAddEmployee.code);
+                
+                if (!numberV)
                 {
-                    return Json(new { success = true, latestCode, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    string latestCode = EmployeeDataAccess.CreateEmployee(paramAddEmployee);
+
+                    if (latestCode != null)
+                    {
+                        return Json(new { success = true, latestCode, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else
                 {
-                    return Json(new { success = false, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, message = "Employee number " + paramAddEmployee.code + " is exist !" }, JsonRequestBehavior.AllowGet);
                 }
             }
             else
@@ -94,13 +103,22 @@ namespace MarkomApplication.Controllers
                 paramEditEmp.updateBy = "Tian";
                 paramEditEmp.updateDate = DateTime.Now;
 
-                if (EmployeeDataAccess.UpdateEmployee(paramEditEmp))
+                bool numberV = EmployeeDataAccess.NumberValidation(paramEditEmp.code);
+
+                if (!numberV)
                 {
-                    return Json(new { success = true, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    if (EmployeeDataAccess.UpdateEmployee(paramEditEmp))
+                    {
+                        return Json(new { success = true, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else
                 {
-                    return Json(new { success = false, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, message = "Employee number " + paramEditEmp.code + " is exist !" }, JsonRequestBehavior.AllowGet);
                 }
             }
             else

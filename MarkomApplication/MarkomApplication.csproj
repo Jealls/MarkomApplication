@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Global.asax.cs">
@@ -215,6 +216,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\crud\crudCompany.js" />
     <Content Include="Scripts\crud\crudEmployee.js" />
+    <Content Include="Scripts\crud\crudEvent.js" />
     <Content Include="Scripts\crud\crudRole.js" />
     <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\datepicker.min.js" />
@@ -248,6 +250,7 @@
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\validation\validate-employee.js" />
+    <Content Include="Scripts\validation\validate-event.js" />
     <Content Include="Scripts\validation\validate-role.js" />
     <Content Include="Scripts\validation\validate.Company.js" />
     <Content Include="Web.config" />
@@ -281,6 +284,9 @@
     <Content Include="Views\Role\AddRole.cshtml" />
     <Content Include="Views\Role\EditRole.cshtml" />
     <Content Include="Views\Role\ViewRole.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Event\ListEvent.cshtml" />
+    <Content Include="Views\Event\AddEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

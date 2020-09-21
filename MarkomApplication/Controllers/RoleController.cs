@@ -32,15 +32,25 @@ namespace MarkomApplication.Controllers
                 paramAddRole.createBy = "Anastasia";
                 paramAddRole.createDate = DateTime.Now;
 
-                string latestCode = RoleDataAccess.CreateRole(paramAddRole);
 
-                if (latestCode != null)
+                bool nameV = RoleDataAccess.NameValidation(paramAddRole.name);
+
+                if (!nameV)
                 {
-                    return Json(new { success = true, latestCode, message = RoleDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    string latestCode = RoleDataAccess.CreateRole(paramAddRole);
+
+                    if (latestCode != null)
+                    {
+                        return Json(new { success = true, latestCode, message = RoleDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = RoleDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else
                 {
-                    return Json(new { success = false, message = RoleDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, message = "Role name " + paramAddRole.name + " is exist !" }, JsonRequestBehavior.AllowGet);
                 }
             }
             else
@@ -73,14 +83,23 @@ namespace MarkomApplication.Controllers
                 //update data manual createby and createdate
                 paramEditRole.updateBy = "Tian";
                 paramEditRole.updateDate = DateTime.Now;
+                
+                bool nameV = RoleDataAccess.NameValidation(paramEditRole.name);
 
-                if (RoleDataAccess.UpdateRole(paramEditRole))
+                if (!nameV)
                 {
-                    return Json(new { success = true, message = RoleDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    if (RoleDataAccess.UpdateRole(paramEditRole))
+                    {
+                        return Json(new { success = true, message = RoleDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = RoleDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else
                 {
-                    return Json(new { success = false, message = RoleDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, message = "Role name " + paramEditRole.name + " is exist !" }, JsonRequestBehavior.AllowGet);
                 }
             }
             else

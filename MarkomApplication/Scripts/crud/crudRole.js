@@ -147,6 +147,8 @@ $(document).on("click", "#btn_save_role", function () {
                     setTimeout(function () {
                         window.location.reload();
                     }, 800);
+                } else {
+                    fcAlertDataExist("#warning_alert_exist", result.message);
                 }
             }
 
@@ -237,6 +239,8 @@ $(document).on("click", "#save_update_role", function () {
                     setTimeout(function () {
                         window.location.reload();
                     }, 800);
+                } else {
+                    fcAlertDataExist("#warning_alert_exist", result.message);
                 }
             }
 

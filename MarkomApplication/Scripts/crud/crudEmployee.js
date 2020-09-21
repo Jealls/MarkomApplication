@@ -195,6 +195,8 @@ $(document).on("click", "#btn_save_employee", function () {
                     setTimeout(function () {
                         window.location.reload();
                     }, 800);
+                } else {
+                    fcAlertDataExist("#warning_alert_exist", result.message);
                 }
             }
 
@@ -304,6 +306,8 @@ $(document).on("click", "#save_update_employee", function () {
                     setTimeout(function () {
                         window.location.reload();
                     }, 800);
+                } else {
+                    fcAlertDataExist("#warning_alert_exist", result.message);
                 }
             }
 
@@ -346,7 +350,7 @@ $(document).on("click", "#btn_del_employee", function () {
     $("#confirm_del_data").attr('data-id', thisId);
 });
 
-//BTN DELETE ROLE
+//BTN DELETE EMPLOYEE
 $(document).on("click", "#confirm_del_data", function () {
     debugger;
     $.ajax({

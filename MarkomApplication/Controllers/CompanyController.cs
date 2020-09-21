@@ -12,11 +12,17 @@ namespace MarkomApplication.Controllers
     {
 
         // GET: Company
-        public ActionResult ListCompany(CompanyViewModel paramSearch)
+        public ActionResult ListCompany()
+        {
+            return View();
+        }
+
+
+        public ActionResult Index(CompanyViewModel paramSearch)
         {
             List<CompanyViewModel> listSearchCompany = CompanyDataAccess.ListSearchCompany(paramSearch);
 
-            return View(listSearchCompany);
+            return PartialView(listSearchCompany);
         }
 
 
@@ -37,16 +43,25 @@ namespace MarkomApplication.Controllers
                 paramAddCompany.createBy = "Anastasia";
                 paramAddCompany.createDate = DateTime.Now;
 
-                string latestCode = CompanyDataAccess.CreateCompany(paramAddCompany);
-
-                if (latestCode != null) 
+                bool nameV = CompanyDataAccess.NameValidation(paramAddCompany.name);
+                if (!nameV)
                 {
-                    return Json(new { success = true, latestCode, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    string latestCode = CompanyDataAccess.CreateCompany(paramAddCompany);
+
+                    if (latestCode != null)
+                    {
+                        return Json(new { success = true, latestCode, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else
                 {
-                    return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, message = "Company name "+paramAddCompany.name+" is exist !" }, JsonRequestBehavior.AllowGet);
                 }
+
             }
             else
             {
@@ -70,14 +85,21 @@ namespace MarkomApplication.Controllers
                 //update data manual createby and createdate
                 paramEditCompany.updateBy = "Tian";
                 paramEditCompany.updateDate = DateTime.Now;
-
-                if (CompanyDataAccess.UpdateCompany(paramEditCompany))
+                bool nameV = CompanyDataAccess.NameValidation(paramEditCompany.name);
+                if (!nameV)
                 {
-                    return Json(new { success = true, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    if (CompanyDataAccess.UpdateCompany(paramEditCompany))
+                    {
+                        return Json(new { success = true, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else
                 {
-                    return Json(new { success = false, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, message = "Company name " + paramEditCompany.name + " is exist !" }, JsonRequestBehavior.AllowGet);
                 }
             }
             else

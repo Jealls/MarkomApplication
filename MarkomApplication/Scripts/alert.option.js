@@ -9,12 +9,24 @@
 //    };
 //});  
 
+function fcAlertDataExist(vjsAlertId, vjsMsg) {
+
+    $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#warn_exist_from").innerHTML = vjsMsg;
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 1500);
+}
+
+
+
 
 function fcAlertSuccessAdd(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#data_code_alert_add").innerHTML = vjsLatestCode;
-    document.querySelector("#add_from").innerHTML = "company";
+    document.querySelector("#add_from").innerHTML = "New company has been add with code " + vjsLatestCode.bold() +" !";
 
     setTimeout(function () {
         $(vjsAlertId).addClass('d-none');
@@ -38,8 +50,7 @@ function fcAlertSuccessEdit(vjsAlertId) {
 function fcAlertSuccessDelete(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#data_code_alert_del").innerHTML = vjsLatestCode;
-    document.querySelector("#delete_from").innerHTML = "company";
+    document.querySelector("#delete_from").innerHTML = " company with code " + vjsLatestCode.bold() + " has been deleted !";
 
     setTimeout(function () {
         $(vjsAlertId).addClass('d-none');
@@ -54,8 +65,7 @@ function fcAlertSuccessDelete(vjsAlertId, vjsLatestCode) {
 function fcAlertSuccessAddEmp(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#data_code_alert_add").innerHTML = vjsLatestCode;
-    document.querySelector("#add_from").innerHTML = "employee";
+    document.querySelector("#add_from").innerHTML = "New employee has been add with with employee ID number " + vjsLatestCode.bold() + " !";
 
     setTimeout(function () {
         $(vjsAlertId).addClass('d-none');
@@ -76,8 +86,7 @@ function fcAlertSuccessEditEmp(vjsAlertId) {
 function fcAlertSuccessDelEmp(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#data_code_alert_del").innerHTML = vjsLatestCode;
-    document.querySelector("#delete_from").innerHTML = "employee";
+    document.querySelector("#delete_from").innerHTML = " employee with Employee ID Number " + vjsLatestCode.bold() + " has been deleted !";
 
     setTimeout(function () {
         $(vjsAlertId).addClass('d-none');
@@ -91,9 +100,8 @@ function fcAlertSuccessDelEmp(vjsAlertId, vjsLatestCode) {
 function fcAlertSuccessAddRole(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#data_code_alert_add").innerHTML = vjsLatestCode;
-    document.querySelector("#add_from").innerHTML = "role";
 
+    document.querySelector("#add_from").innerHTML = "New role has been add with code " + vjsLatestCode.bold() + " !";
     setTimeout(function () {
         $(vjsAlertId).addClass('d-none');
 
@@ -114,7 +122,7 @@ function fcAlertSuccessDelRole(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
     document.querySelector("#data_code_alert_del").innerHTML = vjsLatestCode;
-    document.querySelector("#delete_from").innerHTML = "role";
+    document.querySelector("#delete_from").innerHTML = " role with code " + vjsLatestCode.bold() + " has been deleted !";
 
     setTimeout(function () {
         $(vjsAlertId).addClass('d-none');

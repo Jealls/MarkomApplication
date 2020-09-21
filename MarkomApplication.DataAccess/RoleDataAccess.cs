@@ -125,7 +125,7 @@ namespace MarkomApplication.DataAccess
 
 
         //DELETE ROLE
-        public static string DeleteRole(int paramEmpId)
+        public static string DeleteRole(int name)
         {
             string latestSaveCode = string.Empty;
             try
@@ -133,7 +133,7 @@ namespace MarkomApplication.DataAccess
                 using (var db = new MarkomApplicationDBEntities())
                 {
                     ObjectParameter returnId = new ObjectParameter("IdNumber", typeof(string)); //Create Object parameter to receive a output value.It will behave like output parameter  
-                    db.spRoleDelete(paramEmpId, returnId); //calling our entity imported function "Bangalore" is our input parameter, returnId is a output parameter, it will receive the output value   
+                    db.spRoleDelete(name, returnId); //calling our entity imported function "Bangalore" is our input parameter, returnId is a output parameter, it will receive the output value   
                     latestSaveCode = (String)returnId.Value;
                 }
             }
@@ -143,6 +143,15 @@ namespace MarkomApplication.DataAccess
             }
 
             return latestSaveCode;
+        }
+
+        public static bool NameValidation(string name)
+        {
+            using (var db = new MarkomApplicationDBEntities())
+            {
+                var result = db.m_role.Any(u => u.name.ToLower() == name.ToLower());
+                return result;
+            }
         }
 
         public static List<RoleViewModel> SearchStringRoleCode(string prefix)

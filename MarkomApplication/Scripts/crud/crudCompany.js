@@ -8,6 +8,24 @@ $(function () {
 
 var ProgressHtml = '<div class="progress progress-striped active" style="margina-bottom: 0"><div class="progress-bar" style="width:100%"></div></div>';
 
+//DOCUMENT READY
+
+$(document).ready(function () {
+
+    $.ajax({
+        type: 'POST',
+        url: $("#btn_search_company").data('url'),
+        success: function (result) {
+            $("#tbl_list_company").html(result);
+        },
+        error: function (result) {
+            alert("error!");  // 
+        }
+    });
+
+});
+
+
 //DROPDOWN CODE
 $(function () { 
     $("#dropdown_code").autocomplete({
@@ -129,8 +147,10 @@ $(document).on("click", "#btn_save_company", function () {
                     setTimeout(function () {
                          window.location.reload();
                     }, 800);
-                    //toastr.info("Data Saved! New company has been add with code " + $(this).attr("data-id"));
-                } 
+                    toastr.info("Data Saved! New company has been add with code " + $(this).attr("data-id"));
+                } else {
+                    fcAlertDataExist("#warning_alert_exist", result.message);
+                }
             }
 
         });
@@ -205,6 +225,10 @@ $(document).on("click", "#confirm_update_company", function () {
                  setTimeout(function () {
                      window.location.reload();
                  }, 800);
+             } else {
+
+                 $("#modal_confirm_up_company").modal("hide");
+                 fcAlertDataExist("#warning_alert_exist", result.message);
              }
          }
      });
@@ -290,7 +314,7 @@ $(document).on("click", "#btn_search_company", function () {
            paramSearch: item
         },
         success: function (result) {
-            alert("success");
+            $("#tbl_list_company").html(result);
         },
         error: function (result) {
             alert("error!");  // 
