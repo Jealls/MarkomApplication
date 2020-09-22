@@ -459,6 +459,44 @@
       <Parameter Name="UpdateBy" Mode="In" Type="String" />
       <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="spEmpNameById" ReturnType="Collection(MarkomApplicationDBModel.spEmpNameById_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spEventSearch" ReturnType="Collection(MarkomApplicationDBModel.spEventSearch_Result)">
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="RequestByName" Mode="In" Type="String" />
+      <Parameter Name="RequestDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+      <Parameter Name="CreateBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spEventDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spEventDetailByID_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdateEvent">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Code" Mode="InOut" Type="String" />
+      <Parameter Name="EventName" Mode="In" Type="String" />
+      <Parameter Name="Place" Mode="In" Type="String" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Budget" Mode="In" Type="Int32" />
+      <Parameter Name="Note" Mode="In" Type="String" />
+      <Parameter Name="UpdateBy" Mode="In" Type="String" />
+      <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spEventUpdate">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Code" Mode="InOut" Type="String" />
+      <Parameter Name="EventName" Mode="In" Type="String" />
+      <Parameter Name="Place" Mode="In" Type="String" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Budget" Mode="In" Type="Int64" />
+      <Parameter Name="Note" Mode="In" Type="String" />
+      <Parameter Name="UpdateBy" Mode="In" Type="String" />
+      <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="spCompanyList_Result">
     <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
@@ -555,5 +593,36 @@
     <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
     <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="spEmpNameById_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spEventSearch_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="request_by" Nullable="false" />
+    <Property Type="DateTime" Name="request_date" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+    <Property Type="String" Name="create_by" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="create_date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spEventDetailByID_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="event_name" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="place" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="start_date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="end_date" Nullable="true" Precision="23" />
+    <Property Type="Int64" Name="budget" Nullable="true" />
+    <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="request_date" Nullable="false" Precision="23" />
+    <Property Type="String" Name="note" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="request_by" Nullable="false" />
   </ComplexType>
 </Schema>

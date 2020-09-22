@@ -60,7 +60,7 @@ namespace MarkomApplication.Controllers
                 {
                     string latestCode = EmployeeDataAccess.CreateEmployee(paramAddEmployee);
 
-                    if (latestCode != null)
+                    if (latestCode != "")
                     {
                         return Json(new { success = true, latestCode, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
                     }
@@ -141,7 +141,7 @@ namespace MarkomApplication.Controllers
         {
             string latestCode = EmployeeDataAccess.DeleteEmployee(paramId);
 
-            if (latestCode != null)
+            if (latestCode != "")
             {
                 return Json(new { success = true, latestCode, message = EmployeeDataAccess.Message }, JsonRequestBehavior.AllowGet);
             }

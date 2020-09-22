@@ -481,5 +481,49 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spRoleUpdate" FunctionName="MarkomApplicationDBModel.Store.spRoleUpdate" />
+    <FunctionImportMapping FunctionImportName="spEmpNameById" FunctionName="MarkomApplicationDBModel.Store.spEmpNameById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spEmpNameById_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEventSearch" FunctionName="MarkomApplicationDBModel.Store.spEventSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spEventSearch_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="request_by" ColumnName="request_by" />
+          <ScalarProperty Name="request_date" ColumnName="request_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEventDetailByID" FunctionName="MarkomApplicationDBModel.Store.spEventDetailByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spEventDetailByID_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="event_name" ColumnName="event_name" />
+          <ScalarProperty Name="place" ColumnName="place" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="request_date" ColumnName="request_date" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="request_by" ColumnName="request_by" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEventUpdate" FunctionName="MarkomApplicationDBModel.Store.spEventUpdate" />
   </EntityContainerMapping>
 </Mapping>

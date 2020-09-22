@@ -22,7 +22,7 @@ function fcAlertDataExist(vjsAlertId, vjsMsg) {
 
 
 
-
+//------------------------COMPANY---------------------------------------------
 function fcAlertSuccessAdd(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
@@ -45,8 +45,6 @@ function fcAlertSuccessEdit(vjsAlertId) {
     }, 1500);
 }
 
-
-
 function fcAlertSuccessDelete(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
@@ -61,6 +59,7 @@ function fcAlertSuccessDelete(vjsAlertId, vjsLatestCode) {
 
 
 
+//------------------------EMPLOYEE---------------------------------------------
 
 function fcAlertSuccessAddEmp(vjsAlertId, vjsLatestCode) {
 
@@ -72,6 +71,7 @@ function fcAlertSuccessAddEmp(vjsAlertId, vjsLatestCode) {
 
     }, 1500);
 } 
+
 function fcAlertSuccessEditEmp(vjsAlertId) {
 
     $(vjsAlertId).removeClass('d-none');
@@ -97,6 +97,7 @@ function fcAlertSuccessDelEmp(vjsAlertId, vjsLatestCode) {
 
 
 
+//------------------------ROLE---------------------------------------------
 function fcAlertSuccessAddRole(vjsAlertId, vjsLatestCode) {
 
     $(vjsAlertId).removeClass('d-none');
@@ -107,6 +108,7 @@ function fcAlertSuccessAddRole(vjsAlertId, vjsLatestCode) {
 
     }, 1500);
 }
+
 function fcAlertSuccessEditRole(vjsAlertId) {
 
     $(vjsAlertId).removeClass('d-none');
@@ -128,4 +130,27 @@ function fcAlertSuccessDelRole(vjsAlertId, vjsLatestCode) {
         $(vjsAlertId).addClass('d-none');
 
     }, 2000);
+}
+
+//------------------------EVENT---------------------------------------------
+function fcAlertSuccessAddEvent(vjsAlertId, vjsLatestCode) {
+
+    $(vjsAlertId).removeClass('d-none');
+
+    document.querySelector("#add_from").innerHTML = "Transaction Event request has been add with code " + vjsLatestCode.bold() + " !";
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 1500);
+}
+
+function fcAlertSuccessEditEvent(vjsAlertId, vjsLatestCode) {
+
+    $(vjsAlertId).removeClass('d-none');
+
+    document.querySelector("#update_from_t").innerHTML = "Transaction Event request with code " + vjsLatestCode.bold() + " has been update !";
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 1500);
 }

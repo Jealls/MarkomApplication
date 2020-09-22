@@ -124,6 +124,15 @@
     <Compile Include="spEmployeeSearch_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="spEmpNameById_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spEventDetailByID_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spEventSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="spRoleCode_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

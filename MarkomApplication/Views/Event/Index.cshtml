@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MarkomApplication.ViewModel.EventViewModel>
+
+<tr>
+    <th>
+        @Html.DisplayNameFor(model => model.code)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.requestBy)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.requestDate)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.status)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.createDate)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.createBy)
+    </th>
+    <th>Action</th>
+</tr>
+@if (Model != null)
+{
+
+    if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="7" style="text-align:center;" class="bg-light">Data tidak ditemukan</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.requestByName)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.requestDate)*@
+
+                    @DateTime.Parse(item.requestDate.ToString()).ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.statusName)
+                </td>
+                <td>
+                    @*@Html.DiksplayFor(modelItem => item.createDate)*@
+                    @DateTime.Parse(item.createDate.ToString()).ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.createBy)
+                </td>
+                <td>
+                    <button title="Tampilkan" id="btn_view_event" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ViewEvent", "Event")">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                    <button title="Ubah" id="btn_edit_event" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("EditEvent", "Event")">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    }
+}

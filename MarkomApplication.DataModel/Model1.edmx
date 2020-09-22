@@ -401,6 +401,32 @@
           <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
           <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="spEmpNameById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spEventDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spEventSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="varchar" Mode="In" />
+          <Parameter Name="RequestByName" Type="varchar" Mode="In" />
+          <Parameter Name="RequestDate" Type="datetime" Mode="In" />
+          <Parameter Name="Status" Type="int" Mode="In" />
+          <Parameter Name="CreateDate" Type="date" Mode="In" />
+          <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spEventUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="EventName" Type="varchar" Mode="In" />
+          <Parameter Name="Place" Type="varchar" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="Budget" Type="bigint" Mode="In" />
+          <Parameter Name="Note" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="spRoleCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Prefix" Type="varchar" Mode="In" />
         </Function>
@@ -928,6 +954,44 @@
             <Parameter Name="UpdateBy" Mode="In" Type="String" />
             <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="spEmpNameById" ReturnType="Collection(MarkomApplicationDBModel.spEmpNameById_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spEventSearch" ReturnType="Collection(MarkomApplicationDBModel.spEventSearch_Result)">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="RequestByName" Mode="In" Type="String" />
+            <Parameter Name="RequestDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Status" Mode="In" Type="Int32" />
+            <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spEventDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spEventDetailByID_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdateEvent">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Code" Mode="InOut" Type="String" />
+            <Parameter Name="EventName" Mode="In" Type="String" />
+            <Parameter Name="Place" Mode="In" Type="String" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Budget" Mode="In" Type="Int32" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="UpdateBy" Mode="In" Type="String" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spEventUpdate">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Code" Mode="InOut" Type="String" />
+            <Parameter Name="EventName" Mode="In" Type="String" />
+            <Parameter Name="Place" Mode="In" Type="String" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Budget" Mode="In" Type="Int64" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="UpdateBy" Mode="In" Type="String" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spCompanyList_Result">
           <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
@@ -1024,6 +1088,37 @@
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
           <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spEmpNameById_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spEventSearch_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="request_by" Nullable="false" />
+          <Property Type="DateTime" Name="request_date" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="status" Nullable="true" />
+          <Property Type="String" Name="create_by" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="create_date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spEventDetailByID_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="event_name" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="place" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="start_date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="end_date" Nullable="true" Precision="23" />
+          <Property Type="Int64" Name="budget" Nullable="true" />
+          <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="request_date" Nullable="false" Precision="23" />
+          <Property Type="String" Name="note" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="status" Nullable="true" />
+          <Property Type="Int32" Name="request_by" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1511,6 +1606,50 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spRoleUpdate" FunctionName="MarkomApplicationDBModel.Store.spRoleUpdate" />
+          <FunctionImportMapping FunctionImportName="spEmpNameById" FunctionName="MarkomApplicationDBModel.Store.spEmpNameById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spEmpNameById_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEventSearch" FunctionName="MarkomApplicationDBModel.Store.spEventSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spEventSearch_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="request_by" ColumnName="request_by" />
+                <ScalarProperty Name="request_date" ColumnName="request_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="create_by" ColumnName="create_by" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEventDetailByID" FunctionName="MarkomApplicationDBModel.Store.spEventDetailByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spEventDetailByID_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="event_name" ColumnName="event_name" />
+                <ScalarProperty Name="place" ColumnName="place" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="budget" ColumnName="budget" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="request_date" ColumnName="request_date" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="request_by" ColumnName="request_by" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEventUpdate" FunctionName="MarkomApplicationDBModel.Store.spEventUpdate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

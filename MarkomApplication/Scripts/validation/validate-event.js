@@ -2,18 +2,18 @@
 //EVENT NAME
 function validationName(Name) {;
     if (Name == "") {
-        $("#event_name").addClass("invalid");
+        $("#eventName").addClass("invalid");
     } else {
-        $("#event_name").removeClass("invalid");
+        $("#eventName").removeClass("invalid");
     }
 }
 
 function validationEName() {
-    var vjsName = document.getElementById("event_name").value;
+    var vjsName = document.getElementById("eventName").value;
     if (vjsName == "") {
-        $("#event_name").addClass("invalid");
+        $("#eventName").addClass("invalid");
     } else {
-        $("#event_name").removeClass("invalid");
+        $("#eventName").removeClass("invalid");
     }
 }
 
@@ -38,22 +38,27 @@ function validationEPlace() {
 }
 
 
+function matchDate(date) {
+    const reg = /^[0-9]{1,2}[/][0-9]{1,2}[/][0-9]{4}?$/;
+    return reg.test(date);
+}
+
 //START DATE
 function validationStartDate(Date) {
 
     if (Date == "") {
-        $("#start_date").addClass("invalid");
+        $("#startDate").addClass("invalid");
     } else {
-        $("#start_date").removeClass("invalid");
+        $("#startDate").removeClass("invalid");
     }
 }
 
 function validationEStartDate() {
-    var vjsDate = document.getElementById("start_date").value;
-    if (vjsDate == "") {
-        $("#start_date").addClass("invalid");
+    var vjsDate = document.getElementById("startDate").value;
+    if (vjsDate == "" || !matchDate(vjsDate)) {
+        $("#startDate").addClass("invalid");
     } else {
-        $("#start_date").removeClass("invalid");
+        $("#startDate").removeClass("invalid");
     }
 }
 
@@ -61,37 +66,59 @@ function validationEStartDate() {
 function validationEndDate(Date) {
 
     if (Date == "") {
-        $("#end_date").addClass("invalid");
+        $("#endDate").addClass("invalid");
     } else {
-        $("#end_date").removeClass("invalid");
+        $("#endDate").removeClass("invalid");
     }
 }
 
 function validationEEndDate() {
-    var vjsDate = document.getElementById("end_date").value;
-    if (vjsDate == "") {
-        $("#end_date").addClass("invalid");
+    var vjsDate = document.getElementById("endDate").value;
+    if (vjsDate == "" || !matchDate(vjsDate)) {
+        $("#endDate").addClass("invalid");
     } else {
-        $("#end_date").removeClass("invalid");
+        $("#endDate").removeClass("invalid");
     }
 }
 
-//END DATE
+//Budget
 function validationBudget(budget) {
 
-    if (budget == "") {
+    if (isNaN(budget)) {
         $("#budget").addClass("invalid");
     } else {
-        $("#end_date").removeClass("invalid");
+        $("#budget").removeClass("invalid");
     }
 }
 
 function validationEBudget() {
-    var vjsBudget = document.getElementById("budget").value;
-    if (vjsBudget == "") {
+    var vjsBudget = parseInt(document.getElementById("budget").value);
+    debugger;
+
+    if (isNaN(vjsBudget)) {
         $("#budget").addClass("invalid");
     } else {
-        $("#bugdet").removeClass("invalid");
+        $("#budget").removeClass("invalid");
+    }
+}
+
+//REQUEST BY
+function validationReqBy(vjsReqBy) {
+    if (vjsReqBy == "") {
+        $("#reqBy").addClass("invalid");
+    } else {
+        $("#reqBy").removeClass("invalid");
+    }
+}
+
+
+//REQUEST DATE
+function validationReqDate(reqDate) {
+
+    if (reqDate == "") {
+        $("#reqDate").addClass("invalid");
+    } else {
+        $("#reqDate").removeClass("invalid");
     }
 }
 
@@ -99,15 +126,17 @@ function validationEBudget() {
 
 function cekValidationEvent() {
 
-    var name = $("#event_name").hasClass("invalid");
-    var sdate = $("#start_date").hasClass("invalid");
-    var edate = $("#end_date").hasClass("invalid");
+    var name = $("#eventName").hasClass("invalid");
+    var sdate = $("#startDate").hasClass("invalid");
+    var edate = $("#endDate").hasClass("invalid");
     var place = $("#place").hasClass("invalid");
     var budget = $("#budget").hasClass("invalid");
+    var reqBy = $("#requestBy").hasClass("invalid");
+    var reqDate = $("#requestDate").hasClass("invalid");
 
     var result = false;
 
-    if (!name && !sdate && !edate && !place && !budget) {
+    if (!name && !sdate && !edate && !place && !budget && !reqBy && !reqDate) {
         result = true;
     }
 

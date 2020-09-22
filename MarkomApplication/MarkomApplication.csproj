@@ -287,6 +287,8 @@
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Event\ListEvent.cshtml" />
     <Content Include="Views\Event\AddEvent.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Event\EditEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -51,65 +51,7 @@
             </div>
         </div>
         <table id="tbl_list_event" class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.code)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.requestBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.requestDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.status)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.createDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.createBy)
-                </th>
-                <th></th>
-            </tr>
-            @if (Model != null)
-            {
 
-                if (Model.Count() == 0)
-                {
-                    <tr>
-                        <td colspan="7" style="text-align:center;" class="bg-light">Data tidak ditemukan</td>
-                    </tr>
-                }
-                else
-                {
-                    foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.code)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.requestBy)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.requestDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.status)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.createDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.createBy)
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                    }
-                }
-            }
         </table>
 
     </div>
@@ -124,6 +66,6 @@
     <script src="~/Scripts/datepicker.min.js"></script>
     <script src="~/Scripts/i18n/datepicker.en.js"></script>
     <script src="~/Scripts/crud/crudEvent.js"></script>
-    <script src="~/Scripts/validation/validate-role.js"></script>
+    <script src="~/Scripts/validation/validate-event.js"></script>
 }
 @Html.Partial("_AlertPopUp")

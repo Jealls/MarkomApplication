@@ -396,6 +396,32 @@
     <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
     <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="spEmpNameById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEventDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEventSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+    <Parameter Name="RequestByName" Type="varchar" Mode="In" />
+    <Parameter Name="RequestDate" Type="datetime" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="CreateDate" Type="date" Mode="In" />
+    <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spEventUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
+    <Parameter Name="EventName" Type="varchar" Mode="In" />
+    <Parameter Name="Place" Type="varchar" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="Budget" Type="bigint" Mode="In" />
+    <Parameter Name="Note" Type="varchar" Mode="In" />
+    <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
+    <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="spRoleCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Prefix" Type="varchar" Mode="In" />
   </Function>

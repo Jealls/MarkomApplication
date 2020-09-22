@@ -48,7 +48,7 @@ namespace MarkomApplication.Controllers
                 {
                     string latestCode = CompanyDataAccess.CreateCompany(paramAddCompany);
 
-                    if (latestCode != null)
+                    if (latestCode != "")
                     {
                         return Json(new { success = true, latestCode, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
                     }
@@ -121,7 +121,7 @@ namespace MarkomApplication.Controllers
             
                 string latestCode = CompanyDataAccess.DeleteCompany(paramId);
 
-                if (latestCode != null)
+                if (latestCode != "")
                 {
                     return Json(new { success = true, latestCode, message = CompanyDataAccess.Message }, JsonRequestBehavior.AllowGet);
                 }

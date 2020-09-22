@@ -39,7 +39,7 @@ namespace MarkomApplication.Controllers
                 {
                     string latestCode = RoleDataAccess.CreateRole(paramAddRole);
 
-                    if (latestCode != null)
+                    if (latestCode != "")
                     {
                         return Json(new { success = true, latestCode, message = RoleDataAccess.Message }, JsonRequestBehavior.AllowGet);
                     }
@@ -124,7 +124,7 @@ namespace MarkomApplication.Controllers
         {
             string latestCode = RoleDataAccess.DeleteRole(paramId);
 
-            if (latestCode != null)
+            if (latestCode != "")
             {
                 return Json(new { success = true, latestCode, message = RoleDataAccess.Message }, JsonRequestBehavior.AllowGet);
             }

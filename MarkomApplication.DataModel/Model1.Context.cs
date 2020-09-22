@@ -429,5 +429,134 @@ namespace MarkomApplication.DataModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRoleUpdate", idParameter, roleNameParameter, descriptionParameter, updateByParameter, updateDateParameter);
         }
+    
+        public virtual ObjectResult<spEmpNameById_Result> spEmpNameById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEmpNameById_Result>("spEmpNameById", idParameter);
+        }
+    
+        public virtual ObjectResult<spEventSearch_Result> spEventSearch(string code, string requestByName, Nullable<System.DateTime> requestDate, Nullable<int> status, Nullable<System.DateTime> createDate, string createBy)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var requestByNameParameter = requestByName != null ?
+                new ObjectParameter("RequestByName", requestByName) :
+                new ObjectParameter("RequestByName", typeof(string));
+    
+            var requestDateParameter = requestDate.HasValue ?
+                new ObjectParameter("RequestDate", requestDate) :
+                new ObjectParameter("RequestDate", typeof(System.DateTime));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(int));
+    
+            var createDateParameter = createDate.HasValue ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(System.DateTime));
+    
+            var createByParameter = createBy != null ?
+                new ObjectParameter("CreateBy", createBy) :
+                new ObjectParameter("CreateBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEventSearch_Result>("spEventSearch", codeParameter, requestByNameParameter, requestDateParameter, statusParameter, createDateParameter, createByParameter);
+        }
+    
+        public virtual ObjectResult<spEventDetailByID_Result> spEventDetailByID(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEventDetailByID_Result>("spEventDetailByID", idParameter);
+        }
+    
+        public virtual int spUpdateEvent(Nullable<int> id, ObjectParameter code, string eventName, string place, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> budget, string note, string updateBy, Nullable<System.DateTime> updateDate)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var eventNameParameter = eventName != null ?
+                new ObjectParameter("EventName", eventName) :
+                new ObjectParameter("EventName", typeof(string));
+    
+            var placeParameter = place != null ?
+                new ObjectParameter("Place", place) :
+                new ObjectParameter("Place", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            var budgetParameter = budget.HasValue ?
+                new ObjectParameter("Budget", budget) :
+                new ObjectParameter("Budget", typeof(int));
+    
+            var noteParameter = note != null ?
+                new ObjectParameter("Note", note) :
+                new ObjectParameter("Note", typeof(string));
+    
+            var updateByParameter = updateBy != null ?
+                new ObjectParameter("UpdateBy", updateBy) :
+                new ObjectParameter("UpdateBy", typeof(string));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUpdateEvent", idParameter, code, eventNameParameter, placeParameter, startDateParameter, endDateParameter, budgetParameter, noteParameter, updateByParameter, updateDateParameter);
+        }
+    
+        public virtual int spEventUpdate(Nullable<int> id, ObjectParameter code, string eventName, string place, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<long> budget, string note, string updateBy, Nullable<System.DateTime> updateDate)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var eventNameParameter = eventName != null ?
+                new ObjectParameter("EventName", eventName) :
+                new ObjectParameter("EventName", typeof(string));
+    
+            var placeParameter = place != null ?
+                new ObjectParameter("Place", place) :
+                new ObjectParameter("Place", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            var budgetParameter = budget.HasValue ?
+                new ObjectParameter("Budget", budget) :
+                new ObjectParameter("Budget", typeof(long));
+    
+            var noteParameter = note != null ?
+                new ObjectParameter("Note", note) :
+                new ObjectParameter("Note", typeof(string));
+    
+            var updateByParameter = updateBy != null ?
+                new ObjectParameter("UpdateBy", updateBy) :
+                new ObjectParameter("UpdateBy", typeof(string));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEventUpdate", idParameter, code, eventNameParameter, placeParameter, startDateParameter, endDateParameter, budgetParameter, noteParameter, updateByParameter, updateDateParameter);
+        }
     }
 }

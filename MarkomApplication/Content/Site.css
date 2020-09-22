@@ -98,7 +98,7 @@ input:placeholder-shown {
     font-size: .8rem !important;
 }
 
-
+/* megnhilangkan arrow untuk color-profile type number*/
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -110,3 +110,21 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+
+/*datepicker*/
+/*.ui-datepicker {
+    z-index: 10000 !important;
+}*/
+.datepickers-container {
+    z-index: 1152 !important;
+}
+/*.datepicker {
+    z-index: 99999 !important;
+}*/
+/*.datepicker.dropdown-menu {
+    z-index: 10002 !important;
+}*/
+/*.form-group .datepicker {
+    position: unset
+}*/
