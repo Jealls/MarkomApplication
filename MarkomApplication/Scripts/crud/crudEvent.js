@@ -87,17 +87,15 @@ $(document).on("click", "#btn_save_event", function () {
 
                     $("#modal_form").modal("hide");
 
-                    fcAlertSuccessAddEvent("#success_alert_add", result.latestCode);
+                    var msg = "<strong>Data Saved!</strong> Transaction event request has been add with code " + result.latestCode.bold() + " !";
+                    fcAlertBlue(msg);
 
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 800);
                 } else {
-                    fcAlertDataExist("#warning_alert_exist", result.message);
+                    fcAlertRed(result.message);
                 }
             },
             error: function (result) {
-                fcAlertDataExist("#warning_alert_exist", result.message);
+                fcAlertRed(result.message);
             }
 
         });
@@ -209,13 +207,11 @@ $(document).on("click", "#save_update_event", function () {
 
                         $("#modal_form").modal("hide");
 
-                        fcAlertSuccessEditEvent("#success_alert_upd_t", result.latestCode);
+                        var msg = "<strong>Data Updated!</strong> Transaction event request with code " + result.latestCode.bold() + " has been updated !";
+                        fcAlertBlue(msg);
 
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 800);
                     } else {
-                        fcAlertDataExist("#warning_alert_exist", result.message);
+                        fcAlertRed(result.message);
                     }
                 }
 
@@ -223,7 +219,8 @@ $(document).on("click", "#save_update_event", function () {
         }
     } else {
         $("#modal_form").modal("hide");
-        fcAlertDataExist("#warning_alert_exist", "Data tidak bisa di edit karena telah di approve oleh admin!");
+
+        fcAlertRed("Data tidak bisa di edit karena telah di approve oleh administator!");
     }
 });
 
@@ -279,11 +276,8 @@ $(document).on("click", "#btn_approve_event", function () {
 
                     $("#modal_form").modal("hide");
 
-                    fcAlertAppEvent("#success_alert_app_t", result.latestCode);
-
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 800);
+                    var msg = "<strong>Data Approved!</strong> Transaction event request with code" + result.latestCode.bold() + " has been approved !";
+                    fcAlertBlue(msg);
                 }
             }
         });
@@ -326,11 +320,9 @@ $(document).on("click", "#confirm_reject", function () {
                     $("#modal_confirm_reject").modal("hide");
                     $("#modal_form").modal("hide");
 
-                    fcAlertRejectEvent("#warning_alert_reject", result.latestCode);
 
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 800);
+                    var msg = "<strong>Data Rejected!</strong> Transaction event request with code" + result.latestCode.bold() + " is rejected by Administator!";
+                    fcAlertRed(msg);
                 }
             }
         });
@@ -358,11 +350,9 @@ $(document).on("click", "#close_req_event", function () {
 
                     $("#modal_form").modal("hide");
 
-                    fcAlertCloseEvent("#success_alert_close_t", result.latestCode);
+                    var msg = "<strong>Data Closed!</strong> Transaction event request with code" + result.latestCode.bold() + " has been close request !";
+                    fcAlertBlue(msg);
 
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 800);
                 }
             }
         });

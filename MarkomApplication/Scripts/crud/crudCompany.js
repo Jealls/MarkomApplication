@@ -142,14 +142,12 @@ $(document).on("click", "#btn_save_company", function () {
 
                     $("#modal_form").modal("hide");
 
-                    fcAlertSuccessAdd("#success_alert_add", result.latestCode);
+                    var msg = "<strong>Data Saved!</strong> New company has been add with code " + result.latestCode.bold() + " !";
+                    fcAlertBlue(msg);
 
-                    setTimeout(function () {
-                         window.location.reload();
-                    }, 800);
-                    toastr.info("Data Saved! New company has been add with code " + $(this).attr("data-id"));
                 } else {
-                    fcAlertDataExist("#warning_alert_exist", result.message);
+                    fcAlertRed(result.message);
+                    //fcAlertDataExist("#warning_alert_exist", result.message);
                 }
             }
 
@@ -220,15 +218,13 @@ $(document).on("click", "#confirm_update_company", function () {
                  $("#modal_confirm_up_company").modal("hide");
                  $("#modal_form").modal("hide");
 
-                 fcAlertSuccessEdit("#success_alert_update");
+                 var msg = "<strong>Data Updated!</strong> Data company has been updated !";
+                 fcAlertBlue(msg);
 
-                 setTimeout(function () {
-                     window.location.reload();
-                 }, 800);
              } else {
 
                  $("#modal_confirm_up_company").modal("hide");
-                 fcAlertDataExist("#warning_alert_exist", result.message);
+                 fcAlertRed(result.message);
              }
          }
      });
@@ -283,11 +279,9 @@ $(document).on("click", "#confirm_del_company", function () {
         },
         success: function (result) {
             $("#modal_confirm_del_company").modal("hide");
-            fcAlertSuccessDelete("#success_alert_del", result.latestCode);
 
-            setTimeout(function () {
-                window.location.reload();
-            }, 800);
+            var msg = "<strong>Data Deleted!</strong> Data company with code " + result.latestCode.bold() + " has been deleted !";
+            fcAlertBlue(msg);
         }
     });
 });

@@ -142,7 +142,6 @@
     <Property Name="title_header" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="request_by" Type="Int32" Nullable="false" />
     <Property Name="request_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="approved_by" Type="Int32" />
     <Property Name="approve_date" Type="DateTime" Precision="3" />
     <Property Name="assign_to" Type="Int32" />
     <Property Name="closed_date" Type="DateTime" Precision="3" />
@@ -154,6 +153,7 @@
     <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="approve_by" Type="Int32" />
   </EntityType>
   <EntityType Name="t_design_item">
     <Key>
@@ -227,7 +227,6 @@
     <Property Name="t_design_id" Type="Int32" />
     <Property Name="request_by" Type="Int32" />
     <Property Name="request_date" Type="DateTime" Precision="3" />
-    <Property Name="approved_by" Type="Int32" />
     <Property Name="approve_date" Type="DateTime" Precision="3" />
     <Property Name="assign_to" Type="Int32" />
     <Property Name="closed_date" Type="DateTime" Precision="3" />
@@ -239,6 +238,7 @@
     <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="approve_by" Type="Int32" />
   </EntityType>
   <EntityType Name="t_promotion_item">
     <Key>
@@ -310,7 +310,6 @@
     <Property Name="request_by" Type="Int32" Nullable="false" />
     <Property Name="request_date" Type="DateTime" Precision="3" />
     <Property Name="request_due_date" Type="DateTime" Precision="3" />
-    <Property Name="approved_by" Type="Int32" />
     <Property Name="approve_date" Type="DateTime" Precision="3" />
     <Property Name="receive_by" Type="Int32" />
     <Property Name="receive_date" Type="DateTime" Precision="3" />
@@ -326,6 +325,7 @@
     <Property Name="create_date" Type="DateTime" Precision="3" />
     <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="approve_by" Type="Int32" />
   </EntityType>
   <EntityContainer Name="MarkomApplicationDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="m_company" EntityType="Self.m_company" />

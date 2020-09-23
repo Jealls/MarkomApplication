@@ -145,13 +145,13 @@
     <EntitySetMapping Name="t_design">
       <EntityTypeMapping TypeName="MarkomApplicationDBModel.t_design">
         <MappingFragment StoreEntitySet="t_design">
+          <ScalarProperty Name="approve_by" ColumnName="approve_by" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="t_event_id" ColumnName="t_event_id" />
           <ScalarProperty Name="title_header" ColumnName="title_header" />
           <ScalarProperty Name="request_by" ColumnName="request_by" />
           <ScalarProperty Name="request_date" ColumnName="request_date" />
-          <ScalarProperty Name="approved_by" ColumnName="approved_by" />
           <ScalarProperty Name="approve_date" ColumnName="approve_date" />
           <ScalarProperty Name="assign_to" ColumnName="assign_to" />
           <ScalarProperty Name="closed_date" ColumnName="closed_date" />
@@ -232,6 +232,7 @@
     <EntitySetMapping Name="t_promotion">
       <EntityTypeMapping TypeName="MarkomApplicationDBModel.t_promotion">
         <MappingFragment StoreEntitySet="t_promotion">
+          <ScalarProperty Name="approve_by" ColumnName="approve_by" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="flag_design" ColumnName="flag_design" />
@@ -240,7 +241,6 @@
           <ScalarProperty Name="t_design_id" ColumnName="t_design_id" />
           <ScalarProperty Name="request_by" ColumnName="request_by" />
           <ScalarProperty Name="request_date" ColumnName="request_date" />
-          <ScalarProperty Name="approved_by" ColumnName="approved_by" />
           <ScalarProperty Name="approve_date" ColumnName="approve_date" />
           <ScalarProperty Name="assign_to" ColumnName="assign_to" />
           <ScalarProperty Name="closed_date" ColumnName="closed_date" />
@@ -320,6 +320,7 @@
     <EntitySetMapping Name="t_souvernir">
       <EntityTypeMapping TypeName="MarkomApplicationDBModel.t_souvernir">
         <MappingFragment StoreEntitySet="t_souvernir">
+          <ScalarProperty Name="approve_by" ColumnName="approve_by" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="type" ColumnName="type" />
@@ -327,7 +328,6 @@
           <ScalarProperty Name="request_by" ColumnName="request_by" />
           <ScalarProperty Name="request_date" ColumnName="request_date" />
           <ScalarProperty Name="request_due_date" ColumnName="request_due_date" />
-          <ScalarProperty Name="approved_by" ColumnName="approved_by" />
           <ScalarProperty Name="approve_date" ColumnName="approve_date" />
           <ScalarProperty Name="receive_by" ColumnName="receive_by" />
           <ScalarProperty Name="receive_date" ColumnName="receive_date" />

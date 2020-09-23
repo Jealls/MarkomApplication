@@ -142,7 +142,7 @@
     <Property Name="title_header" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="request_by" Type="int" Nullable="false" />
     <Property Name="request_date" Type="datetime" Nullable="false" />
-    <Property Name="approved_by" Type="int" />
+    <Property Name="approve_by" Type="int" />
     <Property Name="approve_date" Type="datetime" />
     <Property Name="assign_to" Type="int" />
     <Property Name="closed_date" Type="datetime" />
@@ -227,7 +227,7 @@
     <Property Name="t_design_id" Type="int" />
     <Property Name="request_by" Type="int" />
     <Property Name="request_date" Type="datetime" />
-    <Property Name="approved_by" Type="int" />
+    <Property Name="approve_by" Type="int" />
     <Property Name="approve_date" Type="datetime" />
     <Property Name="assign_to" Type="int" />
     <Property Name="closed_date" Type="datetime" />
@@ -310,7 +310,7 @@
     <Property Name="request_by" Type="int" Nullable="false" />
     <Property Name="request_date" Type="datetime" />
     <Property Name="request_due_date" Type="datetime" />
-    <Property Name="approved_by" Type="int" />
+    <Property Name="approve_by" Type="int" />
     <Property Name="approve_date" Type="datetime" />
     <Property Name="receive_by" Type="int" />
     <Property Name="receive_date" Type="datetime" />

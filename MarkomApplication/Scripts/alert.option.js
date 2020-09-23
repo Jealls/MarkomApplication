@@ -9,184 +9,26 @@
 //    };
 //});  
 
-function fcAlertDataExist(vjsAlertId, vjsMsg) {
+function fcAlertBlue(vjsMsg) {
 
-    $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#warn_exist_from").innerHTML = vjsMsg;
+    $("#alert_blue").removeClass('d-none');
+    document.querySelector("#txt_alert_blue").innerHTML = vjsMsg;
 
     setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
+        $("#alert_blue").addClass('d-none');
+        window.location.reload();
+    }, 1800);
 }
 
 
+function fcAlertRed(vjsMsg) {
 
-//------------------------COMPANY---------------------------------------------
-function fcAlertSuccessAdd(vjsAlertId, vjsLatestCode) {
-
-    $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#add_from").innerHTML = "New company has been add with code " + vjsLatestCode.bold() +" !";
+    $("#alert_red").removeClass('d-none');
+    document.querySelector("#txt_alert_red").innerHTML = vjsMsg;
 
     setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
+        $("#alert_red").addClass('d-none');
+        window.location.reload();
+    }, 1800);
 }
-
-function fcAlertSuccessEdit(vjsAlertId) {
-
-    $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#update_from").innerHTML = "company";
-
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
-}
-
-function fcAlertSuccessDelete(vjsAlertId, vjsLatestCode) {
-
-    $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#delete_from").innerHTML = " company with code " + vjsLatestCode.bold() + " has been deleted !";
-
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 2000);
-}
-
-
-
-
-//------------------------EMPLOYEE---------------------------------------------
-
-function fcAlertSuccessAddEmp(vjsAlertId, vjsLatestCode) {
-
-    $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#add_from").innerHTML = "New employee has been add with with employee ID number " + vjsLatestCode.bold() + " !";
-
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
-} 
-
-function fcAlertSuccessEditEmp(vjsAlertId) {
-
-    $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#update_from").innerHTML = "employee";
-
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
-}
-
-function fcAlertSuccessDelEmp(vjsAlertId, vjsLatestCode) {
-
-    $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#delete_from").innerHTML = " employee with Employee ID Number " + vjsLatestCode.bold() + " has been deleted !";
-
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 2000);
-}
-
-
-
-
-//------------------------ROLE---------------------------------------------
-function fcAlertSuccessAddRole(vjsAlertId, vjsLatestCode) {
-
-    $(vjsAlertId).removeClass('d-none');
-
-    document.querySelector("#add_from").innerHTML = "New role has been add with code " + vjsLatestCode.bold() + " !";
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
-}
-
-function fcAlertSuccessEditRole(vjsAlertId) {
-
-    $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#update_from").innerHTML = "role";
-
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
-}
-
-function fcAlertSuccessDelRole(vjsAlertId, vjsLatestCode) {
-    debugger;
-    $(vjsAlertId).removeClass('d-none');
-    //document.querySelector("#data_code_alert_del").innerHTML = vjsLatestCode;
-    document.querySelector("#delete_from").innerHTML = " role with code " + vjsLatestCode.bold() + " has been deleted !";
-
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 2000);
-}
-
-
-//------------------------EVENT---------------------------------------------
-function fcAlertSuccessAddEvent(vjsAlertId, vjsLatestCode) {
-
-    $(vjsAlertId).removeClass('d-none');
-
-    document.querySelector("#add_from").innerHTML = "Transaction Event request has been add with code " + vjsLatestCode.bold() + " !";
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
-}
-
-function fcAlertSuccessEditEvent(vjsAlertId, vjsLatestCode) {
-
-    $(vjsAlertId).removeClass('d-none');
-
-    document.querySelector("#update_from_t").innerHTML = "Transaction Event request with code " + vjsLatestCode.bold() + " has been update !";
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
-}
-
-function fcAlertRejectEvent(vjsAlertId, vjsLatestCode) {
-
-    $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#warn_reject_txt").innerHTML = " Transaction event request code " + vjsLatestCode + "is rejected by Administator!";
-
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
-}
-
-function fcAlertAppEvent(vjsAlertId, vjsLatestCode) {
-
-    $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#app_from_t").innerHTML = " Transaction Event request with code " + vjsLatestCode + "has been approved!";
-
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
-}
-
-function fcAlertCloseEvent(vjsAlertId, vjsLatestCode) {
-
-    $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#close_from_t").innerHTML = " Transaction Event request with code " + vjsLatestCode + "has been close request!";
-
-    setTimeout(function () {
-        $(vjsAlertId).addClass('d-none');
-
-    }, 1500);
-}
-
 

@@ -188,13 +188,11 @@ $(document).on("click", "#btn_save_employee", function () {
 
                     $("#modal_form").modal("hide");
 
-                    fcAlertSuccessAddEmp("#success_alert_add", result.latestCode);
+                    var msg = "<strong>Data Saved!</strong> New employee has been add with employee ID " + result.latestCode.bold() + " !";
+                    fcAlertBlue(msg);
 
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 800);
                 } else {
-                    fcAlertDataExist("#warning_alert_exist", result.message);
+                    fcAlertRed(result.message);
                 }
             }
 
@@ -300,13 +298,11 @@ $(document).on("click", "#save_update_employee", function () {
 
                     $("#modal_form").modal("hide");
 
-                    fcAlertSuccessEditEmp("#success_alert_update");
+                    var msg = "<strong>Data Updated!</strong> Data Employee has been updated !";
+                    fcAlertBlue(msg);
 
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 800);
                 } else {
-                    fcAlertDataExist("#warning_alert_exist", result.message);
+                    fcAlertRed(result.message);
                 }
             }
 
@@ -363,11 +359,8 @@ $(document).on("click", "#confirm_del_data", function () {
         },
         success: function (result) {
             $("#modal_confirm_del").modal("hide");
-            fcAlertSuccessDelEmp("#success_alert_del", result.latestCode);
-
-            setTimeout(function () {
-                window.location.reload();
-            }, 800);
+            var msg = "<strong>Data Deleted!</strong> Data employee with Employee ID Number " + result.latestCode.bold() + " has been deleted !";
+            fcAlertBlue(msg);
         }
     });
 });

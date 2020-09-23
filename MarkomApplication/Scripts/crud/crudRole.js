@@ -141,14 +141,11 @@ $(document).on("click", "#btn_save_role", function () {
                 if (result.success) {
 
                     $("#modal_form_md").modal("hide");
+                    var msg = "<strong>Data Saved!</strong> New role has been add with code " + result.latestCode.bold() + " !";
+                    fcAlertBlue(msg);
 
-                    fcAlertSuccessAddRole("#success_alert_add", result.latestCode);
-
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 800);
                 } else {
-                    fcAlertDataExist("#warning_alert_exist", result.message);
+                    fcAlertRed(result.message);
                 }
             }
 
@@ -234,13 +231,11 @@ $(document).on("click", "#save_update_role", function () {
 
                     $("#modal_form_md").modal("hide");
 
-                    fcAlertSuccessEditRole("#success_alert_update");
+                    var msg = "<strong>Data Updated!</strong> Data Role has been updated !";
+                    fcAlertBlue(msg);
 
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 800);
                 } else {
-                    fcAlertDataExist("#warning_alert_exist", result.message);
+                    fcAlertRed(result.message);
                 }
             }
 
@@ -294,11 +289,9 @@ $(document).on("click", "#confirm_del_data", function () {
         },
         success: function (result) {
             $("#modal_confirm_del").modal("hide");
-            fcAlertSuccessDelRole("#success_alert_del", result.latestCode);
 
-            setTimeout(function () {
-                window.location.reload();
-            }, 800);
+            var msg = "<strong>Data Deleted!</strong> Data role with code " + result.latestCode.bold() + " has been deleted !";
+            fcAlertBlue(msg);
         }
     });
 });
