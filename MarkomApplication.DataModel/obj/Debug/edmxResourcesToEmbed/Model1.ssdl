@@ -202,7 +202,7 @@
     <Property Name="budget" Type="bigint" />
     <Property Name="request_by" Type="int" Nullable="false" />
     <Property Name="request_date" Type="datetime" Nullable="false" />
-    <Property Name="approved_by" Type="int" />
+    <Property Name="approve_by" Type="int" />
     <Property Name="approve_date" Type="datetime" />
     <Property Name="assign_to" Type="int" />
     <Property Name="closed_date" Type="datetime" />
@@ -356,6 +356,9 @@
   <Function Name="spEmployeeCompanyName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Prefix" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="spEmployeeCountCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmpNum" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="spEmployeeDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
     <Parameter Name="IdNumber" Type="varchar(max)" Mode="InOut" />
@@ -399,8 +402,28 @@
   <Function Name="spEmpNameById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="spEventApprove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="AssignTo" Type="int" Mode="In" />
+    <Parameter Name="ApproveBy" Type="int" Mode="In" />
+    <Parameter Name="ApproveDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spEventClose" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="CloseDate" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="spEventDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEventReject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
+    <Parameter Name="RejectReason" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
   </Function>
   <Function Name="spEventSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Code" Type="varchar" Mode="In" />
@@ -422,6 +445,7 @@
     <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
     <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="spGetEmpNameStaff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="spRoleCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Prefix" Type="varchar" Mode="In" />
   </Function>

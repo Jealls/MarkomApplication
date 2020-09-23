@@ -11,21 +11,10 @@ namespace MarkomApplication.DataModel
 {
     using System;
     
-    public partial class spEventDetailByID_Result
+    public partial class spGetAllEmpName_Result
     {
         public int id { get; set; }
-        public string code { get; set; }
-        public string event_name { get; set; }
-        public string place { get; set; }
-        public Nullable<System.DateTime> start_date { get; set; }
-        public Nullable<System.DateTime> end_date { get; set; }
-        public Nullable<long> budget { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
-        public System.DateTime request_date { get; set; }
-        public string note { get; set; }
-        public Nullable<int> status { get; set; }
-        public int request_by { get; set; }
-        public Nullable<int> assign_to { get; set; }
     }
 }

@@ -62,13 +62,14 @@ namespace MarkomApplication.DataAccess
 
         }
 
+
         //GET LIST EVENT
         public static List<EventViewModel> GetListEvent(EventViewModel paramSearch)
         {
             List<EventViewModel> result = new List<EventViewModel>();
 
             if (paramSearch.statusName != null) {
-                paramSearch.status = GetStatus(paramSearch.statusName);
+                paramSearch.status = GetIntStatus(paramSearch.statusName);
             }
 
             using (var context = new MarkomApplicationDBEntities())
@@ -82,7 +83,7 @@ namespace MarkomApplication.DataAccess
                     requestByName = c.first_name +" " +c.last_name,
                     requestDate = c.request_date,
                     status = c.status,
-                    statusName = CekStatus(c.status),
+                    statusName = GetStringStatus(c.status),
                     createDate = c.create_date,
                     createBy = c.create_by
                 }).ToList();
@@ -92,6 +93,7 @@ namespace MarkomApplication.DataAccess
 
             return result;
         }
+
 
         //GET DETAIL EVENT
         public static EventViewModel GetDetailEventById(int paramEvId)
@@ -116,7 +118,7 @@ namespace MarkomApplication.DataAccess
                     requestDate = c.request_date,
                     note = c.note,
                     status = c.status,
-                    statusName = CekStatus(c.status)
+                    statusName = GetStringStatus(c.status)
 
                 }).FirstOrDefault();
             }
@@ -124,8 +126,8 @@ namespace MarkomApplication.DataAccess
             return result;
         }
 
-        //UPDATE EVENT
 
+        //UPDATE EVENT
         public static string UpdateEvent(EventViewModel paramEv)
         {
             string latestSaveCode = string.Empty;
@@ -159,7 +161,137 @@ namespace MarkomApplication.DataAccess
         }
 
 
-        public static string CekStatus(int? stat) {
+        //APPROVE EVENT
+        public static string ApproveEv(EventViewModel paramEv)
+        {
+            string latestSaveCode = string.Empty;
+            try
+            {
+                using (var db = new MarkomApplicationDBEntities())
+                {
+
+                    ObjectParameter returnId = new ObjectParameter("Code", typeof(string));
+
+                    db.spEventApprove(
+                        paramEv.id
+                        , returnId
+                        ,paramEv.status
+                        , paramEv.assignTo
+                        , paramEv.approveBy
+                        , paramEv.approveDate);
+
+                    latestSaveCode = (String)returnId.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+
+            return latestSaveCode;
+        }
+
+
+        //Reject EVENT
+        public static string RejectEv(EventViewModel paramEv)
+        {
+            string latestSaveCode = string.Empty;
+            try
+            {
+                using (var db = new MarkomApplicationDBEntities())
+                {
+
+                    ObjectParameter returnId = new ObjectParameter("Code", typeof(string));
+
+                    db.spEventReject(
+                        paramEv.id
+                        , returnId
+                        , paramEv.rejectReason
+                        ,paramEv.status
+                    );
+
+                    latestSaveCode = (String)returnId.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+
+            return latestSaveCode;
+        }
+
+        //Reject EVENT
+        public static string CloseEv(EventViewModel paramEv)
+        {
+            string latestSaveCode = string.Empty;
+            try
+            {
+                using (var db = new MarkomApplicationDBEntities())
+                {
+
+                    ObjectParameter returnId = new ObjectParameter("Code", typeof(string));
+
+                    db.spEventClose(
+                        paramEv.id
+                        , returnId
+                        , paramEv.status
+                        ,paramEv.closedDate
+                    );
+
+                    latestSaveCode = (String)returnId.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+
+            return latestSaveCode;
+        }
+
+
+
+
+        public static List<EventViewModel> GetAllEmpName()
+        {
+            List<EventViewModel> result = new List<EventViewModel>();
+            try
+            {
+                using (MarkomApplicationDBEntities db = new MarkomApplicationDBEntities())
+                {
+                    var res = db.spGetEmpNameStaff();
+
+                    List<EventViewModel> comList = res.Select(c => new EventViewModel
+                    {
+                        empId = c.id,
+                        empFullName = c.first_name + " " + c.last_name,
+                    }).ToList();
+
+                    result = comList;
+                }
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+            return result;
+        }
+
+
+        public static int? GetEventStatus(int eventId)
+        {
+            int? result = 0;
+
+            using (var db = new MarkomApplicationDBEntities())
+            {
+                var evStat = (from te in db.t_event where te.id == eventId select te.status).First();
+                result = evStat;
+            }
+
+                return result;
+        }
+        public static string GetStringStatus(int? stat) {
             string result;
 
             switch (stat)
@@ -184,8 +316,7 @@ namespace MarkomApplication.DataAccess
 
             return result;
         }
-
-        public static int? GetStatus(string stat) {
+        public static int? GetIntStatus(string stat) {
             int? result;
             switch (stat)
             {

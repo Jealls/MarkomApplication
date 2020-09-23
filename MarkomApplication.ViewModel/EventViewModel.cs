@@ -47,7 +47,7 @@ namespace MarkomApplication.ViewModel
         public System.DateTime requestDate { get; set; }
 
         public Nullable<DateTime> requestDate2 { get; set; }
-        public Nullable<int> approvedBy { get; set; }
+        public Nullable<int> approveBy { get; set; }
         public Nullable<System.DateTime> approveDate { get; set; }
         [DisplayName("Assign To")]
         public Nullable<int> assignTo { get; set; }
@@ -75,5 +75,6 @@ namespace MarkomApplication.ViewModel
         public int empId { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
+        public string empFullName { get; set; }
     }
 }

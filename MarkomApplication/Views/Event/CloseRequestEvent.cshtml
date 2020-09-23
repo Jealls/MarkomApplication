@@ -1,0 +1,108 @@
+﻿@model MarkomApplication.ViewModel.EventViewModel
+
+
+
+@Html.AntiForgeryToken()
+
+    <div class="form-row">
+        <div class="form-horizontal col-md-6">
+
+            @Html.HiddenFor(model => model.id)
+
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="code">* Transaction Code</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width:100%;" } })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="eventName">* Event Name</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.eventName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width:100%;" } })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="place">* Event Place</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.place, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width:100%;" } })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="startDate">* Event Start Date</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width:100%;" } })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="endDate">* Event End Date</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width:100%;" } })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="budget">* Budget</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.budget, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width:100%;" } })
+                </div>
+            </div>
+
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="assignTo">* Assign To</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.assignTo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width:100%;" } })
+                    @Html.ValidationMessageFor(model => model.assignTo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-horizontal col-md-6">
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="requestBy">* Reguest By</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.requestByName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width:100%;" } })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="requestDate">* Reguest Date</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.requestDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width:100%;" } })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                @Html.LabelFor(model => model.note, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.TextAreaFor(model => model.note, new { @class = "form-control", @readonly = "readonly", @style = "width:100%;", placeholder = "Type Note" })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.statusName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width:100%;" } })
+                    @Html.HiddenFor(model => model.status)
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="form-row mx-1 py-lg-4 justify-content-end" style="background-color:#F8F8F8; width:100%;">
+
+        <button type="submit" name="submit" value="CloseReq" id="close_req_event" class="btn btn-primary active mr-2"  data-url="@Url.Action("CloseDataEvent", "Event")">CloseRequest</button>
+        <button type="button" value="Cancel" data-dismiss="modal" class="btn btn-warning mr-5 text-white">Cancel</button>
+
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -57,7 +57,7 @@
                     @Html.DisplayFor(modelItem => item.createBy)
                 </td>
                 <td>
-                    <button title="Tampilkan" id="btn_view_event" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ViewEvent", "Event")">
+                    <button title="Tampilkan" id="btn_choose_event" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ApproveEvent", "Event")">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
                     <button title="Ubah" id="btn_edit_event" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("EditEvent", "Event")">

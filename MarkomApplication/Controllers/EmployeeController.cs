@@ -54,9 +54,9 @@ namespace MarkomApplication.Controllers
                 paramAddEmployee.createBy = "Anastasia";
                 paramAddEmployee.createDate = DateTime.Now;
                 
-                bool numberV = EmployeeDataAccess.NumberValidation(paramAddEmployee.code);
+                int? numberV = EmployeeDataAccess.NumberValidation(paramAddEmployee.code);
                 
-                if (!numberV)
+                if (numberV < 1)
                 {
                     string latestCode = EmployeeDataAccess.CreateEmployee(paramAddEmployee);
 
@@ -103,9 +103,9 @@ namespace MarkomApplication.Controllers
                 paramEditEmp.updateBy = "Tian";
                 paramEditEmp.updateDate = DateTime.Now;
 
-                bool numberV = EmployeeDataAccess.NumberValidation(paramEditEmp.code);
+                int? numberV = EmployeeDataAccess.NumberValidation(paramEditEmp.code);
 
-                if (!numberV)
+                if (numberV <= 1)
                 {
                     if (EmployeeDataAccess.UpdateEmployee(paramEditEmp))
                     {
@@ -127,6 +127,8 @@ namespace MarkomApplication.Controllers
 
             }
         }
+
+
 
 
         //VIEW EMPLOYEE

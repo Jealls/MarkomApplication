@@ -62,6 +62,7 @@ function validationEStartDate() {
     }
 }
 
+
 //END DATE
 function validationEndDate(Date) {
 
@@ -80,6 +81,7 @@ function validationEEndDate() {
         $("#endDate").removeClass("invalid");
     }
 }
+
 
 //Budget
 function validationBudget(budget) {
@@ -101,6 +103,7 @@ function validationEBudget() {
         $("#budget").removeClass("invalid");
     }
 }
+
 
 //REQUEST BY
 function validationReqBy(vjsReqBy) {
@@ -124,6 +127,30 @@ function validationReqDate(reqDate) {
 
 
 
+//ASSIGN TO
+function validationAssignTo(assignTo) {
+
+    if (assignTo == "") {
+        $("#AssignTo").addClass("invalid");
+    } else {
+        $("#AssignTo").removeClass("invalid");
+    }
+}
+
+//REJECT REASON
+function validationRejectReason(rejectReason) {
+
+    if (rejectReason == "") {
+        $("#txt_reject_reason").addClass("invalid");
+    } else {
+        $("#txt_reject_reason").removeClass("invalid");
+    }
+}
+
+
+
+
+//CEK VALIDATION EVENT
 function cekValidationEvent() {
 
     var name = $("#eventName").hasClass("invalid");
@@ -137,6 +164,32 @@ function cekValidationEvent() {
     var result = false;
 
     if (!name && !sdate && !edate && !place && !budget && !reqBy && !reqDate) {
+        result = true;
+    }
+
+    return result;
+}
+
+//CEK VALIDATION REJECT
+function cekValidationRejectEvent() {
+
+    var rejectReason = $("#txt_reject_reason").hasClass("invalid");
+
+    var result = false;
+
+    if (!rejectReason) {
+        result = true;
+    }
+
+    return result;
+}
+
+//CEK VALIDATION APPROVE
+function cekValidationApproveEvent() {
+
+     var result = false;
+
+    if (!$("#txt_reject_reason").hasClass("invalid")) {
         result = true;
     }
 

@@ -202,7 +202,6 @@
     <Property Name="budget" Type="Int64" />
     <Property Name="request_by" Type="Int32" Nullable="false" />
     <Property Name="request_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="approved_by" Type="Int32" />
     <Property Name="approve_date" Type="DateTime" Precision="3" />
     <Property Name="assign_to" Type="Int32" />
     <Property Name="closed_date" Type="DateTime" Precision="3" />
@@ -214,6 +213,7 @@
     <Property Name="create_date" Type="DateTime" Precision="3" />
     <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="approve_by" Type="Int32" />
   </EntityType>
   <EntityType Name="t_promotion">
     <Key>
@@ -473,18 +473,6 @@
     <FunctionImport Name="spEventDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spEventDetailByID_Result)">
       <Parameter Name="Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="spUpdateEvent">
-      <Parameter Name="Id" Mode="In" Type="Int32" />
-      <Parameter Name="Code" Mode="InOut" Type="String" />
-      <Parameter Name="EventName" Mode="In" Type="String" />
-      <Parameter Name="Place" Mode="In" Type="String" />
-      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
-      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
-      <Parameter Name="Budget" Mode="In" Type="Int32" />
-      <Parameter Name="Note" Mode="In" Type="String" />
-      <Parameter Name="UpdateBy" Mode="In" Type="String" />
-      <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="spEventUpdate">
       <Parameter Name="Id" Mode="In" Type="Int32" />
       <Parameter Name="Code" Mode="InOut" Type="String" />
@@ -496,6 +484,30 @@
       <Parameter Name="Note" Mode="In" Type="String" />
       <Parameter Name="UpdateBy" Mode="In" Type="String" />
       <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spEmployeeCountCode" ReturnType="Collection(Int32)">
+      <Parameter Name="EmpNum" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetEmpNameStaff" ReturnType="Collection(MarkomApplicationDBModel.spGetEmpNameStaff_Result)" />
+    <FunctionImport Name="spEventApprove">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Code" Mode="InOut" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="AssignTo" Mode="In" Type="Int32" />
+      <Parameter Name="ApproveBy" Mode="In" Type="Int32" />
+      <Parameter Name="ApproveDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spEventReject">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Code" Mode="InOut" Type="String" />
+      <Parameter Name="RejectReason" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spEventClose">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Code" Mode="InOut" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="CloseDate" Mode="In" Type="DateTime" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="spCompanyList_Result">
@@ -624,5 +636,16 @@
     <Property Type="String" Name="note" Nullable="true" MaxLength="255" />
     <Property Type="Int32" Name="status" Nullable="true" />
     <Property Type="Int32" Name="request_by" Nullable="false" />
+    <Property Type="Int32" Name="assign_to" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllEmpName_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spGetEmpNameStaff_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

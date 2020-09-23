@@ -477,47 +477,6 @@ namespace MarkomApplication.DataModel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEventDetailByID_Result>("spEventDetailByID", idParameter);
         }
     
-        public virtual int spUpdateEvent(Nullable<int> id, ObjectParameter code, string eventName, string place, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> budget, string note, string updateBy, Nullable<System.DateTime> updateDate)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var eventNameParameter = eventName != null ?
-                new ObjectParameter("EventName", eventName) :
-                new ObjectParameter("EventName", typeof(string));
-    
-            var placeParameter = place != null ?
-                new ObjectParameter("Place", place) :
-                new ObjectParameter("Place", typeof(string));
-    
-            var startDateParameter = startDate.HasValue ?
-                new ObjectParameter("StartDate", startDate) :
-                new ObjectParameter("StartDate", typeof(System.DateTime));
-    
-            var endDateParameter = endDate.HasValue ?
-                new ObjectParameter("EndDate", endDate) :
-                new ObjectParameter("EndDate", typeof(System.DateTime));
-    
-            var budgetParameter = budget.HasValue ?
-                new ObjectParameter("Budget", budget) :
-                new ObjectParameter("Budget", typeof(int));
-    
-            var noteParameter = note != null ?
-                new ObjectParameter("Note", note) :
-                new ObjectParameter("Note", typeof(string));
-    
-            var updateByParameter = updateBy != null ?
-                new ObjectParameter("UpdateBy", updateBy) :
-                new ObjectParameter("UpdateBy", typeof(string));
-    
-            var updateDateParameter = updateDate.HasValue ?
-                new ObjectParameter("UpdateDate", updateDate) :
-                new ObjectParameter("UpdateDate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUpdateEvent", idParameter, code, eventNameParameter, placeParameter, startDateParameter, endDateParameter, budgetParameter, noteParameter, updateByParameter, updateDateParameter);
-        }
-    
         public virtual int spEventUpdate(Nullable<int> id, ObjectParameter code, string eventName, string place, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<long> budget, string note, string updateBy, Nullable<System.DateTime> updateDate)
         {
             var idParameter = id.HasValue ?
@@ -557,6 +516,79 @@ namespace MarkomApplication.DataModel
                 new ObjectParameter("UpdateDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEventUpdate", idParameter, code, eventNameParameter, placeParameter, startDateParameter, endDateParameter, budgetParameter, noteParameter, updateByParameter, updateDateParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spEmployeeCountCode(string empNum)
+        {
+            var empNumParameter = empNum != null ?
+                new ObjectParameter("EmpNum", empNum) :
+                new ObjectParameter("EmpNum", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spEmployeeCountCode", empNumParameter);
+        }
+    
+        public virtual ObjectResult<spGetEmpNameStaff_Result> spGetEmpNameStaff()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetEmpNameStaff_Result>("spGetEmpNameStaff");
+        }
+    
+        public virtual int spEventApprove(Nullable<int> id, ObjectParameter code, Nullable<int> status, Nullable<int> assignTo, Nullable<int> approveBy, Nullable<System.DateTime> approveDate)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(int));
+    
+            var assignToParameter = assignTo.HasValue ?
+                new ObjectParameter("AssignTo", assignTo) :
+                new ObjectParameter("AssignTo", typeof(int));
+    
+            var approveByParameter = approveBy.HasValue ?
+                new ObjectParameter("ApproveBy", approveBy) :
+                new ObjectParameter("ApproveBy", typeof(int));
+    
+            var approveDateParameter = approveDate.HasValue ?
+                new ObjectParameter("ApproveDate", approveDate) :
+                new ObjectParameter("ApproveDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEventApprove", idParameter, code, statusParameter, assignToParameter, approveByParameter, approveDateParameter);
+        }
+    
+        public virtual int spEventReject(Nullable<int> id, ObjectParameter code, string rejectReason, Nullable<int> status)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var rejectReasonParameter = rejectReason != null ?
+                new ObjectParameter("RejectReason", rejectReason) :
+                new ObjectParameter("RejectReason", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEventReject", idParameter, code, rejectReasonParameter, statusParameter);
+        }
+    
+        public virtual int spEventClose(Nullable<int> id, ObjectParameter code, Nullable<int> status, Nullable<System.DateTime> closeDate)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(int));
+    
+            var closeDateParameter = closeDate.HasValue ?
+                new ObjectParameter("CloseDate", closeDate) :
+                new ObjectParameter("CloseDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEventClose", idParameter, code, statusParameter, closeDateParameter);
         }
     }
 }

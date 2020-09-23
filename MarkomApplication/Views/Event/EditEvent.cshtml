@@ -89,7 +89,7 @@
             </div>
 
             <div class="form-group form-inline">
-                @Html.LabelFor(model => model.statusName, htmlAttributes: new { @class = "control-label col-md-5" })
+                @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-5" })
                 <div class="col-md-7">
                     @Html.EditorFor(model => model.statusName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width:100%;", placeholder = "Status Here" } })
                     @Html.HiddenFor(model => model.status)

@@ -9,7 +9,6 @@ var ProgressHtml = '<div class="progress progress-striped active" style="margina
 
 
 //DOCUMENT READY
-
 $(document).ready(function () {
 
     $.ajax({
@@ -53,7 +52,7 @@ $(document).on("click", "#btn_save_event", function () {
     var vjsEndDate = $("#endDate").val().split("/").reverse().join("-");
     var vjsBudget = parseInt($("#budget").val());
     var vjsReqBy = $("#reqBy").val();
-    var vjsReqDate = $("#reqDate").val();
+    var vjsReqDate = $("#reqDate").val().split("/").reverse().join("-");
     var vjsNote = $("#note").val();
 
     debugger;
@@ -106,6 +105,7 @@ $(document).on("click", "#btn_save_event", function () {
 });
 
 
+
 //BTN SEARCH
 $(document).on("click", "#btn_search_event", function () {
     var vjsCode = $("#trans_event_code").val();
@@ -139,7 +139,9 @@ $(document).on("click", "#btn_search_event", function () {
     });
 });
 
-//BTN SHOW EDIT ROLE
+
+
+//BTN SHOW EDIT 
 $(document).on("click", "#btn_edit_event", function () {
 
     $("#modal_form").modal("show");
@@ -161,8 +163,7 @@ $(document).on("click", "#btn_edit_event", function () {
     });
 });
 
-
-//SAVE EDIT Event
+//SAVE EDIT EVENT
 $(document).on("click", "#save_update_event", function () {
     var vjsName = $("#eventName").val();
     var vjsPlace = $("#place").val();
@@ -226,3 +227,143 @@ $(document).on("click", "#save_update_event", function () {
     }
 });
 
+
+
+//BTN SHOW APPROVAL OR CLOSE
+$(document).on("click", "#btn_choose_event", function () {
+
+    $("#modal_form").modal("show");
+    $(".modal_title_form").html("Approval Event Request - ");
+    $("#modal_content_body").html(ProgressHtml);
+    var g = $(this).data('id');
+    debugger;
+    $.ajax({
+        url: $("#btn_choose_event").data('url'),
+        type: 'get',
+        data: {
+            paramId: $(this).data('id')
+        },
+        success: function (result) {
+            $("#modal_content_body").html(result);
+
+            var vjsCode = $("#code").val();
+            $(".modal_title_form").html("Approval Event Request - " + vjsCode );
+        }
+    });
+});
+
+//-----------------------IN APPROVAL MODAL--------------------
+
+//BTN EVENT APPROVAL
+$(document).on("click", "#btn_approve_event", function () {
+    var vjsId = $("#id").val();
+    var vjsAssignTo = $("#assignTo").val();
+
+    validationAssignTo(vjsAssignTo);
+
+    debugger;
+    if (cekValidationApproveEvent()) {
+        var item = {
+            id: vjsId,
+            assignTo: vjsAssignTo
+        };
+
+
+        $.ajax({
+            async: true,
+            type: 'post',
+            url: $("#btn_approve_event").data('url'),
+            data: { paramAppEv: item },
+            success: function (result) {
+                if (result.success) {
+
+                    $("#modal_form").modal("hide");
+
+                    fcAlertAppEvent("#success_alert_app_t", result.latestCode);
+
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 800);
+                }
+            }
+        });
+    }
+});
+
+
+//BTN EVENT REJECT
+$(document).on("click", "#btn_reject_event", function () {
+
+    var thisId = $("#id").val();
+
+    $("#modal_confirm_reject").modal("show");
+    $("#confirm_reject").attr('data-id', thisId);
+});
+
+//CONFIRM REJECT
+$(document).on("click", "#confirm_reject", function () {
+
+    var vjsRejectReason = $("#txt_reject_reason").val();
+    debugger;
+
+    validationRejectReason(vjsRejectReason);
+
+    if (cekValidationRejectEvent()) {
+
+        var item = {
+            id: $(this).data('id'),
+            rejectReason: vjsRejectReason
+        };
+
+        $.ajax({
+            async: true,
+            type: 'post',
+            url: "/Event/RejectDataEvent",
+            data: { paramRejectEv: item },
+            success: function (result) {
+                if (result.success) {
+
+                    $("#modal_confirm_reject").modal("hide");
+                    $("#modal_form").modal("hide");
+
+                    fcAlertRejectEvent("#warning_alert_reject", result.latestCode);
+
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 800);
+                }
+            }
+        });
+    }
+});
+
+
+//-----------------------IN MODAL CLOSE REQUEST---------------------------
+
+//BTN EVENT CLOSE REQUEST
+$(document).on("click", "#close_req_event", function () {
+    var item = {
+        id: $("#id").val()
+    };
+
+        $.ajax({
+            async: true,
+            type: 'post',
+            url: $("#close_req_event").data('url'),
+            data: {
+                paramCloseEv: item
+            },
+            success: function (result) {
+                if (result.success) {
+
+                    $("#modal_form").modal("hide");
+
+                    fcAlertCloseEvent("#success_alert_close_t", result.latestCode);
+
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 800);
+                }
+            }
+        });
+});

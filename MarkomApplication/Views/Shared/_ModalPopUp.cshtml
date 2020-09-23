@@ -38,6 +38,7 @@
 </div>
 
 
+@*MODAL CONFIRM DELETE*@
 <div id="modal_confirm_del" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -50,12 +51,36 @@
             <div class="modal-body">
                 <div class="form-row d-flex justify-content-center">
                     <button type="submit" name="DelConfirm" value="Delete" id="confirm_del_data" class="btn btn-primary active mr-2">Delete</button>
-                    <button type="button" name="DelConfirm" value="Cancel" data-dismiss="modal" class="btn btn-warning text-white">Cancel</button>
+                    <button type="button" name="Cancel" value="Cancel" data-dismiss="modal" class="btn btn-warning text-white">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@*MODAL CONFIRM DELETE*@
+<div id="modal_confirm_reject" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reject Reason</h5>
+                <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-light">&times;</span>
+                </button>
+            </div>
+            <div id="modal_body_reject" class="modal-body">
+                <div class="m-3">
+                    <textarea class="form-control" cols="20" id="txt_reject_reason" maxlength="255" name="RejectReason" placeholder="Type Reject Reason" rows="2" style="width:100%;"></textarea>
+                </div>
+                <div class="form-row d-flex justify-content-center">
+                    <button type="submit" name="RejectConfirm" value="Delete" id="confirm_reject" class="btn btn-danger text-white mr-2">Reject</button>
+                    <button type="button" name="Cancel" value="Cancel" data-dismiss="modal" class="btn btn-warning text-white">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!--Modal Confirmation-->

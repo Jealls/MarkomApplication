@@ -188,13 +188,17 @@ namespace MarkomApplication.DataAccess
             return latestSaveCode;
         }
 
-        public static bool NumberValidation(string empCode)
+        public static int? NumberValidation(string empCode)
         {
+            int? result = 0;
             using (var db = new MarkomApplicationDBEntities())
             {
-                var result = db.m_employee.Any(u => u.employee_number.ToLower() == empCode.ToLower());
-                return result;
+                //var result = db.m_employee.Any(u => u.employee_number.ToLower() == empCode.ToLower());
+                var res = db.spEmployeeCountCode(empCode).FirstOrDefault();
+                result = res;
             }
+
+                return result;
         }
 
         public static List<EmployeeViewModel> SearchStringCompanyName(string prefix)

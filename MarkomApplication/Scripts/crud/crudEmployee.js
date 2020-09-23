@@ -155,8 +155,6 @@ $(document).on("click", "#btn_add_employee", function () {
     });
 });
 
-
-
 //SAVE ADD EMPLOYEE
 $(document).on("click", "#btn_save_employee", function () {
     var vjsEmpNumber = $("#code").val();
@@ -205,6 +203,7 @@ $(document).on("click", "#btn_save_employee", function () {
 });
 
 
+
 //BTN SEARCH
 $(document).on("click", "#btn_search_employee", function () {
     var vjsCode = $("#dropdown_code_employee").val();
@@ -242,6 +241,7 @@ $(document).on("click", "#btn_search_employee", function () {
 });
 
 
+
 //BTN SHOW EDIT EMPLOYEE
 $(document).on("click", "#btn_edit_employee", function () {
 
@@ -264,7 +264,6 @@ $(document).on("click", "#btn_edit_employee", function () {
         }
     });
 });
-
 
 //SAVE EDIT EMPLOYEE
 $(document).on("click", "#save_update_employee", function () {
@@ -316,6 +315,7 @@ $(document).on("click", "#save_update_employee", function () {
 });
 
 
+
 //VIEW EMPLOYE DETAIL
 $(document).on("click", "#btn_view_employee", function () {
 
@@ -339,6 +339,7 @@ $(document).on("click", "#btn_view_employee", function () {
         }
     });
 });
+
 
 
 //DELETE EMPLOYEE SHOW

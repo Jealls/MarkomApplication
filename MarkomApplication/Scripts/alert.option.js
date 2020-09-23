@@ -121,9 +121,9 @@ function fcAlertSuccessEditRole(vjsAlertId) {
 }
 
 function fcAlertSuccessDelRole(vjsAlertId, vjsLatestCode) {
-
+    debugger;
     $(vjsAlertId).removeClass('d-none');
-    document.querySelector("#data_code_alert_del").innerHTML = vjsLatestCode;
+    //document.querySelector("#data_code_alert_del").innerHTML = vjsLatestCode;
     document.querySelector("#delete_from").innerHTML = " role with code " + vjsLatestCode.bold() + " has been deleted !";
 
     setTimeout(function () {
@@ -131,6 +131,7 @@ function fcAlertSuccessDelRole(vjsAlertId, vjsLatestCode) {
 
     }, 2000);
 }
+
 
 //------------------------EVENT---------------------------------------------
 function fcAlertSuccessAddEvent(vjsAlertId, vjsLatestCode) {
@@ -154,3 +155,38 @@ function fcAlertSuccessEditEvent(vjsAlertId, vjsLatestCode) {
 
     }, 1500);
 }
+
+function fcAlertRejectEvent(vjsAlertId, vjsLatestCode) {
+
+    $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#warn_reject_txt").innerHTML = " Transaction event request code " + vjsLatestCode + "is rejected by Administator!";
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 1500);
+}
+
+function fcAlertAppEvent(vjsAlertId, vjsLatestCode) {
+
+    $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#app_from_t").innerHTML = " Transaction Event request with code " + vjsLatestCode + "has been approved!";
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 1500);
+}
+
+function fcAlertCloseEvent(vjsAlertId, vjsLatestCode) {
+
+    $(vjsAlertId).removeClass('d-none');
+    document.querySelector("#close_from_t").innerHTML = " Transaction Event request with code " + vjsLatestCode + "has been close request!";
+
+    setTimeout(function () {
+        $(vjsAlertId).addClass('d-none');
+
+    }, 1500);
+}
+
+

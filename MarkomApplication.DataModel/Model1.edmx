@@ -147,7 +147,7 @@
           <Property Name="title_header" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="request_by" Type="int" Nullable="false" />
           <Property Name="request_date" Type="datetime" Nullable="false" />
-          <Property Name="approved_by" Type="int" />
+          <Property Name="approve_by" Type="int" />
           <Property Name="approve_date" Type="datetime" />
           <Property Name="assign_to" Type="int" />
           <Property Name="closed_date" Type="datetime" />
@@ -207,7 +207,7 @@
           <Property Name="budget" Type="bigint" />
           <Property Name="request_by" Type="int" Nullable="false" />
           <Property Name="request_date" Type="datetime" Nullable="false" />
-          <Property Name="approved_by" Type="int" />
+          <Property Name="approve_by" Type="int" />
           <Property Name="approve_date" Type="datetime" />
           <Property Name="assign_to" Type="int" />
           <Property Name="closed_date" Type="datetime" />
@@ -232,7 +232,7 @@
           <Property Name="t_design_id" Type="int" />
           <Property Name="request_by" Type="int" />
           <Property Name="request_date" Type="datetime" />
-          <Property Name="approved_by" Type="int" />
+          <Property Name="approve_by" Type="int" />
           <Property Name="approve_date" Type="datetime" />
           <Property Name="assign_to" Type="int" />
           <Property Name="closed_date" Type="datetime" />
@@ -315,7 +315,7 @@
           <Property Name="request_by" Type="int" Nullable="false" />
           <Property Name="request_date" Type="datetime" />
           <Property Name="request_due_date" Type="datetime" />
-          <Property Name="approved_by" Type="int" />
+          <Property Name="approve_by" Type="int" />
           <Property Name="approve_date" Type="datetime" />
           <Property Name="receive_by" Type="int" />
           <Property Name="receive_date" Type="datetime" />
@@ -361,6 +361,9 @@
         <Function Name="spEmployeeCompanyName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Prefix" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spEmployeeCountCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmpNum" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="spEmployeeDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="IdNumber" Type="varchar(max)" Mode="InOut" />
@@ -404,8 +407,28 @@
         <Function Name="spEmpNameById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="spEventApprove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="Status" Type="int" Mode="In" />
+          <Parameter Name="AssignTo" Type="int" Mode="In" />
+          <Parameter Name="ApproveBy" Type="int" Mode="In" />
+          <Parameter Name="ApproveDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spEventClose" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="Status" Type="int" Mode="In" />
+          <Parameter Name="CloseDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="spEventDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spEventReject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="RejectReason" Type="varchar" Mode="In" />
+          <Parameter Name="Status" Type="int" Mode="In" />
         </Function>
         <Function Name="spEventSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Code" Type="varchar" Mode="In" />
@@ -427,6 +450,7 @@
           <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
           <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="spGetEmpNameStaff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spRoleCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Prefix" Type="varchar" Mode="In" />
         </Function>
@@ -637,7 +661,6 @@
           <Property Name="title_header" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="request_by" Type="Int32" Nullable="false" />
           <Property Name="request_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="approved_by" Type="Int32" />
           <Property Name="approve_date" Type="DateTime" Precision="3" />
           <Property Name="assign_to" Type="Int32" />
           <Property Name="closed_date" Type="DateTime" Precision="3" />
@@ -649,6 +672,7 @@
           <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="update_date" Type="DateTime" Precision="3" />
+          <Property Name="approve_by" Type="Int32" />
         </EntityType>
         <EntityType Name="t_design_item">
           <Key>
@@ -697,7 +721,6 @@
           <Property Name="budget" Type="Int64" />
           <Property Name="request_by" Type="Int32" Nullable="false" />
           <Property Name="request_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="approved_by" Type="Int32" />
           <Property Name="approve_date" Type="DateTime" Precision="3" />
           <Property Name="assign_to" Type="Int32" />
           <Property Name="closed_date" Type="DateTime" Precision="3" />
@@ -709,6 +732,7 @@
           <Property Name="create_date" Type="DateTime" Precision="3" />
           <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="update_date" Type="DateTime" Precision="3" />
+          <Property Name="approve_by" Type="Int32" />
         </EntityType>
         <EntityType Name="t_promotion">
           <Key>
@@ -722,7 +746,6 @@
           <Property Name="t_design_id" Type="Int32" />
           <Property Name="request_by" Type="Int32" />
           <Property Name="request_date" Type="DateTime" Precision="3" />
-          <Property Name="approved_by" Type="Int32" />
           <Property Name="approve_date" Type="DateTime" Precision="3" />
           <Property Name="assign_to" Type="Int32" />
           <Property Name="closed_date" Type="DateTime" Precision="3" />
@@ -734,6 +757,7 @@
           <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="update_date" Type="DateTime" Precision="3" />
+          <Property Name="approve_by" Type="Int32" />
         </EntityType>
         <EntityType Name="t_promotion_item">
           <Key>
@@ -805,7 +829,6 @@
           <Property Name="request_by" Type="Int32" Nullable="false" />
           <Property Name="request_date" Type="DateTime" Precision="3" />
           <Property Name="request_due_date" Type="DateTime" Precision="3" />
-          <Property Name="approved_by" Type="Int32" />
           <Property Name="approve_date" Type="DateTime" Precision="3" />
           <Property Name="receive_by" Type="Int32" />
           <Property Name="receive_date" Type="DateTime" Precision="3" />
@@ -821,6 +844,7 @@
           <Property Name="create_date" Type="DateTime" Precision="3" />
           <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="update_date" Type="DateTime" Precision="3" />
+          <Property Name="approve_by" Type="Int32" />
         </EntityType>
         <EntityContainer Name="MarkomApplicationDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="m_company" EntityType="Self.m_company" />
@@ -968,18 +992,6 @@
           <FunctionImport Name="spEventDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spEventDetailByID_Result)">
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="spUpdateEvent">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
-            <Parameter Name="Code" Mode="InOut" Type="String" />
-            <Parameter Name="EventName" Mode="In" Type="String" />
-            <Parameter Name="Place" Mode="In" Type="String" />
-            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
-            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
-            <Parameter Name="Budget" Mode="In" Type="Int32" />
-            <Parameter Name="Note" Mode="In" Type="String" />
-            <Parameter Name="UpdateBy" Mode="In" Type="String" />
-            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="spEventUpdate">
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="Code" Mode="InOut" Type="String" />
@@ -991,6 +1003,30 @@
             <Parameter Name="Note" Mode="In" Type="String" />
             <Parameter Name="UpdateBy" Mode="In" Type="String" />
             <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spEmployeeCountCode" ReturnType="Collection(Int32)">
+          <Parameter Name="EmpNum" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetEmpNameStaff" ReturnType="Collection(MarkomApplicationDBModel.spGetEmpNameStaff_Result)" />
+          <FunctionImport Name="spEventApprove">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Code" Mode="InOut" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Int32" />
+            <Parameter Name="AssignTo" Mode="In" Type="Int32" />
+            <Parameter Name="ApproveBy" Mode="In" Type="Int32" />
+            <Parameter Name="ApproveDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spEventReject">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Code" Mode="InOut" Type="String" />
+            <Parameter Name="RejectReason" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spEventClose">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Code" Mode="InOut" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Int32" />
+            <Parameter Name="CloseDate" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spCompanyList_Result">
@@ -1119,6 +1155,17 @@
           <Property Type="String" Name="note" Nullable="true" MaxLength="255" />
           <Property Type="Int32" Name="status" Nullable="true" />
           <Property Type="Int32" Name="request_by" Nullable="false" />
+          <Property Type="Int32" Name="assign_to" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetAllEmpName_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spGetEmpNameStaff_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1270,13 +1317,13 @@
           <EntitySetMapping Name="t_design">
             <EntityTypeMapping TypeName="MarkomApplicationDBModel.t_design">
               <MappingFragment StoreEntitySet="t_design">
+                <ScalarProperty Name="approve_by" ColumnName="approve_by" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="t_event_id" ColumnName="t_event_id" />
                 <ScalarProperty Name="title_header" ColumnName="title_header" />
                 <ScalarProperty Name="request_by" ColumnName="request_by" />
                 <ScalarProperty Name="request_date" ColumnName="request_date" />
-                <ScalarProperty Name="approved_by" ColumnName="approved_by" />
                 <ScalarProperty Name="approve_date" ColumnName="approve_date" />
                 <ScalarProperty Name="assign_to" ColumnName="assign_to" />
                 <ScalarProperty Name="closed_date" ColumnName="closed_date" />
@@ -1330,6 +1377,7 @@
           <EntitySetMapping Name="t_event">
             <EntityTypeMapping TypeName="MarkomApplicationDBModel.t_event">
               <MappingFragment StoreEntitySet="t_event">
+                <ScalarProperty Name="approve_by" ColumnName="approve_by" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="event_name" ColumnName="event_name" />
@@ -1339,7 +1387,6 @@
                 <ScalarProperty Name="budget" ColumnName="budget" />
                 <ScalarProperty Name="request_by" ColumnName="request_by" />
                 <ScalarProperty Name="request_date" ColumnName="request_date" />
-                <ScalarProperty Name="approved_by" ColumnName="approved_by" />
                 <ScalarProperty Name="approve_date" ColumnName="approve_date" />
                 <ScalarProperty Name="assign_to" ColumnName="assign_to" />
                 <ScalarProperty Name="closed_date" ColumnName="closed_date" />
@@ -1357,6 +1404,7 @@
           <EntitySetMapping Name="t_promotion">
             <EntityTypeMapping TypeName="MarkomApplicationDBModel.t_promotion">
               <MappingFragment StoreEntitySet="t_promotion">
+                <ScalarProperty Name="approve_by" ColumnName="approve_by" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="flag_design" ColumnName="flag_design" />
@@ -1365,7 +1413,6 @@
                 <ScalarProperty Name="t_design_id" ColumnName="t_design_id" />
                 <ScalarProperty Name="request_by" ColumnName="request_by" />
                 <ScalarProperty Name="request_date" ColumnName="request_date" />
-                <ScalarProperty Name="approved_by" ColumnName="approved_by" />
                 <ScalarProperty Name="approve_date" ColumnName="approve_date" />
                 <ScalarProperty Name="assign_to" ColumnName="assign_to" />
                 <ScalarProperty Name="closed_date" ColumnName="closed_date" />
@@ -1445,6 +1492,7 @@
           <EntitySetMapping Name="t_souvernir">
             <EntityTypeMapping TypeName="MarkomApplicationDBModel.t_souvernir">
               <MappingFragment StoreEntitySet="t_souvernir">
+                <ScalarProperty Name="approve_by" ColumnName="approve_by" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="type" ColumnName="type" />
@@ -1452,7 +1500,6 @@
                 <ScalarProperty Name="request_by" ColumnName="request_by" />
                 <ScalarProperty Name="request_date" ColumnName="request_date" />
                 <ScalarProperty Name="request_due_date" ColumnName="request_due_date" />
-                <ScalarProperty Name="approved_by" ColumnName="approved_by" />
                 <ScalarProperty Name="approve_date" ColumnName="approve_date" />
                 <ScalarProperty Name="receive_by" ColumnName="receive_by" />
                 <ScalarProperty Name="receive_date" ColumnName="receive_date" />
@@ -1646,10 +1693,24 @@
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="request_by" ColumnName="request_by" />
+                <ScalarProperty Name="assign_to" ColumnName="assign_to" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spEventUpdate" FunctionName="MarkomApplicationDBModel.Store.spEventUpdate" />
+          <FunctionImportMapping FunctionImportName="spEmployeeCountCode" FunctionName="MarkomApplicationDBModel.Store.spEmployeeCountCode" />
+          <FunctionImportMapping FunctionImportName="spGetEmpNameStaff" FunctionName="MarkomApplicationDBModel.Store.spGetEmpNameStaff">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spGetEmpNameStaff_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEventApprove" FunctionName="MarkomApplicationDBModel.Store.spEventApprove" />
+          <FunctionImportMapping FunctionImportName="spEventReject" FunctionName="MarkomApplicationDBModel.Store.spEventReject" />
+          <FunctionImportMapping FunctionImportName="spEventClose" FunctionName="MarkomApplicationDBModel.Store.spEventClose" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

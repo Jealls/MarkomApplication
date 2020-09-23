@@ -205,6 +205,7 @@
     <EntitySetMapping Name="t_event">
       <EntityTypeMapping TypeName="MarkomApplicationDBModel.t_event">
         <MappingFragment StoreEntitySet="t_event">
+          <ScalarProperty Name="approve_by" ColumnName="approve_by" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="event_name" ColumnName="event_name" />
@@ -214,7 +215,6 @@
           <ScalarProperty Name="budget" ColumnName="budget" />
           <ScalarProperty Name="request_by" ColumnName="request_by" />
           <ScalarProperty Name="request_date" ColumnName="request_date" />
-          <ScalarProperty Name="approved_by" ColumnName="approved_by" />
           <ScalarProperty Name="approve_date" ColumnName="approve_date" />
           <ScalarProperty Name="assign_to" ColumnName="assign_to" />
           <ScalarProperty Name="closed_date" ColumnName="closed_date" />
@@ -521,9 +521,23 @@
           <ScalarProperty Name="note" ColumnName="note" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="request_by" ColumnName="request_by" />
+          <ScalarProperty Name="assign_to" ColumnName="assign_to" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spEventUpdate" FunctionName="MarkomApplicationDBModel.Store.spEventUpdate" />
+    <FunctionImportMapping FunctionImportName="spEmployeeCountCode" FunctionName="MarkomApplicationDBModel.Store.spEmployeeCountCode" />
+    <FunctionImportMapping FunctionImportName="spGetEmpNameStaff" FunctionName="MarkomApplicationDBModel.Store.spGetEmpNameStaff">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spGetEmpNameStaff_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEventApprove" FunctionName="MarkomApplicationDBModel.Store.spEventApprove" />
+    <FunctionImportMapping FunctionImportName="spEventReject" FunctionName="MarkomApplicationDBModel.Store.spEventReject" />
+    <FunctionImportMapping FunctionImportName="spEventClose" FunctionName="MarkomApplicationDBModel.Store.spEventClose" />
   </EntityContainerMapping>
 </Mapping>

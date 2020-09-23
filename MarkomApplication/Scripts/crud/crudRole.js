@@ -283,7 +283,8 @@ $(document).on("click", "#btn_del_role", function () {
 
 //BTN DELETE ROLE
 $(document).on("click", "#confirm_del_data", function () {
-
+    var thi = $(this).data('id');
+    debugger;
     $.ajax({
         type: 'POST',
         url: "/Role/DeleteDataRole",

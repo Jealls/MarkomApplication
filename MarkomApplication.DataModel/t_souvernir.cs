@@ -21,7 +21,6 @@ namespace MarkomApplication.DataModel
         public int request_by { get; set; }
         public Nullable<System.DateTime> request_date { get; set; }
         public Nullable<System.DateTime> request_due_date { get; set; }
-        public Nullable<int> approved_by { get; set; }
         public Nullable<System.DateTime> approve_date { get; set; }
         public Nullable<int> receive_by { get; set; }
         public Nullable<System.DateTime> receive_date { get; set; }
@@ -37,5 +36,6 @@ namespace MarkomApplication.DataModel
         public Nullable<System.DateTime> create_date { get; set; }
         public string update_by { get; set; }
         public Nullable<System.DateTime> update_date { get; set; }
+        public Nullable<int> approve_by { get; set; }
     }
 }
