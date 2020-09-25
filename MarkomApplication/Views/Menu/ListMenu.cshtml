@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MarkomApplication.ViewModel.MenuViewModel>
+@Styles.Render("~/Content/dropdown-autocomplete")
+
+@{
+    ViewBag.Title = "ListMenu";
+}
+
+
+
+
+<div class="container rounded-top border border-primary">
+
+    <div class="row rounded-top list-head ">
+        <p>List Menu</p>
+    </div>
+    <div class="row mx-2">
+        <p class="p-2 my-3 bg-light text-dark" style="width:100%;">
+            <a>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active" })</a> /
+            <a>@Html.ActionLink("Master", "Index", "Home", null, new { @class = "active" })</a> /
+            List Menu
+        </p>
+        <div class="py-2" style="width:100%;">
+            <a class="btn btn-primary active" id="btn_add_menu" role="button" aria-pressed="true" style="float: right;" data-url="@Url.Action("AddMenu", "Menu")">Add</a>
+        </div>
+
+        <div class="row search_group" style="width:100%">
+            <div class="input-group">
+                <div class="form-group">
+                    <input type="text" id="dropdown_code_menu" name="DropdownCode" class="form-control rounded" placeholder="- Select Menu Code -">
+                    <input type="hidden" id="dropdown_code_menu_id" name="MenuCodeDropdown" />
+                </div>
+                <div class="form-group">
+                    <input type="text" id="dropdown_name_menu" name="DropdownName" class="form-control rounded" placeholder="- Select Menu Name -">
+                    <input type="hidden" id="dropdown_name_menu_id" name="MenuNameDropdown" />
+                </div>
+                <div class="form-group" style="max-width:220px;">
+                    <div class="has-feedback">
+                        <input id="created_date" class="form-control datepicker-here" data-date-format="dd/mm/yyyy" placeholder="Created" />
+                        <i class="fa fa-calendar form-control-feedback"></i>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:220px;">
+                    <input id="created_by" type="text" class="form-control rounded" placeholder="Created By" name="src_created_menu" />
+                </div>
+
+                <div class="form-group" style="margin-right:0; ">
+                    <button class="btn" id="btn_search_menu" name="btn_search_menu" data-url="@Url.Action("Index", "Menu")"> &nbsp;Cari</button>
+                </div>
+            </div>
+        </div>
+        <table id="tbl_list_menu" class="table">
+        </table>
+    </div>
+</div>
+
+
+@Html.Partial("_ModalPopUp")
+@section Scripts{
+    <script src="~/Scripts/datepicker.js"></script>
+    <script src="~/Scripts/datepicker.min.js"></script>
+    <script src="~/Scripts/i18n/datepicker.en.js"></script>
+    <script src="~/Scripts/crud/crudMenu.js"></script>
+    <script src="~/Scripts/validation/validate-menu.js"></script>
+    
+}
+@Html.Partial("_AlertPopUp")
+

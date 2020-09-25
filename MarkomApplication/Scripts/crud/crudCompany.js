@@ -88,7 +88,7 @@ $(function () {
             });
         },
         select: function (e, i) {
-            $("#dropdown_company_id").val(i.item.id);
+            $("#dropdown_company_id_name").val(i.item.id);
         },
         minLength: 1
     }).focus(function (event, ui) {
@@ -146,7 +146,7 @@ $(document).on("click", "#btn_save_company", function () {
                     fcAlertBlue(msg);
 
                 } else {
-                    fcAlertRed(result.message);
+                    fcAlertRedNonReload(result.message);
                     //fcAlertDataExist("#warning_alert_exist", result.message);
                 }
             }
@@ -224,7 +224,7 @@ $(document).on("click", "#confirm_update_company", function () {
              } else {
 
                  $("#modal_confirm_up_company").modal("hide");
-                 fcAlertRed(result.message);
+                 fcAlertRedNonReload(result.message);
              }
          }
      });
@@ -278,10 +278,15 @@ $(document).on("click", "#confirm_del_company", function () {
             paramId: $(this).data('id')
         },
         success: function (result) {
-            $("#modal_confirm_del_company").modal("hide");
+            if (result.success) {
+                $("#modal_confirm_del_company").modal("hide");
 
-            var msg = "<strong>Data Deleted!</strong> Data company with code " + result.latestCode.bold() + " has been deleted !";
-            fcAlertBlue(msg);
+                var msg = "<strong>Data Deleted!</strong> Data company with code " + result.latestCode.bold() + " has been deleted !";
+                fcAlertBlue(msg);
+
+            } else {
+                fcAlertRedNonReload(result.message);
+            }
         }
     });
 });

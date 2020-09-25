@@ -509,6 +509,45 @@
       <Parameter Name="Status" Mode="In" Type="Int32" />
       <Parameter Name="CloseDate" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="spMenuCode" ReturnType="Collection(MarkomApplicationDBModel.spMenuCode_Result)">
+      <Parameter Name="Prefix" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spMenuName" ReturnType="Collection(MarkomApplicationDBModel.spMenuName_Result)">
+      <Parameter Name="Prefix" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spMenuSearch" ReturnType="Collection(MarkomApplicationDBModel.spMenuSearch_Result)">
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+      <Parameter Name="CreateBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spMenuParent" ReturnType="Collection(MarkomApplicationDBModel.spMenuParent_Result)">
+      <Parameter Name="Prefix" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spCompanyCountName" ReturnType="Collection(Int32)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spMenuCountName" ReturnType="Collection(Int32)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spMenuDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spMenuDetailByID_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spMenuUpdate">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="MenuName" Mode="In" Type="String" />
+      <Parameter Name="Controller" Mode="In" Type="String" />
+      <Parameter Name="ParentId" Mode="In" Type="Int32" />
+      <Parameter Name="UpdateBy" Mode="In" Type="String" />
+      <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spRoleCountName" ReturnType="Collection(Int32)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spMenuDelete">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="IdNumber" Mode="InOut" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="spCompanyList_Result">
     <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
@@ -647,5 +686,31 @@
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spMenuCode_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spMenuName_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spMenuSearch_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="spMenuParent_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spMenuDetailByID_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="parent_id" Nullable="true" />
+    <Property Type="String" Name="controller" Nullable="false" MaxLength="150" />
   </ComplexType>
 </Schema>

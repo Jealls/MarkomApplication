@@ -192,7 +192,7 @@ $(document).on("click", "#btn_save_employee", function () {
                     fcAlertBlue(msg);
 
                 } else {
-                    fcAlertRed(result.message);
+                    fcAlertRedNonReload(result.message);
                 }
             }
 
@@ -302,7 +302,7 @@ $(document).on("click", "#save_update_employee", function () {
                     fcAlertBlue(msg);
 
                 } else {
-                    fcAlertRed(result.message);
+                    fcAlertRedNonReload(result.message);
                 }
             }
 
@@ -358,9 +358,16 @@ $(document).on("click", "#confirm_del_data", function () {
             paramId: $(this).data('id')
         },
         success: function (result) {
-            $("#modal_confirm_del").modal("hide");
-            var msg = "<strong>Data Deleted!</strong> Data employee with Employee ID Number " + result.latestCode.bold() + " has been deleted !";
-            fcAlertBlue(msg);
+            if (result.success) {
+
+                $("#modal_confirm_del").modal("hide");
+
+                var msg = "<strong>Data Deleted!</strong> Data employee with Employee ID Number " + result.latestCode.bold() + " has been deleted !";
+                fcAlertBlue(msg);
+
+            } else {
+                fcAlertRedNonReload(result.message);
+            }
         }
     });
 });

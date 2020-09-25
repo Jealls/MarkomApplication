@@ -327,6 +327,9 @@
     <Property Name="update_by" Type="varchar" MaxLength="50" />
     <Property Name="update_date" Type="datetime" />
   </EntityType>
+  <Function Name="spCompanyCountName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="spCompanyDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
     <Parameter Name="Code" Type="varchar(max)" Mode="InOut" />
@@ -446,8 +449,44 @@
     <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
   </Function>
   <Function Name="spGetEmpNameStaff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spMenuCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Prefix" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spMenuCountName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spMenuDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="IdNumber" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="spMenuDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spMenuName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Prefix" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spMenuParent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Prefix" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spMenuSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="date" Mode="In" />
+    <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spMenuUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="MenuName" Type="varchar" Mode="In" />
+    <Parameter Name="Controller" Type="varchar" Mode="In" />
+    <Parameter Name="ParentId" Type="int" Mode="In" />
+    <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
+    <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="spRoleCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Prefix" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spRoleCountName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
   </Function>
   <Function Name="spRoleDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />

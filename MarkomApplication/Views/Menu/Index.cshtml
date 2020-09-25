@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MarkomApplication.ViewModel.MenuViewModel>
+
+
+<tr>
+    <th>
+        @Html.DisplayNameFor(model => model.code)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.name)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.createDate)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.createBy)
+    </th>
+    <th>Action</th>
+</tr>
+@if (Model != null)
+{
+
+    if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="7" style="text-align:center;" class="bg-light">Data tidak ditemukan</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.createDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.createBy)
+                </td>
+                <td>
+                    <button title="Tampilkan" id="btn_view_menu" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ViewMenu", "Menu")">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                    <button title="Ubah" id="btn_edit_menu" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("EditMenu", "Menu")">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    <button title="Hapus" id="btn_del_menu" class="btn " data-id="@item.id" style="margin:2px; padding:2px;">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    }
+}

@@ -91,7 +91,7 @@ $(document).on("click", "#btn_save_event", function () {
                     fcAlertBlue(msg);
 
                 } else {
-                    fcAlertRed(result.message);
+                    fcAlertRedNonReload(result.message);
                 }
             },
             error: function (result) {
@@ -211,7 +211,7 @@ $(document).on("click", "#save_update_event", function () {
                         fcAlertBlue(msg);
 
                     } else {
-                        fcAlertRed(result.message);
+                        fcAlertRedNonReload(result.message);
                     }
                 }
 
@@ -323,6 +323,8 @@ $(document).on("click", "#confirm_reject", function () {
 
                     var msg = "<strong>Data Rejected!</strong> Transaction event request with code" + result.latestCode.bold() + " is rejected by Administator!";
                     fcAlertRed(msg);
+                } else {
+                    fcAlertRedNonReload(result.message);
                 }
             }
         });
@@ -353,6 +355,8 @@ $(document).on("click", "#close_req_event", function () {
                     var msg = "<strong>Data Closed!</strong> Transaction event request with code" + result.latestCode.bold() + " has been close request !";
                     fcAlertBlue(msg);
 
+                } else {
+                    fcAlertRedNonReload(result.message);
                 }
             }
         });

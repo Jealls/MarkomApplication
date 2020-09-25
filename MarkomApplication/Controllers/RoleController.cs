@@ -33,9 +33,9 @@ namespace MarkomApplication.Controllers
                 paramAddRole.createDate = DateTime.Now;
 
 
-                bool nameV = RoleDataAccess.NameValidation(paramAddRole.name);
+                int? nameV = RoleDataAccess.NameValidation(paramAddRole.name);
 
-                if (!nameV)
+                if (nameV == 0)
                 {
                     string latestCode = RoleDataAccess.CreateRole(paramAddRole);
 
@@ -84,9 +84,9 @@ namespace MarkomApplication.Controllers
                 paramEditRole.updateBy = "Tian";
                 paramEditRole.updateDate = DateTime.Now;
                 
-                bool nameV = RoleDataAccess.NameValidation(paramEditRole.name);
+                int? nameV = RoleDataAccess.NameValidation(paramEditRole.name);
 
-                if (!nameV)
+                if (nameV <= 1)
                 {
                     if (RoleDataAccess.UpdateRole(paramEditRole))
                     {

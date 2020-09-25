@@ -590,5 +590,127 @@ namespace MarkomApplication.DataModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEventClose", idParameter, code, statusParameter, closeDateParameter);
         }
+    
+        public virtual ObjectResult<spMenuCode_Result> spMenuCode(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spMenuCode_Result>("spMenuCode", prefixParameter);
+        }
+    
+        public virtual ObjectResult<spMenuName_Result> spMenuName(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spMenuName_Result>("spMenuName", prefixParameter);
+        }
+    
+        public virtual ObjectResult<spMenuSearch_Result> spMenuSearch(string code, string name, Nullable<System.DateTime> createDate, string createBy)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var createDateParameter = createDate.HasValue ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(System.DateTime));
+    
+            var createByParameter = createBy != null ?
+                new ObjectParameter("CreateBy", createBy) :
+                new ObjectParameter("CreateBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spMenuSearch_Result>("spMenuSearch", codeParameter, nameParameter, createDateParameter, createByParameter);
+        }
+    
+        public virtual ObjectResult<spMenuParent_Result> spMenuParent(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spMenuParent_Result>("spMenuParent", prefixParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spCompanyCountName(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spCompanyCountName", nameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spMenuCountName(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spMenuCountName", nameParameter);
+        }
+    
+        public virtual ObjectResult<spMenuDetailByID_Result> spMenuDetailByID(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spMenuDetailByID_Result>("spMenuDetailByID", idParameter);
+        }
+    
+        public virtual int spMenuUpdate(Nullable<int> id, string menuName, string controller, Nullable<int> parentId, string updateBy, Nullable<System.DateTime> updateDate)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var menuNameParameter = menuName != null ?
+                new ObjectParameter("MenuName", menuName) :
+                new ObjectParameter("MenuName", typeof(string));
+    
+            var controllerParameter = controller != null ?
+                new ObjectParameter("Controller", controller) :
+                new ObjectParameter("Controller", typeof(string));
+    
+            var parentIdParameter = parentId.HasValue ?
+                new ObjectParameter("ParentId", parentId) :
+                new ObjectParameter("ParentId", typeof(int));
+    
+            var updateByParameter = updateBy != null ?
+                new ObjectParameter("UpdateBy", updateBy) :
+                new ObjectParameter("UpdateBy", typeof(string));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spMenuUpdate", idParameter, menuNameParameter, controllerParameter, parentIdParameter, updateByParameter, updateDateParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spRoleCountName(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spRoleCountName", nameParameter);
+        }
+    
+        public virtual int spMenuDelete(Nullable<int> id, ObjectParameter idNumber)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spMenuDelete", idParameter, idNumber);
+        }
     }
 }

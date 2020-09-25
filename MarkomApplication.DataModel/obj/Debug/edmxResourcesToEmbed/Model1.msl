@@ -539,5 +539,56 @@
     <FunctionImportMapping FunctionImportName="spEventApprove" FunctionName="MarkomApplicationDBModel.Store.spEventApprove" />
     <FunctionImportMapping FunctionImportName="spEventReject" FunctionName="MarkomApplicationDBModel.Store.spEventReject" />
     <FunctionImportMapping FunctionImportName="spEventClose" FunctionName="MarkomApplicationDBModel.Store.spEventClose" />
+    <FunctionImportMapping FunctionImportName="spMenuCode" FunctionName="MarkomApplicationDBModel.Store.spMenuCode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spMenuCode_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spMenuName" FunctionName="MarkomApplicationDBModel.Store.spMenuName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spMenuName_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spMenuSearch" FunctionName="MarkomApplicationDBModel.Store.spMenuSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spMenuSearch_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spMenuParent" FunctionName="MarkomApplicationDBModel.Store.spMenuParent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spMenuParent_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spCompanyCountName" FunctionName="MarkomApplicationDBModel.Store.spCompanyCountName" />
+    <FunctionImportMapping FunctionImportName="spMenuCountName" FunctionName="MarkomApplicationDBModel.Store.spMenuCountName" />
+    <FunctionImportMapping FunctionImportName="spMenuDetailByID" FunctionName="MarkomApplicationDBModel.Store.spMenuDetailByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spMenuDetailByID_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+          <ScalarProperty Name="controller" ColumnName="controller" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spMenuUpdate" FunctionName="MarkomApplicationDBModel.Store.spMenuUpdate" />
+    <FunctionImportMapping FunctionImportName="spRoleCountName" FunctionName="MarkomApplicationDBModel.Store.spRoleCountName" />
+    <FunctionImportMapping FunctionImportName="spMenuDelete" FunctionName="MarkomApplicationDBModel.Store.spMenuDelete" />
   </EntityContainerMapping>
 </Mapping>

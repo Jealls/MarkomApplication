@@ -275,13 +275,16 @@ namespace MarkomApplication.DataAccess
         }
 
 
-        public static bool NameValidation(string name)
+        public static int? NameValidation(string name)
         {
+            int? result = 0;
             using (var db = new MarkomApplicationDBEntities())
             {
-                var result = db.m_company.Any(u => u.name.ToLower() == name.ToLower());
-                return result;
+                var res = db.spCompanyCountName(name).FirstOrDefault();
+                result = res;
             }
+
+            return result;
         }
 
 

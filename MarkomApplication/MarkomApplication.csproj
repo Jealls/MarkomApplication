@@ -134,6 +134,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -214,6 +215,7 @@
     <Content Include="Scripts\crud\crudCompany.js" />
     <Content Include="Scripts\crud\crudEmployee.js" />
     <Content Include="Scripts\crud\crudEvent.js" />
+    <Content Include="Scripts\crud\crudMenu.js" />
     <Content Include="Scripts\crud\crudRole.js" />
     <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\datepicker.min.js" />
@@ -243,9 +245,11 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\menu-dropdown.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\validation\validate-employee.js" />
     <Content Include="Scripts\validation\validate-event.js" />
+    <Content Include="Scripts\validation\validate-menu.js" />
     <Content Include="Scripts\validation\validate-role.js" />
     <Content Include="Scripts\validation\validate.Company.js" />
     <Content Include="Web.config" />
@@ -286,6 +290,11 @@
     <Content Include="Views\Event\EditEvent.cshtml" />
     <Content Include="Views\Event\ApproveEvent.cshtml" />
     <Content Include="Views\Event\CloseRequestEvent.cshtml" />
+    <Content Include="Views\Menu\ListMenu.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Menu\AddMenu.cshtml" />
+    <Content Include="Views\Menu\EditMenu.cshtml" />
+    <Content Include="Views\Menu\ViewMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

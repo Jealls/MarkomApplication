@@ -8,7 +8,6 @@ var ProgressHtml = '<div class="progress progress-striped active" style="margina
 
 
 //DOCUMENT READY
-
 $(document).ready(function () {
 
     $.ajax({
@@ -145,7 +144,7 @@ $(document).on("click", "#btn_save_role", function () {
                     fcAlertBlue(msg);
 
                 } else {
-                    fcAlertRed(result.message);
+                    fcAlertRedNonReload(result.message);
                 }
             }
 
@@ -205,7 +204,7 @@ $(document).on("click", "#btn_edit_role", function () {
     });
 });
 
-//SAVE EDIT EMPLOYEE
+//SAVE EDIT ROLE
 $(document).on("click", "#save_update_role", function () {
     var vjsName = $("#name").val();
     var vjsDesc = $("#description").val();
@@ -235,7 +234,7 @@ $(document).on("click", "#save_update_role", function () {
                     fcAlertBlue(msg);
 
                 } else {
-                    fcAlertRed(result.message);
+                    fcAlertRedNonReload(result.message);
                 }
             }
 
@@ -243,7 +242,7 @@ $(document).on("click", "#save_update_role", function () {
     }
 });
 
-//VIEW EMPLOYE DETAIL
+//VIEW ROLE DETAIL
 $(document).on("click", "#btn_view_role", function () {
 
     $("#modal_form_md").modal("show");
@@ -288,10 +287,16 @@ $(document).on("click", "#confirm_del_data", function () {
             paramId: $(this).data('id')
         },
         success: function (result) {
-            $("#modal_confirm_del").modal("hide");
 
-            var msg = "<strong>Data Deleted!</strong> Data role with code " + result.latestCode.bold() + " has been deleted !";
-            fcAlertBlue(msg);
+            if (result.success) {
+
+                $("#modal_confirm_del").modal("hide");
+
+                var msg = "<strong>Data Deleted!</strong> Data role with code " + result.latestCode.bold() + " has been deleted !";
+                fcAlertBlue(msg);
+            } else {
+                fcAlertRedNonReload(result.message);
+            }
         }
     });
 });

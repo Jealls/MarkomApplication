@@ -32,3 +32,12 @@ function fcAlertRed(vjsMsg) {
     }, 1800);
 }
 
+function fcAlertRedNonReload(vjsMsg) {
+
+    $("#alert_red").removeClass('d-none');
+    document.querySelector("#txt_alert_red").innerHTML = vjsMsg;
+
+    setTimeout(function () {
+        $("#alert_red").addClass('d-none');
+    }, 1800);
+}

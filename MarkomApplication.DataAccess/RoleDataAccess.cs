@@ -145,13 +145,16 @@ namespace MarkomApplication.DataAccess
             return latestSaveCode;
         }
 
-        public static bool NameValidation(string name)
+        public static int? NameValidation(string name)
         {
+            int? result = 0;
             using (var db = new MarkomApplicationDBEntities())
             {
-                var result = db.m_role.Any(u => u.name.ToLower() == name.ToLower());
-                return result;
+                var res = db.spRoleCountName(name).FirstOrDefault();
+                result = res;
             }
+
+            return result;
         }
 
         public static List<RoleViewModel> SearchStringRoleCode(string prefix)

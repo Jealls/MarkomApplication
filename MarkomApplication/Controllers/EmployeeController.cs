@@ -56,7 +56,7 @@ namespace MarkomApplication.Controllers
                 
                 int? numberV = EmployeeDataAccess.NumberValidation(paramAddEmployee.code);
                 
-                if (numberV < 1)
+                if (numberV == 0)
                 {
                     string latestCode = EmployeeDataAccess.CreateEmployee(paramAddEmployee);
 

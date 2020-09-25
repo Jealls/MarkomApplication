@@ -43,8 +43,9 @@ namespace MarkomApplication.Controllers
                 paramAddCompany.createBy = "Anastasia";
                 paramAddCompany.createDate = DateTime.Now;
 
-                bool nameV = CompanyDataAccess.NameValidation(paramAddCompany.name);
-                if (!nameV)
+                int? nameV = CompanyDataAccess.NameValidation(paramAddCompany.name);
+
+                if (nameV == 0)
                 {
                     string latestCode = CompanyDataAccess.CreateCompany(paramAddCompany);
 
@@ -85,8 +86,8 @@ namespace MarkomApplication.Controllers
                 //update data manual createby and createdate
                 paramEditCompany.updateBy = "Tian";
                 paramEditCompany.updateDate = DateTime.Now;
-                bool nameV = CompanyDataAccess.NameValidation(paramEditCompany.name);
-                if (!nameV)
+                int? nameV = CompanyDataAccess.NameValidation(paramEditCompany.name);
+                if (nameV <= 1)
                 {
                     if (CompanyDataAccess.UpdateCompany(paramEditCompany))
                     {
