@@ -712,5 +712,78 @@ namespace MarkomApplication.DataModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spMenuDelete", idParameter, idNumber);
         }
+    
+        public virtual ObjectResult<Nullable<int>> spUnitCountName(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spUnitCountName", nameParameter);
+        }
+    
+        public virtual int spUnitDelete(Nullable<int> id, ObjectParameter idNumber)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUnitDelete", idParameter, idNumber);
+        }
+    
+        public virtual ObjectResult<spUnitDetailByID_Result> spUnitDetailByID(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spUnitDetailByID_Result>("spUnitDetailByID", idParameter);
+        }
+    
+        public virtual ObjectResult<spUnitSearch_Result> spUnitSearch(string code, string name, Nullable<System.DateTime> createDate, string createBy)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var createDateParameter = createDate.HasValue ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(System.DateTime));
+    
+            var createByParameter = createBy != null ?
+                new ObjectParameter("CreateBy", createBy) :
+                new ObjectParameter("CreateBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spUnitSearch_Result>("spUnitSearch", codeParameter, nameParameter, createDateParameter, createByParameter);
+        }
+    
+        public virtual int spUnitUpdate(Nullable<int> id, string unitName, string description, string updateBy, Nullable<System.DateTime> updateDate)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var unitNameParameter = unitName != null ?
+                new ObjectParameter("UnitName", unitName) :
+                new ObjectParameter("UnitName", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var updateByParameter = updateBy != null ?
+                new ObjectParameter("UpdateBy", updateBy) :
+                new ObjectParameter("UpdateBy", typeof(string));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUnitUpdate", idParameter, unitNameParameter, descriptionParameter, updateByParameter, updateDateParameter);
+        }
     }
 }

@@ -534,6 +534,29 @@
           <Parameter Name="ColumnName" Type="varchar" Mode="In" />
           <Parameter Name="TableName" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spUnitCountName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spUnitDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="IdNumber" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="spUnitDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spUnitSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="date" Mode="In" />
+          <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spUnitUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="UnitName" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+        </Function>
         <EntityContainer Name="MarkomApplicationDBModelStoreContainer">
           <EntitySet Name="m_company" EntityType="Self.m_company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="m_employee" EntityType="Self.m_employee" Schema="dbo" store:Type="Tables" />
@@ -1106,6 +1129,29 @@
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="IdNumber" Mode="InOut" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spUnitCountName" ReturnType="Collection(Int32)">
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spUnitDelete">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="IdNumber" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spUnitDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spUnitDetailByID_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spUnitSearch" ReturnType="Collection(MarkomApplicationDBModel.spUnitSearch_Result)">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spUnitUpdate">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="UnitName" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="UpdateBy" Mode="In" Type="String" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spCompanyList_Result">
           <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
@@ -1271,6 +1317,20 @@
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="parent_id" Nullable="true" />
           <Property Type="String" Name="controller" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="spUnitDetailByID_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="spUnitSearch_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1868,6 +1928,31 @@
           <FunctionImportMapping FunctionImportName="spMenuUpdate" FunctionName="MarkomApplicationDBModel.Store.spMenuUpdate" />
           <FunctionImportMapping FunctionImportName="spRoleCountName" FunctionName="MarkomApplicationDBModel.Store.spRoleCountName" />
           <FunctionImportMapping FunctionImportName="spMenuDelete" FunctionName="MarkomApplicationDBModel.Store.spMenuDelete" />
+          <FunctionImportMapping FunctionImportName="spUnitCountName" FunctionName="MarkomApplicationDBModel.Store.spUnitCountName" />
+          <FunctionImportMapping FunctionImportName="spUnitDelete" FunctionName="MarkomApplicationDBModel.Store.spUnitDelete" />
+          <FunctionImportMapping FunctionImportName="spUnitDetailByID" FunctionName="MarkomApplicationDBModel.Store.spUnitDetailByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spUnitDetailByID_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spUnitSearch" FunctionName="MarkomApplicationDBModel.Store.spUnitSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spUnitSearch_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="create_by" ColumnName="create_by" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spUnitUpdate" FunctionName="MarkomApplicationDBModel.Store.spUnitUpdate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

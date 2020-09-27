@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MarkomApplication.ViewModel.MenuViewModel>
+﻿@model IEnumerable<MarkomApplication.ViewModel.UnitViewModel>
 
 
 <tr>
@@ -9,10 +9,10 @@
         @Html.DisplayNameFor(model => model.name)
     </th>
     <th>
-        @Html.DisplayNameFor(model => model.createDate)
+        @Html.DisplayNameFor(model => model.createBy)
     </th>
     <th>
-        @Html.DisplayNameFor(model => model.createBy)
+        @Html.DisplayNameFor(model => model.createDate)
     </th>
     <th>Action</th>
 </tr>
@@ -37,23 +37,24 @@
                     @Html.DisplayFor(modelItem => item.name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.createDate)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.createBy)
                 </td>
                 <td>
-                    <button title="Tampilkan" id="btn_view_menu" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ViewMenu", "Menu")">
+                    @Html.DisplayFor(modelItem => item.createDate)
+                </td>
+                <td>
+                    <button title="Tampilkan" id="btn_view_unit" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ViewUnit", "Unit")">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
-                    <button title="Ubah" id="btn_edit_menu" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("EditMenu", "Menu")">
+                    <button title="Ubah" id="btn_edit_unit" class="btn " data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("EditUnit", "Unit")">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </button>
-                    <button title="Hapus" id="btn_del_menu" class="btn " data-id="@item.id" style="margin:2px; padding:2px;">
+                    <button title="Hapus" id="btn_del_unit" class="btn " data-id="@item.id" style="margin:2px; padding:2px;">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </td>
             </tr>
         }
+
     }
 }

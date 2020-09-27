@@ -548,6 +548,29 @@
       <Parameter Name="Id" Mode="In" Type="Int32" />
       <Parameter Name="IdNumber" Mode="InOut" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="spUnitCountName" ReturnType="Collection(Int32)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spUnitDelete">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="IdNumber" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spUnitDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spUnitDetailByID_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spUnitSearch" ReturnType="Collection(MarkomApplicationDBModel.spUnitSearch_Result)">
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+      <Parameter Name="CreateBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spUnitUpdate">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="UnitName" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="UpdateBy" Mode="In" Type="String" />
+      <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="spCompanyList_Result">
     <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
@@ -713,5 +736,19 @@
     <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="parent_id" Nullable="true" />
     <Property Type="String" Name="controller" Nullable="false" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="spUnitDetailByID_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="spUnitSearch_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
   </ComplexType>
 </Schema>

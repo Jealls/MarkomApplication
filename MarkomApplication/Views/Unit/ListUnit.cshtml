@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MarkomApplication.ViewModel.UnitViewModel>
+
+@Styles.Render("~/Content/dropdown-autocomplete")
+
+@{
+    ViewBag.Title = "ListUnit";
+}
+
+
+
+
+<div class="container rounded-top border border-primary">
+
+    <div class="row rounded-top list-head ">
+        <p>List Unit</p>
+    </div>
+    <div class="row mx-2">
+        <p class="p-2 my-3 bg-light text-dark" style="width:100%;">
+            <a>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active" })</a> /
+            <a>@Html.ActionLink("Master", "Index", "Home", null, new { @class = "active" })</a> /
+            List Unit
+        </p>
+        <div class="py-2" style="width:100%;">
+            <a class="btn btn-primary active" id="btn_add_unit" role="button" aria-pressed="true" style="float: right;" data-url="@Url.Action("AddUnit", "Unit")">Add</a>
+        </div>
+
+        <div class="row search_group" style="width:100%">
+            <div class="input-group">
+                <div class="form-group">
+                    <input type="text" id="dropdown_code_unit" name="DropdownCode" class="form-control rounded" placeholder="- Select Unit Code -">
+                    <input type="hidden" id="dropdown_code_unit_id" name="UnitCodeDropdown" />
+                </div>
+                <div class="form-group">
+                    <input type="text" id="dropdown_name_unit" name="DropdownName" class="form-control rounded" placeholder="- Select Unit Name -">
+                    <input type="hidden" id="dropdown_name_unit_id" name="UnitNameDropdown" />
+                </div>
+                <div class="form-group" style="max-width:220px;">
+                    <div class="has-feedback">
+                        <input id="created_date" class="form-control datepicker-here" data-date-format="dd/mm/yyyy" placeholder="Created" />
+                        <i class="fa fa-calendar form-control-feedback"></i>
+                    </div>
+                </div>
+                <div class="form-group" style="max-width:220px;">
+                    <input id="created_by" type="text" class="form-control rounded" placeholder="Created By" name="src_created_unit" />
+                </div>
+
+                <div class="form-group" style="margin-right:0; ">
+                    <button class="btn" id="btn_search_unit" name="btn_search_unit" data-url="@Url.Action("Index", "Unit")"> &nbsp;Cari</button>
+                </div>
+            </div>
+        </div>
+        <table id="tbl_list_unit" class="table">
+        </table>
+    </div>
+</div>
+
+
+@Html.Partial("_ModalPopUp")
+@section Scripts{
+    <script src="~/Scripts/datepicker.js"></script>
+    <script src="~/Scripts/datepicker.min.js"></script>
+    <script src="~/Scripts/i18n/datepicker.en.js"></script>
+    <script src="~/Scripts/crud/crudUnit.js"></script>
+    <script src="~/Scripts/validation/validate-unit.js"></script>
+
+}
+@Html.Partial("_AlertPopUp")

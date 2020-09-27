@@ -529,6 +529,29 @@
     <Parameter Name="ColumnName" Type="varchar" Mode="In" />
     <Parameter Name="TableName" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="spUnitCountName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spUnitDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="IdNumber" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="spUnitDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUnitSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="date" Mode="In" />
+    <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spUnitUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="UnitName" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+    <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
+    <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+  </Function>
   <EntityContainer Name="MarkomApplicationDBModelStoreContainer">
     <EntitySet Name="m_company" EntityType="Self.m_company" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="m_employee" EntityType="Self.m_employee" Schema="dbo" store:Type="Tables" />
