@@ -98,6 +98,8 @@ $(function () {
 
 
 
+
+
 //MODAL ADD MENU SHOW
 $(document).on("click", "#btn_add_menu", function () {
 
@@ -105,12 +107,57 @@ $(document).on("click", "#btn_add_menu", function () {
     $(".modal_title_form_md").html("Add Menu");
     $("#modal_body_md").html(ProgressHtml);
 
-
+    debugger;
     $.ajax({
         url: $("#btn_add_menu").data('url'),
         type: 'get',
         success: function (result) {
             $("#modal_body_md").html(result);
+
+
+
+            $(function () {
+                $("#parentName").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: '/Menu/AutoCompleteMenuParent/',
+                            selectFirst: true,
+                            data: "{ 'prefix': '" + request.term + "'}",
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        value: item.parentName,
+                                        parentName: item.parentName,
+                                        parentId: item.parentId
+                                    };
+                                    //return item.parentName;
+                                }));
+                            },
+                            error: function (response) {
+                                alert(response.responseText);
+                            },
+                            failure: function (response) {
+                                alert(response.responseText);
+                            }
+                        });
+                    },
+                    select: function (e, i) {
+                        $("#parentId").val(i.item.parentId);
+                    },
+                    minLength: 1
+                }).focus(function (event, ui) {
+                    $(".ui-helper-hidden-accessible").hide();
+                    event.preventDefault();
+                    //$(this).autocomplete("search");
+                });
+            });
+
+
+
+
         }
     });
 });
@@ -120,7 +167,7 @@ $(document).on("click", "#btn_save_menu", function () {
 
     var vjsName = $("#name").val();
     var vjsController = $("#controller").val();
-    var vjsParent = parseInt($("#parentName").val()) ? parseInt($("#parentName").val()) : 0;
+    var vjsParent = parseInt($("#parentId").val()) ? parseInt($("#parentId").val()) : 0;
     debugger;
 
     validationName(vjsName);
@@ -187,7 +234,7 @@ $(document).on("click", "#btn_search_menu", function () {
 
 
 
-//BTN SHOW EDIT ROLE
+//BTN SHOW EDIT MENUN
 $(document).on("click", "#btn_edit_menu", function () {
 
     $("#modal_form_md").modal("show");
@@ -206,11 +253,56 @@ $(document).on("click", "#btn_edit_menu", function () {
             var vjsName = $("#name").val();
             var vjsCode = $("#code").val();
             $(".modal_title_form_md").html("Edit Menu - " + vjsName + " (" + vjsCode + ")");
+
+
+
+
+            $(function () {
+                $("#parentName").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: '/Menu/AutoCompleteMenuParent/',
+                            selectFirst: true,
+                            data: "{ 'prefix': '" + request.term + "'}",
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        value: item.parentName,
+                                        parentName: item.parentName,
+                                        parentId: item.parentId
+                                    };
+                                }));
+                            },
+                            error: function (response) {
+                                alert(response.responseText);
+                            },
+                            failure: function (response) {
+                                alert(response.responseText);
+                            }
+                        });
+                    },
+                    select: function (e, i) {
+                        $("#parentId").val(i.item.parentId);
+                    },
+                    minLength: 1
+                }).focus(function (event, ui) {
+                    $(".ui-helper-hidden-accessible").hide();
+                    event.preventDefault();
+                    //$(this).autocomplete("search");
+                });
+            });
+
+
+
+
         }
     });
 });
 
-//SAVE EDIT ROLE
+//SAVE EDIT MENU
 $(document).on("click", "#save_update_menu", function () {
     var vjsName = $("#name").val();
     var vjsController = $("#controller").val();
@@ -278,7 +370,7 @@ $(document).on("click", "#btn_view_menu", function () {
     });
 });
 
-//DELETE ROLE SHOW
+//DELETE MENU SHOW
 $(document).on("click", "#btn_del_menu", function () {
 
     var thisId = $(this).data('id');
@@ -287,7 +379,7 @@ $(document).on("click", "#btn_del_menu", function () {
     $("#confirm_del_data").attr('data-id', thisId);
 });
 
-//BTN DELETE ROLE
+//BTN DELETE MENU
 $(document).on("click", "#confirm_del_data", function () {
 
     $.ajax({

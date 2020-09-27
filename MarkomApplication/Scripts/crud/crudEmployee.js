@@ -24,45 +24,7 @@ $(document).ready(function () {
 });
 
 //DROPDOWN COMPANY NAME
-$(function () {
-    $("#dropdown_employee_company").autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: '/Employee/AutoCompleteCompanyName/',
-                selectFirst: true,
-                data: "{ 'prefix': '" + request.term + "'}",
-                dataType: "json",
-                type: "POST",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    response($.map(data, function (item) {
-                        return {
-                            value: item.companyName,
-                            companyName: item.companyName,
-                            mCompanyId: item.mCompanyId
-                    };
 
-                    }));
-                },
-                error: function (response) {
-                    alert("tidak ada data!");
-                    //alert(response.responseText);
-                },
-                failure: function (response) {
-                    alert("tidak ada data!");
-                    //alert(response.responseText);
-                }
-            });
-        },
-        select: function (e, i) {
-            $("#dropdown_employee_company_id").val(i.item.mCompanyId);
-        },
-        minLength: 1
-    }).focus(function (event, ui) {
-        $(".ui-helper-hidden-accessible").hide();
-        event.preventDefault();
-    });
-});
 
 //DROPDOWN EMPLOYEE NAME
 $(function () {
@@ -151,6 +113,46 @@ $(document).on("click", "#btn_add_employee", function () {
         type: 'get',
         success: function (result) {
             $("#modal_content_body").html(result);
+
+
+            $(function () {
+                $("#companyName").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: '/Employee/AutoCompleteCompanyName/',
+                            selectFirst: true,
+                            data: "{ 'prefix': '" + request.term + "'}",
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        value: item.companyName,
+                                        companyName: item.companyName,
+                                        mCompanyId: item.mCompanyId
+                                    };
+
+                                }));
+                            },
+                            error: function (response) {
+                                alert("tidak ada data!");
+                            },
+                            failure: function (response) {
+                                alert("tidak ada data!");
+                            }
+                        });
+                    },
+                    select: function (e, i) {
+                        $("#mCompanyId").val(i.item.mCompanyId);
+                    },
+                    minLength: 1
+                }).focus(function (event, ui) {
+                    $(".ui-helper-hidden-accessible").hide();
+                    event.preventDefault();
+                });
+            });
+
         }
     });
 });
@@ -161,7 +163,7 @@ $(document).on("click", "#btn_save_employee", function () {
     var vjsFirstName = $("#firstName").val();
     var vjsLastName = $("#lastName").val();
     debugger;
-    var vjsCompanyId = parseInt($("#companyName").val());
+    var vjsCompanyId = parseInt($("#mCompanyId").val());
     var vjsEmail = $("#email").val();
 
     
@@ -259,6 +261,47 @@ $(document).on("click", "#btn_edit_employee", function () {
             var vjsName = $("#firstName").val() + " " + $("#lastName").val();
             var vjsCode = $("#code").val();
             $(".modal_title_form").html("Edit Employee - " + vjsName + " (" + vjsCode + ")");
+
+
+
+            $(function () {
+                $("#companyName").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: '/Employee/AutoCompleteCompanyName/',
+                            selectFirst: true,
+                            data: "{ 'prefix': '" + request.term + "'}",
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        value: item.companyName,
+                                        companyName: item.companyName,
+                                        mCompanyId: item.mCompanyId
+                                    };
+
+                                }));
+                            },
+                            error: function (response) {
+                                alert("tidak ada data!");
+                            },
+                            failure: function (response) {
+                                alert("tidak ada data!");
+                            }
+                        });
+                    },
+                    select: function (e, i) {
+                        $("#mCompanyId").val(i.item.mCompanyId);
+                    },
+                    minLength: 1
+                }).focus(function (event, ui) {
+                    $(".ui-helper-hidden-accessible").hide();
+                    event.preventDefault();
+                });
+            });
+
         }
     });
 });

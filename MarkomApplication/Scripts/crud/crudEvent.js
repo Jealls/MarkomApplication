@@ -40,6 +40,9 @@ $(document).on("click", "#btn_add_event", function () {
         success: function (result) {
             $("#modal_content_body").html(result);
 
+            $(".datepicker-here").datepicker({ language: 'en' });
+            $('.datepicker-here').datepicker({ dateFormat: 'dd/mm/yyyy' }).val();
+
         }
     });
 });
@@ -156,7 +159,10 @@ $(document).on("click", "#btn_edit_event", function () {
             $("#modal_content_body").html(result);
 
             var vjsCode = $("#code").val();
-            $(".modal_title_form").html("Edit Event Request - " + vjsCode );
+            $(".modal_title_form").html("Edit Event Request - " + vjsCode);
+
+            $(".datepicker-here").datepicker({ language: 'en' });
+            $('.datepicker-here').datepicker({ dateFormat: 'dd/mm/yyyy' }).val();
         }
     });
 });

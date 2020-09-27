@@ -105,18 +105,9 @@
 
 </div>
 
+
+
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryval")
 
-    <script src="~/Scripts/datepicker.js"></script>
-    <script src="~/Scripts/datepicker.min.js"></script>
-    <script src="~/Scripts/i18n/datepicker.en.js"></script>
-    <script type="text/javascript">
-
-
-        $(function () {
-            $(".datepicker-here").datepicker({ language: 'en' });
-            $('.datepicker-here').datepicker({ dateFormat: 'dd/mm/yyyy' }).val();
-        });
-    </script >
-}
+    }

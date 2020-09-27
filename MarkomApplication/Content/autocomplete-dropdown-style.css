@@ -2,7 +2,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 1000 !important;
+    z-index: 11000 !important;
     float: left;
     display: none;
     min-width: 160px;
@@ -52,11 +52,11 @@ ul.ui-autocomplete.ui-menu {
     background-image: none;
 }
 .pac-container {
-    z-index: 9999999999 !important;
+/*    z-index: 9999999999 !important;*/
+    z-index: 1100 !important;
 }
 
 
 /*.ui-helper-hidden-accessible {
     display: none;
 }*/
-dropdown_parent_menu

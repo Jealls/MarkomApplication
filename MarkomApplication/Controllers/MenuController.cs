@@ -18,8 +18,8 @@ namespace MarkomApplication.Controllers
 
         public ActionResult AddMenu()
         {
-            String dummyPrefix = string.Empty;
-            ViewBag.MenuParentName = new SelectList(MenuDataAccess.SearchMenuStringParent(dummyPrefix), "parentId", "parentName");
+            //String dummyPrefix = string.Empty;
+            //ViewBag.MenuParentName = new SelectList(MenuDataAccess.SearchMenuStringParent(dummyPrefix), "parentId", "parentName");
             return PartialView();
         }
 
@@ -76,8 +76,8 @@ namespace MarkomApplication.Controllers
         //EDIT Menu
         public ActionResult EditMenu(int paramId)
         {
-            String dummyPrefix = string.Empty;
-            ViewBag.MenuParentName = new SelectList(MenuDataAccess.SearchMenuStringParent(dummyPrefix), "parentId", "parentName");
+            //String dummyPrefix = string.Empty;
+            //ViewBag.MenuParentName = new SelectList(MenuDataAccess.SearchMenuStringParent(dummyPrefix), "parentId", "parentName");
 
             return PartialView(MenuDataAccess.GetDetailMenuById(paramId));
         }
@@ -162,13 +162,13 @@ namespace MarkomApplication.Controllers
             return Json(item, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost]
-        //public JsonResult AutoCompleteMenuParent(string prefix)
-        //{
+        [HttpPost]
+        public JsonResult AutoCompleteMenuParent(string prefix)
+        {
 
-        //    var item = MenuDataAccess.SearchMenuStringParent(prefix);
+            var item = MenuDataAccess.SearchMenuStringParent(prefix);
 
-        //    return Json(item, JsonRequestBehavior.AllowGet);
-        //}
+            return Json(item, JsonRequestBehavior.AllowGet);
+        }
     }
 }

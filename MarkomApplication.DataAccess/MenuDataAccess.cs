@@ -97,7 +97,6 @@ namespace MarkomApplication.DataAccess
                     controller = c.controller,
                     parentId = c.parent_id,
                     parentName = db.m_menu.Where(x => x.id == c.parent_id).SingleOrDefault()?.name
-
                 }).FirstOrDefault();
             }
 

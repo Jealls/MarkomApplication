@@ -37,8 +37,8 @@ namespace MarkomApplication.Controllers
         //  ADD EMPLOYEE
         public ActionResult AddEmployee()
         {
-            String dummyPrefix = string.Empty;
-            ViewBag.CompanyName = new SelectList(EmployeeDataAccess.SearchStringCompanyName(dummyPrefix), "mCompanyId", "companyName");
+            //String dummyPrefix = string.Empty;
+            //ViewBag.CompanyName = new SelectList(EmployeeDataAccess.SearchStringCompanyName(dummyPrefix), "mCompanyId", "companyName");
             return PartialView();
         }
 
@@ -87,8 +87,8 @@ namespace MarkomApplication.Controllers
         //EDIT EMPLOYEE
         public ActionResult EditEmployee(int paramId)
         {
-            String dummyPrefix = string.Empty;
-            ViewBag.CompanyName = new SelectList(EmployeeDataAccess.SearchStringCompanyName(dummyPrefix), "mCompanyId", "companyName");
+            //String dummyPrefix = string.Empty;
+            //ViewBag.CompanyName = new SelectList(EmployeeDataAccess.SearchStringCompanyName(dummyPrefix), "mCompanyId", "companyName");
 
             return PartialView(EmployeeDataAccess.GetDetailEmployeeById(paramId));
         }

@@ -18,5 +18,6 @@ namespace MarkomApplication.DataModel
         public string name { get; set; }
         public string create_by { get; set; }
         public System.DateTime create_date { get; set; }
+        public string description { get; set; }
     }
 }

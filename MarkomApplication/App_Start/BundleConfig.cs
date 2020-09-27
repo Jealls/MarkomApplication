@@ -43,6 +43,9 @@ namespace MarkomApplication
             bundles.Add(new ScriptBundle("~/bundles/validation").Include(
                         "~/Scripts/validation/validate.*"
             ));
+            bundles.Add(new ScriptBundle("~/bundles/for-datepicker").Include(
+            "~/Scripts/validation/js-for-datepicker"
+            ));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
             "~/Scripts/jquery-ui-{version}.js"));

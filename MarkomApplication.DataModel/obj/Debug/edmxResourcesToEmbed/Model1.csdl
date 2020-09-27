@@ -644,6 +644,7 @@
     <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
     <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="255" />
   </ComplexType>
   <ComplexType Name="spEmpNameById_Result">
     <Property Type="Int32" Name="id" Nullable="false" />

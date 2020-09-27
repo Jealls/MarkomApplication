@@ -40,12 +40,11 @@
 
         <div class="form-group col-md-6">
             <div class="form-group form-inline">
-                @Html.LabelFor(model => model.companyName, htmlAttributes: new { @class = "control-label col-md-5" })
+                @Html.LabelFor(model => model.mCompanyId, htmlAttributes: new { @class = "control-label col-md-5" })
                 <div class="col-md-7">
-
-                    @Html.DropDownListFor(model => model.companyName, (IEnumerable<SelectListItem>)ViewBag.CompanyName, "", new { @class = "form-control dropdown-style" } )
-                    @*@Html.EditorFor(model => model.companyName, new { htmlAttributes = new { @class = "form-control dropdown_emp_com_add", @style = "width:100%;", placeholder = "- Company Name -", maxLength = 50 } })*@
-                    <input type="hidden" id="dropdown_emp_com_id_add" name="CompanyNameDropdown" />
+                    @*@Html.DropDownListFor(model => model.companyName, (IEnumerable<SelectListItem>)ViewBag.CompanyName, "", new { @class = "form-control dropdown-style" } )*@
+                    @Html.EditorFor(model => model.companyName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "- Company Name -", maxLength = 50 } })
+                    <input type="hidden" id="mCompanyId" name="CompanyNameDropdown" />
                     @Html.ValidationMessageFor(model => model.companyName, "", new { @class = "text-danger" })
                 </div>
             </div>

@@ -247,6 +247,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\menu-dropdown.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\js-for-datepicker.js" />
     <Content Include="Scripts\validation\validate-employee.js" />
     <Content Include="Scripts\validation\validate-event.js" />
     <Content Include="Scripts\validation\validate-menu.js" />
