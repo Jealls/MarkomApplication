@@ -534,6 +534,40 @@
           <Parameter Name="ColumnName" Type="varchar" Mode="In" />
           <Parameter Name="TableName" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spSouCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Prefix" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spSouCountName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spSouDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="IdNumber" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="spSouDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spSouName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Prefix" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spSouSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="UnitId" Type="int" Mode="In" />
+          <Parameter Name="CreateDate" Type="date" Mode="In" />
+          <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spSouUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="SouName" Type="varchar" Mode="In" />
+          <Parameter Name="UnitId" Type="int" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spUnitCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Prefix" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="spUnitCountName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Name" Type="varchar" Mode="In" />
         </Function>
@@ -543,6 +577,9 @@
         </Function>
         <Function Name="spUnitDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spUnitName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Prefix" Type="varchar" Mode="In" />
         </Function>
         <Function Name="spUnitSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Code" Type="varchar" Mode="In" />
@@ -1130,14 +1167,14 @@
             <Parameter Name="IdNumber" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spUnitCountName" ReturnType="Collection(Int32)">
-            <Parameter Name="Name" Mode="In" Type="String" />
+          <Parameter Name="Name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spUnitDelete">
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="IdNumber" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spUnitDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spUnitDetailByID_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spUnitSearch" ReturnType="Collection(MarkomApplicationDBModel.spUnitSearch_Result)">
             <Parameter Name="Code" Mode="In" Type="String" />
@@ -1151,6 +1188,43 @@
             <Parameter Name="Description" Mode="In" Type="String" />
             <Parameter Name="UpdateBy" Mode="In" Type="String" />
             <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spSouCountName" ReturnType="Collection(Int32)">
+          <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spSouDelete">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="IdNumber" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spSouDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spSouDetailByID_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spSouName" ReturnType="Collection(MarkomApplicationDBModel.spSouName_Result)">
+          <Parameter Name="Prefix" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spSouSearch" ReturnType="Collection(MarkomApplicationDBModel.spSouSearch_Result)">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="UnitId" Mode="In" Type="Int32" />
+            <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spSouUpdate">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="SouName" Mode="In" Type="String" />
+            <Parameter Name="UnitId" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="UpdateBy" Mode="In" Type="String" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spSouCode" ReturnType="Collection(MarkomApplicationDBModel.spSouCode_Result)">
+          <Parameter Name="Prefix" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spUnitName" ReturnType="Collection(MarkomApplicationDBModel.spUnitName_Result)">
+          <Parameter Name="Prefix" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spUnitCode" ReturnType="Collection(MarkomApplicationDBModel.spUnitCode_Result)">
+            <Parameter Name="Prefix" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spCompanyList_Result">
@@ -1248,7 +1322,6 @@
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
           <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
-          <Property Type="String" Name="description" Nullable="true" MaxLength="255" />
         </ComplexType>
         <ComplexType Name="spEmpNameById_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -1331,6 +1404,39 @@
           <Property Type="String" Name="description" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
           <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spSouDetailByID_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="m_unit_id" Nullable="false" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="unit_name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spSouName_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spSouSearch_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="m_unit_id" Nullable="false" />
+          <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+          <Property Type="String" Name="unit_name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spSouCode_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spUnitName_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spUnitCode_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1814,7 +1920,6 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="create_by" ColumnName="create_by" />
                 <ScalarProperty Name="create_date" ColumnName="create_date" />
-                <ScalarProperty Name="description" ColumnName="description" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1953,6 +2058,66 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spUnitUpdate" FunctionName="MarkomApplicationDBModel.Store.spUnitUpdate" />
+          <FunctionImportMapping FunctionImportName="spSouCountName" FunctionName="MarkomApplicationDBModel.Store.spSouCountName" />
+          <FunctionImportMapping FunctionImportName="spSouDelete" FunctionName="MarkomApplicationDBModel.Store.spSouDelete" />
+          <FunctionImportMapping FunctionImportName="spSouDetailByID" FunctionName="MarkomApplicationDBModel.Store.spSouDetailByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spSouDetailByID_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="m_unit_id" ColumnName="m_unit_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spSouName" FunctionName="MarkomApplicationDBModel.Store.spSouName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spSouName_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spSouSearch" FunctionName="MarkomApplicationDBModel.Store.spSouSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spSouSearch_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="m_unit_id" ColumnName="m_unit_id" />
+                <ScalarProperty Name="create_by" ColumnName="create_by" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spSouUpdate" FunctionName="MarkomApplicationDBModel.Store.spSouUpdate" />
+          <FunctionImportMapping FunctionImportName="spSouCode" FunctionName="MarkomApplicationDBModel.Store.spSouCode">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spSouCode_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spUnitName" FunctionName="MarkomApplicationDBModel.Store.spUnitName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spUnitName_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spUnitCode" FunctionName="MarkomApplicationDBModel.Store.spUnitCode">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spUnitCode_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

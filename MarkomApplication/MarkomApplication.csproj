@@ -136,6 +136,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SouvenirController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -218,6 +219,7 @@
     <Content Include="Scripts\crud\crudEvent.js" />
     <Content Include="Scripts\crud\crudMenu.js" />
     <Content Include="Scripts\crud\crudRole.js" />
+    <Content Include="Scripts\crud\crudSouvenir.js" />
     <Content Include="Scripts\crud\crudUnit.js" />
     <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\datepicker.min.js" />
@@ -254,6 +256,7 @@
     <Content Include="Scripts\validation\validate-event.js" />
     <Content Include="Scripts\validation\validate-menu.js" />
     <Content Include="Scripts\validation\validate-role.js" />
+    <Content Include="Scripts\validation\validate-souvenir.js" />
     <Content Include="Scripts\validation\validate-unit.js" />
     <Content Include="Scripts\validation\validate.Company.js" />
     <Content Include="Web.config" />
@@ -304,6 +307,11 @@
     <Content Include="Views\Unit\AddUnit.cshtml" />
     <Content Include="Views\Unit\EditUnit.cshtml" />
     <Content Include="Views\Unit\ViewUnit.cshtml" />
+    <Content Include="Views\Souvenir\Index.cshtml" />
+    <Content Include="Views\Souvenir\ListSouvenir.cshtml" />
+    <Content Include="Views\Souvenir\AddSouvenir.cshtml" />
+    <Content Include="Views\Souvenir\EditSouvenir.cshtml" />
+    <Content Include="Views\Souvenir\ViewSouvenir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

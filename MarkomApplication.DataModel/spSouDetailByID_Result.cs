@@ -11,12 +11,13 @@ namespace MarkomApplication.DataModel
 {
     using System;
     
-    public partial class spRoleSearch_Result
+    public partial class spSouDetailByID_Result
     {
         public int id { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-        public string create_by { get; set; }
-        public System.DateTime create_date { get; set; }
+        public int m_unit_id { get; set; }
+        public string description { get; set; }
+        public string unit_name { get; set; }
     }
 }

@@ -477,7 +477,6 @@
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="create_by" ColumnName="create_by" />
           <ScalarProperty Name="create_date" ColumnName="create_date" />
-          <ScalarProperty Name="description" ColumnName="description" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -616,5 +615,65 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spUnitUpdate" FunctionName="MarkomApplicationDBModel.Store.spUnitUpdate" />
+    <FunctionImportMapping FunctionImportName="spSouCountName" FunctionName="MarkomApplicationDBModel.Store.spSouCountName" />
+    <FunctionImportMapping FunctionImportName="spSouDelete" FunctionName="MarkomApplicationDBModel.Store.spSouDelete" />
+    <FunctionImportMapping FunctionImportName="spSouDetailByID" FunctionName="MarkomApplicationDBModel.Store.spSouDetailByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spSouDetailByID_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="m_unit_id" ColumnName="m_unit_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSouName" FunctionName="MarkomApplicationDBModel.Store.spSouName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spSouName_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSouSearch" FunctionName="MarkomApplicationDBModel.Store.spSouSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spSouSearch_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="m_unit_id" ColumnName="m_unit_id" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSouUpdate" FunctionName="MarkomApplicationDBModel.Store.spSouUpdate" />
+    <FunctionImportMapping FunctionImportName="spSouCode" FunctionName="MarkomApplicationDBModel.Store.spSouCode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spSouCode_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spUnitName" FunctionName="MarkomApplicationDBModel.Store.spUnitName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spUnitName_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spUnitCode" FunctionName="MarkomApplicationDBModel.Store.spUnitCode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spUnitCode_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

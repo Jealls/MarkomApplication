@@ -58,6 +58,7 @@
     <Compile Include="MenuDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleDataAccess.cs" />
+    <Compile Include="SouvenirDataAccess.cs" />
     <Compile Include="UnitDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>

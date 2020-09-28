@@ -9,11 +9,13 @@ using System.Data.Entity.Core.Objects;
 
 namespace MarkomApplication.DataAccess
 {
-    public class UnitDataAccess
+    public class SouvenirDataAccess
     {
+
+
         public static string Message = string.Empty;
 
-        public static string CreateUnit(UnitViewModel paramDataUnit)
+        public static string CreateSouvenir(SouvenirViewModel paramDataSou)
         {
 
             string latestSaveCode = string.Empty;
@@ -24,15 +26,16 @@ namespace MarkomApplication.DataAccess
                 {
                     try
                     {
-                        m_unit c = new m_unit();
-                        c.code = UnitCode();
-                        c.name = paramDataUnit.name;
-                        c.description = paramDataUnit.description;
-                        c.is_delete = paramDataUnit.isDelete;
-                        c.create_by = paramDataUnit.createBy;
-                        c.create_date = paramDataUnit.createDate;
+                        m_souvenir c = new m_souvenir();
+                        c.code = SouvenirCode();
+                        c.name = paramDataSou.name;
+                        c.m_unit_id = paramDataSou.mUnitId;
+                        c.description = paramDataSou.description;
+                        c.is_delete = paramDataSou.isDelete;
+                        c.create_by = paramDataSou.createBy;
+                        c.create_date = paramDataSou.createDate;
 
-                        db.m_unit.Add(c);
+                        db.m_souvenir.Add(c);
                         db.SaveChanges();
                         dbContextTransaction.Commit();
 
@@ -53,20 +56,25 @@ namespace MarkomApplication.DataAccess
         }
 
 
-        public static List<UnitViewModel> GetListUnit(UnitViewModel paramSearch)
+        public static List<SouvenirViewModel> GetListSouvenir(SouvenirViewModel paramSearch)
         {
-            List<UnitViewModel> result = new List<UnitViewModel>();
+            List<SouvenirViewModel> result = new List<SouvenirViewModel>();
+
+            if (paramSearch.mUnitId != 0) {
+                paramSearch.unitId = paramSearch.mUnitId;
+            }
 
             using (var context = new MarkomApplicationDBEntities())
             {
-                var res = context.spUnitSearch(paramSearch.code, paramSearch.name, paramSearch.createDate2, paramSearch.createBy);
 
-                List<UnitViewModel> comList = res.Select(c => new UnitViewModel
+                var res = context.spSouSearch(paramSearch.code, paramSearch.name,paramSearch.unitId, paramSearch.createDate2, paramSearch.createBy);
+
+                List<SouvenirViewModel> comList = res.Select(c => new SouvenirViewModel
                 {
                     id = c.id,
                     code = c.code,
                     name = c.name,
-                    description = c.description,
+                    unitName = c.unit_name,
                     createDate = c.create_date,
                     createBy = c.create_by
                 }).ToList();
@@ -77,20 +85,22 @@ namespace MarkomApplication.DataAccess
             return result;
         }
 
-        //GET DETAIL Unit
-        public static UnitViewModel GetDetailUnitById(int paramUnitId)
+        //GET DETAIL Souvenir
+        public static SouvenirViewModel GetDetailSouvenirById(int paramSouvenirId)
         {
-            UnitViewModel result = new UnitViewModel();
+            SouvenirViewModel result = new SouvenirViewModel();
 
             using (var db = new MarkomApplicationDBEntities())
             {
-                var res = db.spUnitDetailByID(paramUnitId);
+                var res = db.spSouDetailByID(paramSouvenirId);
 
-                result = res.Select(c => new UnitViewModel
+                result = res.Select(c => new SouvenirViewModel
                 {
                     id = c.id,
                     code = c.code,
                     name = c.name,
+                    mUnitId = c.m_unit_id,
+                    unitName = c.unit_name,
                     description = c.description
 
                 }).FirstOrDefault();
@@ -99,17 +109,18 @@ namespace MarkomApplication.DataAccess
             return result;
         }
 
-        //UPDATE Unit
-        public static bool UpdateUnit(UnitViewModel paramEditEmp)
+        //UPDATE Souvenir
+        public static bool UpdateSouvenir(SouvenirViewModel paramEditEmp)
         {
             bool result = true;
             try
             {
                 using (MarkomApplicationDBEntities db = new MarkomApplicationDBEntities())
                 {
-                    db.spUnitUpdate(
+                    db.spSouUpdate(
                             paramEditEmp.id
                             , paramEditEmp.name
+                            , paramEditEmp.mUnitId
                             , paramEditEmp.description
                             , paramEditEmp.updateBy
                             , paramEditEmp.updateDate
@@ -127,7 +138,7 @@ namespace MarkomApplication.DataAccess
 
 
         //DELETE 
-        public static string DeleteUnit(int name)
+        public static string DeleteSouvenir(int name)
         {
             string latestSaveCode = string.Empty;
             try
@@ -135,7 +146,7 @@ namespace MarkomApplication.DataAccess
                 using (var db = new MarkomApplicationDBEntities())
                 {
                     ObjectParameter returnId = new ObjectParameter("IdNumber", typeof(string)); //Create Object parameter to receive a output value.It will behave like output parameter  
-                    db.spUnitDelete(name, returnId); //calling our entity imported function "Bangalore" is our input parameter, returnId is a output parameter, it will receive the output value   
+                    db.spSouDelete(name, returnId); //calling our entity imported function "Bangalore" is our input parameter, returnId is a output parameter, it will receive the output value   
                     latestSaveCode = (String)returnId.Value;
                 }
             }
@@ -147,17 +158,55 @@ namespace MarkomApplication.DataAccess
             return latestSaveCode;
         }
 
-
-        public static List<UnitViewModel> SearchUnitName(string prefix)
+        public static int? NameValidation(string name)
         {
-            List<UnitViewModel> result = new List<UnitViewModel>();
+            int? result = 0;
+            using (var db = new MarkomApplicationDBEntities())
+            {
+                var res = db.spSouCountName(name).FirstOrDefault();
+                result = res;
+            }
+
+            return result;
+        }
+
+
+
+        public static List<SouvenirViewModel> SearchUnitName(string prefix)
+        {
+            List<SouvenirViewModel> result = new List<SouvenirViewModel>();
             try
             {
                 using (MarkomApplicationDBEntities db = new MarkomApplicationDBEntities())
                 {
                     var res = db.spUnitName(prefix);
 
-                    List<UnitViewModel> comList = res.Select(c => new UnitViewModel
+                    List<SouvenirViewModel> comList = res.Select(c => new SouvenirViewModel
+                    {
+                        mUnitId = c.id,
+                        unitName = c.name,
+                    }).ToList();
+
+                    result = comList;
+                }
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+            return result;
+        }
+
+        public static List<SouvenirViewModel> SearchSouvenirName(string prefix)
+        {
+            List<SouvenirViewModel> result = new List<SouvenirViewModel>();
+            try
+            {
+                using (MarkomApplicationDBEntities db = new MarkomApplicationDBEntities())
+                {
+                    var res = db.spSouName(prefix);
+
+                    List<SouvenirViewModel> comList = res.Select(c => new SouvenirViewModel
                     {
                         id = c.id,
                         name = c.name
@@ -173,16 +222,16 @@ namespace MarkomApplication.DataAccess
             return result;
         }
 
-        public static List<UnitViewModel> SearchUnitCode(string prefix)
+        public static List<SouvenirViewModel> SearchSouvenirCode(string prefix)
         {
-            List<UnitViewModel> result = new List<UnitViewModel>();
+            List<SouvenirViewModel> result = new List<SouvenirViewModel>();
             try
             {
                 using (MarkomApplicationDBEntities db = new MarkomApplicationDBEntities())
                 {
-                    var res = db.spUnitCode(prefix);
+                    var res = db.spSouCode(prefix);
 
-                    List<UnitViewModel> comList = res.Select(c => new UnitViewModel
+                    List<SouvenirViewModel> comList = res.Select(c => new SouvenirViewModel
                     {
                         id = c.id,
                         code = c.code
@@ -198,27 +247,13 @@ namespace MarkomApplication.DataAccess
             return result;
         }
 
-        public static int? NameValidation(string name)
-        {
-            int? result = 0;
-            using (var db = new MarkomApplicationDBEntities())
-            {
-                var res = db.spUnitCountName(name).FirstOrDefault();
-                result = res;
-            }
-
-            return result;
-        }
-
-
-
-        public static string UnitCode()
+        public static string SouvenirCode()
         {
             string kode = "";
 
             using (var db = new MarkomApplicationDBEntities())
             {
-                var maxCodeNum = db.m_unit.Max(mc => mc.code);
+                var maxCodeNum = db.m_souvenir.Max(mc => mc.code);
 
                 if (maxCodeNum != null)
                 {
@@ -228,12 +263,12 @@ namespace MarkomApplication.DataAccess
                     if (lastCode.Length < max - 2)
                     {
                         long numCode = long.Parse(lastCode) + 1;
-                        kode = "UN" + AddZero(lastCode, numCode) + numCode.ToString();
+                        kode = "SV" + AddZero(lastCode, numCode) + numCode.ToString();
                     }
                 }
                 else
                 {
-                    kode = "UN0001";
+                    kode = "SV0001";
                 }
             }
 
@@ -259,5 +294,6 @@ namespace MarkomApplication.DataAccess
 
             return output;
         }
+
     }
 }

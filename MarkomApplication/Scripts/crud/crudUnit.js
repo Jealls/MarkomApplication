@@ -24,6 +24,79 @@ $(document).ready(function () {
 
 });
 
+
+//DROPDOWN NAME
+$(function () {
+    $("#dropdown_name_unit").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/Unit/AutoCompleteUnitName/',
+                selectFirst: true,
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return item.name;
+                    }));
+                },
+                error: function (response) {
+                    alert("tidak ada data!");
+                    //alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert("tidak ada data!");
+                    //alert(response.responseText);
+                }
+            });
+        },
+        select: function (e, i) {
+            $("#dropdown_name_unit_id").val(i.item.id);
+        },
+        minLength: 1
+    }).focus(function (event, ui) {
+        $(".ui-helper-hidden-accessible").hide();
+        event.preventDefault();
+    });
+});
+
+//DROPDOWN CODE
+$(function () {
+    $("#dropdown_code_unit").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/Unit/AutoCompleteUnitCode/',
+                selectFirst: true,
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return item.code;
+                    }));
+                },
+                error: function (response) {
+                    alert("tidak ada data!");
+                    //alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert("tidak ada data!");
+                    //alert(response.responseText);
+                }
+            });
+        },
+        select: function (e, ui) {
+            $("#dropdown_code_unit_id").val(ui.item.id);
+        },
+        minLength: 1
+    }).focus(function (event, ui) {
+        $(".ui-helper-hidden-accessible").hide();
+        event.preventDefault();
+    });
+});
+
 //MODAL ADD SHOW
 $(document).on("click", "#btn_add_unit", function () {
 

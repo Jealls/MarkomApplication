@@ -785,5 +785,122 @@ namespace MarkomApplication.DataModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUnitUpdate", idParameter, unitNameParameter, descriptionParameter, updateByParameter, updateDateParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> spSouCountName(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spSouCountName", nameParameter);
+        }
+    
+        public virtual int spSouDelete(Nullable<int> id, ObjectParameter idNumber)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spSouDelete", idParameter, idNumber);
+        }
+    
+        public virtual ObjectResult<spSouDetailByID_Result> spSouDetailByID(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spSouDetailByID_Result>("spSouDetailByID", idParameter);
+        }
+    
+        public virtual ObjectResult<spSouName_Result> spSouName(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spSouName_Result>("spSouName", prefixParameter);
+        }
+    
+        public virtual ObjectResult<spSouSearch_Result> spSouSearch(string code, string name, Nullable<int> unitId, Nullable<System.DateTime> createDate, string createBy)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var unitIdParameter = unitId.HasValue ?
+                new ObjectParameter("UnitId", unitId) :
+                new ObjectParameter("UnitId", typeof(int));
+    
+            var createDateParameter = createDate.HasValue ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(System.DateTime));
+    
+            var createByParameter = createBy != null ?
+                new ObjectParameter("CreateBy", createBy) :
+                new ObjectParameter("CreateBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spSouSearch_Result>("spSouSearch", codeParameter, nameParameter, unitIdParameter, createDateParameter, createByParameter);
+        }
+    
+        public virtual int spSouUpdate(Nullable<int> id, string souName, Nullable<int> unitId, string description, string updateBy, Nullable<System.DateTime> updateDate)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var souNameParameter = souName != null ?
+                new ObjectParameter("SouName", souName) :
+                new ObjectParameter("SouName", typeof(string));
+    
+            var unitIdParameter = unitId.HasValue ?
+                new ObjectParameter("UnitId", unitId) :
+                new ObjectParameter("UnitId", typeof(int));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var updateByParameter = updateBy != null ?
+                new ObjectParameter("UpdateBy", updateBy) :
+                new ObjectParameter("UpdateBy", typeof(string));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spSouUpdate", idParameter, souNameParameter, unitIdParameter, descriptionParameter, updateByParameter, updateDateParameter);
+        }
+    
+        public virtual ObjectResult<spSouCode_Result> spSouCode(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spSouCode_Result>("spSouCode", prefixParameter);
+        }
+    
+        public virtual ObjectResult<spUnitName_Result> spUnitName(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spUnitName_Result>("spUnitName", prefixParameter);
+        }
+    
+        public virtual ObjectResult<spUnitCode_Result> spUnitCode(string prefix)
+        {
+            var prefixParameter = prefix != null ?
+                new ObjectParameter("Prefix", prefix) :
+                new ObjectParameter("Prefix", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spUnitCode_Result>("spUnitCode", prefixParameter);
+        }
     }
 }

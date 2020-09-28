@@ -65,7 +65,6 @@ namespace MarkomApplication.DataAccess
                     id = c.id,
                     code = c.code,
                     name = c.name,
-                    description = c.description,
                     createDate = c.create_date,
                     createBy = c.create_by
                 }).ToList();

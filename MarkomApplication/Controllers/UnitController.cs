@@ -134,5 +134,22 @@ namespace MarkomApplication.Controllers
             }
         }
 
+
+        [HttpPost]
+        public JsonResult AutoCompleteUnitName(string prefix)
+        {
+            var item = UnitDataAccess.SearchUnitName(prefix);
+
+            return Json(item, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public JsonResult AutoCompleteUnitCode(string prefix)
+        {
+            var item = UnitDataAccess.SearchUnitCode(prefix);
+
+            return Json(item, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -1,0 +1,65 @@
+﻿@model MarkomApplication.ViewModel.SouvenirViewModel
+
+@Styles.Render("~/Content/dropdown-autocomplete")
+@Styles.Render("~/Content/css-validate")
+
+
+@Html.AntiForgeryToken()
+<div class="border py-3 rounded">
+
+    <div class="form-row">
+        <div class="form-horizontal col-md-6">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="code">* Souvenir Code</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Auto Generated", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="name">* Souvenir Name</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Souvenir Name", maxLength = 50 } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-horizontal col-md-6">
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="code">* Unit Name</label>
+                <div class="col-md-7">
+                    @*@Html.EditorFor(model => model.unitName, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.EditorFor(model => model.unitName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "- Unit Name -", maxLength = 50 } })
+                    <input type="hidden" id="mUnitId" name="CompanyNameDropdown" />
+                    @Html.ValidationMessageFor(model => model.unitName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Description", maxLength = 255 } })
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="form-row mx-1 py-lg-4 justify-content-end" style="background-color:#F8F8F8;">
+
+        <button type="submit" name="submit" value="Create" id="btn_save_sou" class="btn btn-primary active mr-2" data-url="@Url.Action("CreateDataSouvenir", "Souvenir")">Save</button>
+        <button type="button" value="Cancel" data-dismiss="modal" class="btn btn-warning mr-5 text-white">Cancel</button>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
