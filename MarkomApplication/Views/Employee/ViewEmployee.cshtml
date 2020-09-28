@@ -9,21 +9,21 @@
             <div class="form-group form-inline">
                 @Html.LabelFor(model => model.code, htmlAttributes: new { @class = "control-label col-md-5" })
                 <div class="col-md-7">
-                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Emp ID Number", @disabled = "disabled" } })
+                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", @disabled = "disabled" } })
                 </div>
             </div>
 
             <div class="form-group form-inline">
                 @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-5" })
                 <div class="col-md-7">
-                    @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type First Name", @disabled = "disabled" } })
+                    @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", @readonly = "readonly" } })
                 </div>
             </div>
 
             <div class="form-group form-inline">
                 @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-5" })
                 <div class="col-md-7">
-                    @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Type Last Name", @disabled = "disabled" } })
+                    @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", @readonly = "readonly" } })
                 </div>
             </div>
 
@@ -33,7 +33,7 @@
             <div class="form-group form-inline">
                 @Html.LabelFor(model => model.companyName, htmlAttributes: new { @class = "control-label col-md-5" })
                 <div class="col-md-7">
-                    @Html.EditorFor(model => model.companyName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Company Name", @disabled = "disabled" } })
+                    @Html.EditorFor(model => model.companyName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", @readonly = "readonly" } })
                     @*@Html.DropDownListFor(model => model.mCompanyId, (IEnumerable<SelectListItem>)ViewBag.CompanyName, "", new { @class = "form-control dropdown-style" })*@
                 </div>
             </div>
@@ -41,7 +41,7 @@
             <div class="form-group form-inline">
                 @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-5" })
                 <div class="col-md-7">
-                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", placeholder = "Email", @disabled = "disabled" } })
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @style = "width:100%;", @readonly = "readonly" } })
                 </div>
             </div>
         </div>
