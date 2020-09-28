@@ -1,0 +1,49 @@
+﻿@model MarkomApplication.ViewModel.ProductViewModel
+@Styles.Render("~/Content/css-validate")
+
+
+
+@Html.AntiForgeryToken()
+<div class="border py-3 rounded">
+    <div class="form-row">
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="code">* Product Code</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", placeholder = "Auto Generated" } })
+                    @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-5" for="code">* Product Name</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", placeholder = "Type Product Name", maxLength = 50 } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", placeholder = "Type Description", maxLength = 255 } })
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="form-row mx-1 py-lg-4 justify-content-end" style="background-color:#F8F8F8;">
+
+        <button type="submit" name="submit" value="Create" id="btn_save_prod" class="btn btn-primary active mr-2" data-url="@Url.Action("CreateDataProduct", "Product")">Save</button>
+        <button type="button" value="Cancel" data-dismiss="modal" class="btn btn-warning mr-5 text-white">Cancel</button>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

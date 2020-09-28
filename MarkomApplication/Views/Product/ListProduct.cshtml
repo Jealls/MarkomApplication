@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MarkomApplication.ViewModel.ProductViewModel>
+
+@{
+    ViewBag.Title = "ListProduct";
+}
+<div class="container rounded-top border border-primary">
+
+    <div class="row rounded-top list-head ">
+        <p>List Product</p>
+    </div>
+    <div class="row mx-2">
+        <p class="p-2 my-3 bg-light text-dark" style="width:100%;">
+            <a>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active" })</a> /
+            <a>@Html.ActionLink("Master", "Index", "Home", null, new { @class = "active" })</a> /
+            List Product
+        </p>
+        <div class="py-2" style="width:100%;">
+            <a class="btn btn-primary active" id="btn_add_prod" role="button" aria-pressed="true" style="float: right;" data-url="@Url.Action("AddProduct", "Product")">Add</a>
+        </div>
+
+        <div class="row search_group" style="width:100%">
+            <div class="input-group">
+                <div class="form-group col-2">
+                    <input type="text" id="txt_prod_code" name="productCode" class="form-control rounded" placeholder="Product Code">
+                </div>
+                <div class="form-group col-2">
+                    <input type="text" id="txt_prod_name" name="productName" class="form-control rounded" placeholder="Product Name">
+                </div>
+                <div class="form-group col-3">
+                    <input type="text" id="txt_prod_desc" name="productDesc" class="form-control rounded" placeholder="Description">
+                </div>
+                <div class="form-group col-2" style="max-width:220px;">
+                    <div class="has-feedback">
+                        <input id="created_date" class="form-control datepicker-here" data-date-format="dd/mm/yyyy" placeholder="Created" />
+                        <i class="fa fa-calendar form-control-feedback"></i>
+                    </div>
+                </div>
+                <div class="form-group col-2" style="max-width:220px;">
+                    <input id="created_by" type="text" class="form-control rounded" placeholder="Created By" name="src_created_role" />
+                </div>
+
+                <div class="form-group col-1" style="margin-right:0; ">
+                    <button class="btn btn-warning text-white" id="btn_search_prod" name="btn_search_role" data-url="@Url.Action("Index", "Product")"> &nbsp;Search</button>
+                </div>
+            </div>
+        </div>
+        <table id="tbl_list_prod" class="table">
+        </table>
+    </div>
+</div>
+
+
+@Html.Partial("_ModalPopUp")
+@section Scripts{
+    <script src="~/Scripts/datepicker.js"></script>
+    <script src="~/Scripts/datepicker.min.js"></script>
+    <script src="~/Scripts/i18n/datepicker.en.js"></script>
+    <script src="~/Scripts/crud/crudProduct.js"></script>
+    <script src="~/Scripts/validation/validate-product.js"></script>
+}
+@Html.Partial("_AlertPopUp")

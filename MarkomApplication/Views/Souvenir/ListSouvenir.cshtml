@@ -26,29 +26,29 @@
 
         <div class="row search_group" style="width:100%">
             <div class="input-group">
-                <div class="form-group">
+                <div class="form-group col-2">
                     <input type="text" id="dropdown_code_sou" name="DropdownCode" class="form-control rounded" placeholder="- Select Souvenir Code -">
                     <input type="hidden" id="dropdown_code_sou_id" name="SouvenirCodeDropdown" />
                 </div>
-                <div class="form-group">
+                <div class="form-group col-3">
                     <input type="text" id="dropdown_name_sou" name="DropdownName" class="form-control rounded" placeholder="- Select Souvenir Name -">
                     <input type="hidden" id="dropdown_name_sou_id" name="SouvenirNameDropdown" />
                 </div>
-                <div class="form-group">
+                <div class="form-group col-2">
                     <input type="text" id="dropdown_unit_sou" name="DropdownName" class="form-control rounded" placeholder="- Select Unit Name -">
                     <input type="hidden" id="dropdown_unit_sou_id" name="SouvenirUnitDropdown" />
                 </div>
-                <div class="form-group" style="max-width:220px;">
+                <div class="form-group col-2" style="max-width:220px;">
                     <div class="has-feedback">
                         <input id="created_date" class="form-control datepicker-here" data-date-format="dd/mm/yyyy" placeholder="Created" />
                         <i class="fa fa-calendar form-control-feedback"></i>
                     </div>
                 </div>
-                <div class="form-group" style="max-width:220px;">
+                <div class="form-group col-2" style="max-width:220px;">
                     <input id="created_by" type="text" class="form-control rounded" placeholder="Created By" name="src_created_sou" />
                 </div>
 
-                <div class="form-group" style="margin-right:0; ">
+                <div class="form-group col-1" style="margin-right:0; ">
                     <button class="btn  btn-warning text-white" id="btn_search_sou" name="btn_search_sou" data-url="@Url.Action("Index", "Souvenir")"> &nbsp;Search</button>
                 </div>
             </div>

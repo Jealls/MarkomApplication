@@ -99,7 +99,7 @@ $(function () {
 
 
 
-//MODAL ADD EMPLOYEE SHOW
+//MODAL ADD ROLE SHOW
 $(document).on("click", "#btn_add_role", function () {
 
     $("#modal_form_md").modal("show");
@@ -117,7 +117,7 @@ $(document).on("click", "#btn_add_role", function () {
 });
 
 
-//SAVE ADD EMPLOYEE
+//SAVE ADD ROLE
 $(document).on("click", "#btn_save_role", function () {
 
     var vjsName = $("#name").val();

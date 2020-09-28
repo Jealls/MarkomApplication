@@ -487,6 +487,30 @@
           <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
           <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="spProductCountName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spProductDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="IdNumber" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="spProductDetailByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spProductSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Desc" Type="varchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="date" Mode="In" />
+          <Parameter Name="CreateBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spProductUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateBy" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="spRoleCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Prefix" Type="varchar" Mode="In" />
         </Function>
@@ -1224,7 +1248,31 @@
           <Parameter Name="Prefix" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spUnitCode" ReturnType="Collection(MarkomApplicationDBModel.spUnitCode_Result)">
-            <Parameter Name="Prefix" Mode="In" Type="String" />
+          <Parameter Name="Prefix" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spProductCountName" ReturnType="Collection(Int32)">
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spProductDelete">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="IdNumber" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spProductDetailByID" ReturnType="Collection(MarkomApplicationDBModel.spProductDetailByID_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spProductSearch" ReturnType="Collection(MarkomApplicationDBModel.spProductSearch_Result)">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Desc" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spProductUpdate">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="UpdateBy" Mode="In" Type="String" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spCompanyList_Result">
@@ -1437,6 +1485,20 @@
         <ComplexType Name="spUnitCode_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spProductDetailByID_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="spProductSearch_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="create_by" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2118,6 +2180,31 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spProductCountName" FunctionName="MarkomApplicationDBModel.Store.spProductCountName" />
+          <FunctionImportMapping FunctionImportName="spProductDelete" FunctionName="MarkomApplicationDBModel.Store.spProductDelete" />
+          <FunctionImportMapping FunctionImportName="spProductDetailByID" FunctionName="MarkomApplicationDBModel.Store.spProductDetailByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spProductDetailByID_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spProductSearch" FunctionName="MarkomApplicationDBModel.Store.spProductSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarkomApplicationDBModel.spProductSearch_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="create_by" ColumnName="create_by" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spProductUpdate" FunctionName="MarkomApplicationDBModel.Store.spProductUpdate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

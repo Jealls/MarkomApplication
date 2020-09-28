@@ -154,6 +154,12 @@
     <Compile Include="spMenuSearch_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="spProductDetailByID_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spProductSearch_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="spRoleCode_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

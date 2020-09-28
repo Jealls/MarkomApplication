@@ -135,6 +135,7 @@
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SouvenirController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
@@ -218,6 +219,7 @@
     <Content Include="Scripts\crud\crudEmployee.js" />
     <Content Include="Scripts\crud\crudEvent.js" />
     <Content Include="Scripts\crud\crudMenu.js" />
+    <Content Include="Scripts\crud\crudProduct.js" />
     <Content Include="Scripts\crud\crudRole.js" />
     <Content Include="Scripts\crud\crudSouvenir.js" />
     <Content Include="Scripts\crud\crudUnit.js" />
@@ -255,6 +257,7 @@
     <Content Include="Scripts\validation\validate-employee.js" />
     <Content Include="Scripts\validation\validate-event.js" />
     <Content Include="Scripts\validation\validate-menu.js" />
+    <Content Include="Scripts\validation\validate-product.js" />
     <Content Include="Scripts\validation\validate-role.js" />
     <Content Include="Scripts\validation\validate-souvenir.js" />
     <Content Include="Scripts\validation\validate-unit.js" />
@@ -312,6 +315,11 @@
     <Content Include="Views\Souvenir\AddSouvenir.cshtml" />
     <Content Include="Views\Souvenir\EditSouvenir.cshtml" />
     <Content Include="Views\Souvenir\ViewSouvenir.cshtml" />
+    <Content Include="Views\Product\ListProduct.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\AddProduct.cshtml" />
+    <Content Include="Views\Product\EditProduct.cshtml" />
+    <Content Include="Views\Product\ViewProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
