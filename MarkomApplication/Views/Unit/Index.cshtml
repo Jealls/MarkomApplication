@@ -37,10 +37,10 @@
                     @Html.DisplayFor(modelItem => item.name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.createBy)
+                    @DateTime.Parse(item.createDate.ToString()).ToString("dd/MM/yyyy")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.createDate)
+                    @Html.DisplayFor(modelItem => item.createBy)
                 </td>
                 <td>
                     <button title="Tampilkan" id="btn_view_unit" class=" btn" data-id="@item.id" style="margin:2px; padding:2px;" data-url="@Url.Action("ViewUnit", "Unit")">
